@@ -9,14 +9,14 @@ class RockBarContorller {
 	public static multY:number = 0;
 	public static offset:number = 0;
 
-	private _barBtn: eui.Button;//抓动手柄
+	private _barBtn: eui.Image;//抓动手柄
 	private _startPoint: egret.Point;//开始的位置
 	private _movePoint: egret.Point = new egret.Point();//移动的位置
 	private _restPoint: egret.Point;//重置的位置
 	private _px:number;
 	private _py:number;
 
-	public constructor(dragBtn:eui.Button,px:number,py:number) {
+	public constructor(dragBtn:eui.Image,px:number,py:number) {
 		this._px = px;
 		this._py = py;
 		this._barBtn = dragBtn;

@@ -7,7 +7,15 @@
   "15af4ef91d8": {
     "path": "nodep/view/display/RockerBar.ts",
     "class": "RockerBar",
-    "parentPath": ""
+    "parentPath": "",
+    "bindingDataTestObj": [],
+    "backgroundX": 0,
+    "backgroundY": 0,
+    "backgroundWidth": -1,
+    "backgroundHeight": -1,
+    "useBgImage": true,
+    "useBgColor": true,
+    "backgroundAlpha": 100
   },
   "15af65213e4": {
     "path": "wor/view/window/TopToolBar.ts",
@@ -57,5 +65,8 @@
     "backgroundWidth": -1,
     "backgroundHeight": -1,
     "backgroundAlpha": 100
+  },
+  "global": {
+    "globalBindingDataTestObj": []
   }
 }

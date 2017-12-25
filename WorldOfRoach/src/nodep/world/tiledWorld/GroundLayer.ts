@@ -17,6 +17,7 @@ class GroundLayer extends egret.DisplayObjectContainer{
 	//地表
 	private _floor:FloorLayer;
 	private _stage:StageLayer;
+	private _rolePath:RolePath;
 
 	/**舞台宽度,舞台高度,世界宽度,世界高度 */
 	public constructor(maxW:number,maxH:number,worldW:number,worldH:number) {
@@ -33,6 +34,11 @@ class GroundLayer extends egret.DisplayObjectContainer{
 		this.addChild(this._floor);
 		this._stage = new StageLayer(worldW,worldH);
 		this.addChild(this._stage);
+
+		this._rolePath = new RolePath();
+		this.addChild(this._rolePath);
+
+		RenderManager.getIns().registRender(this._rolePath)
 	}
 
 	/**初始化当前位置 */

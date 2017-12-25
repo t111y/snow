@@ -48,13 +48,9 @@
     "resource/eui_skins/button/ButtonSkinRed.exml",
     "resource/eui_skins/display/RockerBar.exml",
     "resource/eui_skins/panel/AlertWindow.exml",
-    "resource/eui_skins/window/BottomBar.exml",
     "resource/eui_skins/window/GameMainLoaderWindow.exml",
     "resource/eui_skins/window/LogWindow.exml",
     "resource/eui_skins/window/MenuWindow.exml",
-    "resource/eui_skins/window/MiniMap.exml",
-    "resource/eui_skins/window/OptWindow.exml",
-    "resource/eui_skins/window/RoleWindow.exml",
     "resource/eui_skins/window/TopToolBar.exml"
   ]
 }

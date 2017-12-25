@@ -15,7 +15,7 @@ class RockerBar extends GameWindow implements eui.UIComponent {
 
 	protected childrenCreated(): void {
 		super.childrenCreated();
-		this._contorller = new RockBarContorller(this.getChildByName("barBtn") as eui.Button,this.x,this.y);
+		this._contorller = new RockBarContorller(this.getChildByName("barBtn") as eui.Image,this.x,this.y);
 		this.drawC();
 	}
 

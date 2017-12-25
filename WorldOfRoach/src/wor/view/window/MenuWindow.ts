@@ -10,8 +10,7 @@ class MenuWindow extends GameWindow implements eui.UIComponent {
 
 	protected childrenCreated(): void {
 		super.childrenCreated();
-		this.getChildByName("newGame").addEventListener(egret.TouchEvent.TOUCH_TAP, this.optionHandler, this)
-		this.getChildByName("oldGame").addEventListener(egret.TouchEvent.TOUCH_TAP, this.optionHandler, this)
+		this.startNewGame(true);
 		this.reOpen();
 	}
 
@@ -23,34 +22,9 @@ class MenuWindow extends GameWindow implements eui.UIComponent {
 	}
 
 	public update(updateType: number, updateObject: any): void {
-		switch(updateType)
-		{
-			case UpdateType.USER_HISTORY_BACLL://玩家历史数据返回
-				this.updatePanel();
-				break;
-		}
+		
 	}
 
-	//刷新整个界面
-	private updatePanel():void
-	{
-		this.getChildByName("newGame").visible = true;
-		this.getChildByName("oldGame").visible = GameData.historyData.hasData;
-	}
-
-	private optionHandler(evt: TouchEvent): void {
-		switch (evt.currentTarget["name"]) {
-			case "newGame":
-				if(GameData.historyData.hasData)
-					AlertWindow.alertShow("确定要开始新的冒险吗?这将覆盖原有存档!",this.startNewGame,this);
-				else
-					this.startNewGame(true);
-				break;
-			case "oldGame":
-				this.startOldGame();
-				break;
-		}
-	}
 
 	//开始一个新游戏
 	private startNewGame(flag:boolean):void

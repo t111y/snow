@@ -60,19 +60,11 @@ declare class RockerBarSkin extends eui.Skin{
 }
 declare class AlertWindowSkin extends eui.Skin{
 }
-declare class BottomBarSkin extends eui.Skin{
-}
 declare class GameMainLoaderWindowSkin extends eui.Skin{
 }
 declare class LogWindowSkin extends eui.Skin{
 }
 declare class MenuWindowSkin extends eui.Skin{
-}
-declare class MiniMapSkin extends eui.Skin{
-}
-declare class OptWindowSkin extends eui.Skin{
-}
-declare class RoleWindowSkin extends eui.Skin{
 }
 declare class TopToolBarSkin extends eui.Skin{
 }

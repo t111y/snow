@@ -137,7 +137,7 @@ class FloorLayer extends egret.DisplayObjectContainer {
 		this._gridY_from = y1;
 		this._gridY_to = y2;
 	}
-
+	
 	//初始化
 	private initCreate(x1: number, x2: number, y1: number, y2: number): void {
 		var px: number;
