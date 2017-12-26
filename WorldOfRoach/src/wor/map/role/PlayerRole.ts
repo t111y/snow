@@ -7,6 +7,7 @@ class PlayerRole extends FocusRole {
 
 	public static self: PlayerRole;
 	public path:Array<RolePathPoint>;
+	public roleMeshs:Array<RoleMesh>;
 	public constructor() {
 		super();
 		PlayerRole.self = this;
@@ -15,10 +16,11 @@ class PlayerRole extends FocusRole {
 		shape.graphics.beginFill(0xFF0000, 1);
 		shape.graphics.drawRect(-30, -120, 60, 120);
 		shape.graphics.endFill();
-		this.addChild(shape)
+		this.addChild(shape);
 		this.speedX = 8;
 		this.speedY = 4;
 		this.path = new Array<RolePathPoint>();
+		this.roleMeshs = new Array<RoleMesh>();
 	}
 
 	//角色的移动处理,这里的移动优化应该还可以继续优化
@@ -54,13 +56,15 @@ class PlayerRole extends FocusRole {
 				this.y = toy;
 				var point:RolePathPoint = new RolePathPoint(new Point2D(tox,toy));
 				this.path.push(point);
+				var mesh:RoleMesh = RoleMesh.check(this.path);
+				if(mesh!=null){
+					this.roleMeshs.push(mesh);
+				}
 				this.checkPosY();
 				WinsManager.getIns().updateWin(UpdateType.MAP_SELF_MOVE,[WorWindowType.MINI_MAP]);
 			}
 		}
-		if(this.path.length>0 && egret.getTimer() -  this.path[0].time>10000){
-			this.path.shift();
-		}
+		
 	}
 
 	//错误位置修正

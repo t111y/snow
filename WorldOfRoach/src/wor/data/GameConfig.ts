@@ -31,4 +31,8 @@ class GameConfig {
 	/**是否显示河流 */
 	public static showRiver:boolean = false;
 
+	public static pointOvertime:number = 5000;
+
+	public static trapTime:number = 5000;
+
 }
