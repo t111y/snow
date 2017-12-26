@@ -8,6 +8,17 @@ class RolePath extends egret.DisplayObjectContainer implements IRender {
 	}
 	public renderUpdate(interval: number): void {
 		this.drawPath(PlayerRole.self.path);
+		if(egret.getTimer() - PlayerRole.self.me)
+	}
+	private drawMesh(mesh:Array<RolePathPoint>,time:number){
+		this._shape.graphics.clear();
+		this._shape.graphics.beginFill(0x00ff00,(egret.getTimer() - time) / 1000);
+		var point:Point2D = mesh[0].point;
+		this._shape.graphics.moveTo(point.x,point.y);
+		for(var i:number =1;i<mesh.length;i++){
+			this._shape.graphics.lineTo(mesh[i].point.x,mesh[i].point.y);
+		}
+		this._shape.graphics.endFill();
 	}
 	private drawPath(path:Array<RolePathPoint>){
 		if(!path || path.length<2){
