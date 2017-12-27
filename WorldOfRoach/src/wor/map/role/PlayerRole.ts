@@ -30,7 +30,7 @@ class PlayerRole extends FocusRole {
 		//在这里检查某个点是否可以到达
 		var tox: number = this.x + RockBarContorller.multX * this.speedX;
 		var toy: number = this.y + RockBarContorller.multY * this.speedY;
-		var standType: number = FloorLayer.floorSelf.getStandType(tox,toy);
+		var standType: number = StandType.LAND;
 		var canMove:boolean = false;
 		if (standType == StandType.LAND) {
 			if (!StageLayer.self.hitTestRole(tox, toy)) {
@@ -60,7 +60,6 @@ class PlayerRole extends FocusRole {
 				if(mesh!=null){
 					this.roleMeshs.push(mesh);
 				}
-				this.checkPosY();
 				WinsManager.getIns().updateWin(UpdateType.MAP_SELF_MOVE,[WorWindowType.MINI_MAP]);
 			}
 		}

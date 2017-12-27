@@ -23,20 +23,11 @@ class GameManager {
 	//游戏创建的方式进入游戏
 	private buildEnter():void
 	{
-		WorldMakerManager.getIns().createWorld();//创建世界
-		ProxyManager.getIns().send(ModuleType.USER,ProxyType.USER_CREATE,"{\"posX\":"+GameData.playerData.posX+",\"posY\":"+GameData.playerData.posY+"}");
+		ProxyManager.getIns().send(ModuleType.USER,ProxyType.USER_CREATE,"{\"posX\":"+1000+",\"posY\":"+1000+"}");
 	}
 
 	private createEnter():void
 	{
-		//加载游戏地图数据
-		if(!this.isNewGame)
-		{
-			var str:string = localStorage.getItem(Server_Map.T_MAP_BASE);//将当前地图数据写入到本地
-			WorldMakerManager.getIns().rebuildWord(str);
-			LogTrace.log("loadBaseMap.len="+str.length);
-		}
-		//进入游戏,即获取玩家数据
 		ProxyManager.getIns().send(ModuleType.USER,ProxyType.USER_ENTERGAME);
 	}
 
@@ -54,9 +45,8 @@ class GameManager {
 	public enterGame():void
 	{
 		WinsManager.getIns().gameStage().addChildAt(Tiled_Ground.getIns(),0);
-		GameData.plantData.loadConfig();
 		//初始化游戏界面->实际开发中需要加入初始化进度条
-		Tiled_Ground.getIns().initWorld(GameConfig.WORD_W,GameConfig.WORD_H);//初始化世界的宽度和高度
+		Tiled_Ground.getIns().initWorld();//初始化世界的宽度和高度
 		GameData.timeData.play();
 		WinsManager.getIns().openWindow(RockerBar);//初始化摇杆到界面
 		WinsManager.getIns().openWindow(TopToolBar);//初始化顶部导航栏
@@ -68,8 +58,7 @@ class GameManager {
 
 	public deactivateHandler():void
 	{
-		SaveManager.getIns().saveAll();
-		LogTrace.log("暂停游戏->存档");
+		LogTrace.log("暂停游戏");
 	}
 
 	public activateHandler():void

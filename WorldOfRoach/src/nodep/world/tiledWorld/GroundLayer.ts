@@ -4,84 +4,54 @@
  * @version 1.0
  */
 class GroundLayer extends egret.DisplayObjectContainer{
-	private _maxW:number;
-	private _maxH:number;
-	private _worldW:number;
-	private _worldH:number;
-	private _hafX:number;
-	private _hafY:number;
-	private _maxOffsetX:number;
-	private _maxOffsetY:number;
-	private _toX:number;
-	private _toY:number;
-	//地表
-	private _floor:FloorLayer;
 	private _stage:StageLayer;
 	private _rolePath:RolePath;
-
+	private _mapBackground:MapBackground;
+	private mapW:number;
+	private mapH:number;
 	/**舞台宽度,舞台高度,世界宽度,世界高度 */
-	public constructor(maxW:number,maxH:number,worldW:number,worldH:number) {
+	public constructor(worldW:number,worldH:number) {
 		super();
-		this._maxW = maxW/WinsManager.scaleX;
-		this._maxH = maxH/WinsManager.scaleY;
-		this._worldW = worldW;
-		this._worldH = worldH;
-		this._hafX = this._maxW/2;
-		this._hafY = this._maxH/2;
-		this._maxOffsetX = -this._worldW+this._maxW+GameConfig.GRID_W/2;
-		this._maxOffsetY = -this._worldH+this._maxH;
-		this._floor = new FloorLayer(worldW,worldH);
-		this.addChild(this._floor);
-		this._stage = new StageLayer(worldW,worldH);
+		this.mapW = worldW;
+		this.mapH = worldH;
+		this._mapBackground = new MapBackground();
+		this._stage = new StageLayer();
+		this._rolePath = new RolePath();
+		this.addChild(this._mapBackground);
+		this.addChild(this._rolePath);
 		this.addChild(this._stage);
 
-		this._rolePath = new RolePath();
-		this.addChild(this._rolePath);
-
-		RenderManager.getIns().registRender(this._rolePath)
+		RenderManager.getIns().registRender(this._rolePath);
 	}
 
-	/**初始化当前位置 */
-	public initPosition(cx:number,cy:number):void
-	{
-		this._toX = -cx+this._hafX;
-		this._toY = -cy+this._hafY;
-		if(this._toX>0)
-			this._toX=0;
-		else if(this._toX<this._maxOffsetX)
-			this._toX=this._maxOffsetX;
-		if(this._toY>0)
-			this._toY=0;
-		else if(this._toY<this._maxOffsetY)
-			this._toY=this._maxOffsetY;
-		this.x = this._toX;
-		this.y = this._toY;
-		this._floor.initPosition(-this.x,-this.y);
-		this._stage.initSynArea(-this.x,-this.y);
-	}
 
 	/**同步到当前位置 */
 	public synPositionTo(cx:number,cy:number):void
 	{
-		this._toX = -cx+this._hafX;
-		this._toY = -cy+this._hafY;
-		if(this._toX>0)
-			this._toX=0;
-		else if(this._toX<this._maxOffsetX)
-			this._toX=this._maxOffsetX;
-		if(this._toY>0)
-			this._toY=0;
-		else if(this._toY<this._maxOffsetY)
-			this._toY=this._maxOffsetY;
-		this.x = this._toX;
-		this.y = this._toY;
-		if(this._floor.synPosition(-this.x,-this.y))
-			this._stage.trySynArea(-this.x,-this.y);
+		var hw = this.stage.stageWidth/2;
+		var hh = this.stage.stageHeight/2;
+		
+		if(hw>cx){
+			this.x = 0;
+		}else if(this.mapW - hw < cx){
+			this.x = this.mapW-cx;
+		}else if(hh<cx){
+			this.x = hw-cx;
+		}
+		if(hh>cy){
+			this.y = 0;
+		}else if(this.mapH - hh < cy){
+			this.x = this.mapH-cy;
+		}else if(hh<cy){
+			this.y = hh-cy;
+		}
+		this._stage.trySynArea(cx,cy);
+		this._mapBackground.render(cx,cy);
 	}
 
 	/**添加一个演员 */
 	public addRole(dis:egret.DisplayObject):void
 	{
-		this._stage.addRoleToLink(dis);
+		this._stage.addRole(dis);
 	}
 }

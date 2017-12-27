@@ -3,7 +3,7 @@
  * @author nodep
  * @version 1.0
  */
-class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender, ILink, IRole {
+class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender, IRole {
 
 	private static _addId: number = 0;
 	public __isFocus: boolean = false;
@@ -11,8 +11,6 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	public type: string;
 	public speedX: number;
 	public speedY: number;
-	private _preLink: any;
-	private _nextLink: any;
 	private _ak: string;
 
 	public constructor() {
@@ -36,28 +34,7 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		return this;
 	}
 
-	/**检查自己的Y轴排序 */
-	protected checkPosY(): void {
-		while (this._preLink && this.y < this._preLink["y"]) {
-			StageLayer.self.gotoPre(this);
-		}
-		while (this._nextLink && this.y > this._nextLink["y"]) {
-			StageLayer.self.gotoNext(this);
-		}
-	}
 
-	public getPre(): ILink {
-		return this._preLink;
-	}
-	public setPre(target: ILink): void {
-		this._preLink = target;
-	}
-	public getNext(): ILink {
-		return this._nextLink;
-	}
-	public setNext(target: ILink): void {
-		this._nextLink = target;
-	}
 	public setAreaKey(ak: string): void {
 		this._ak = ak;
 	}

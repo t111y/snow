@@ -128,6 +128,7 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected startCreateScene(): void {
+        this.stage.scaleMode = egret.StageScaleMode.NO_SCALE;
         LogTrace.log("application loadcompleted...");
         WinsManager.getIns().initGame(this);
         //启动主Render

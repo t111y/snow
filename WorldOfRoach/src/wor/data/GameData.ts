@@ -9,6 +9,4 @@ class GameData {
 	public static equipData:EquipData = new EquipData();
 	public static itemData:ItemData = new ItemData();
 	public static timeData:GameTimeData = new GameTimeData();
-	public static mapData:LloydMapData = new LloydMapData();
-	public static plantData:PlantData = new PlantData();
 }

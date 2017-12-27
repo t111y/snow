@@ -6,7 +6,6 @@ class GameTimeData implements IRender {
 	public static PM: string = "PM";
 	public static AM: string = "AM";
 
-	private _costT: number = 0;
 	public day: number = 0;
 	public hour: number = 0;
 	public min: number = 0;
@@ -38,11 +37,5 @@ class GameTimeData implements IRender {
 	 * 刷新游戏时间
 	 */
 	public renderUpdate(interval: number): void {
-		this._costT += interval;
-		if (this._costT >= GameConfig.game_time_t_my) {
-			this._costT = this._costT - GameConfig.game_time_t_my;
-			GameData.playerData.time += 1;
-			this.synGameTime();
-		}
 	}
 }

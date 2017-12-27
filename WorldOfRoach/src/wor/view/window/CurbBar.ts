@@ -16,13 +16,8 @@ class CurbBar extends GameWindow implements eui.UIComponent {
 		super.childrenCreated();
 		this._optBtn = this.getChildByName("optBtn") as eui.Button;
 		this.addEventTap("optBtn");
-		this.initOptTarget();
 	}
 
-	//刷新opt目标
-	private initOptTarget(): void {
-		this._optBtn.visible = WorldManager.getIns().focusOptionRole!=null;
-	}
 
 	/**
      * tap响应函数
@@ -38,7 +33,6 @@ class CurbBar extends GameWindow implements eui.UIComponent {
 	public update(updateType: number, updateObject: any): void {
 		switch (updateType) {
 			case UpdateType.MAP_OPT_CHANGE:
-				this.initOptTarget();
 				break;
 		}
 	}
