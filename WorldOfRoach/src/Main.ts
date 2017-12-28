@@ -14,7 +14,6 @@ class Main extends eui.UILayer {
      * 默认的初始化程序,复写函数不需要些override
      */
     protected createChildren(): void { 
-        SystemTimer.init();
         super.createChildren();
         // egret.Capabilities.isMobile
         //------------------
@@ -120,7 +119,7 @@ class Main extends eui.UILayer {
     //延迟进入游戏
     private delayStart():void
     {
-        WinsManager.getIns().openWindow(MenuWindow);
+        GameManager.getIns().startNewGame();
     }
 
     /**

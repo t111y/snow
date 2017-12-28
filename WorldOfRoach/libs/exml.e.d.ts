@@ -6,8 +6,6 @@ declare module skins{
 	class CheckBoxSkin extends eui.Skin{
 	}
 }
-declare class CurbBarSkin extends eui.Skin{
-}
 declare module skins{
 	class HScrollBarSkin extends eui.Skin{
 	}
@@ -63,8 +61,6 @@ declare class AlertWindowSkin extends eui.Skin{
 declare class GameMainLoaderWindowSkin extends eui.Skin{
 }
 declare class LogWindowSkin extends eui.Skin{
-}
-declare class MenuWindowSkin extends eui.Skin{
 }
 declare class TopToolBarSkin extends eui.Skin{
 }
