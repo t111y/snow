@@ -1,7 +1,5 @@
 /**
  * 平铺世界的基础容器
- * @author nodep qq623440028
- * @version 1.0
  */
 class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 	
@@ -9,7 +7,7 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 	private _self:PlayerRole;//自己
 	private _focus:FocusRole;
 	public roleMap:Map<number,FocusRole>//场景中受管理的角色对象
-	private _groud:GroundLayer;
+	public groud:GroundLayer;
 	private monsterManager:MonsterManager;
 	//世界只有一个
 	public static getIns(): Tiled_Ground {
@@ -26,7 +24,7 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 
 	/**刷新函数 */
 	public renderUpdate(interval:number) {
-		this._groud.synPositionTo(this._focus.x,this._focus.y);
+		this.groud.synPositionTo(this._focus.x,this._focus.y);
 	}
 
 
@@ -43,15 +41,15 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 	public addFocusRole(role:FocusRole):void
 	{
 		this.roleMap.set(role.id,role);
-		this._groud.addRole(role);
+		this.groud.addRole(role);
 		role.addToWorld();
 	}
 
 	//初始化地图
 	public initWorld():void {
 		this.roleMap = new Map<number,FocusRole>();
-		this._groud = new GroundLayer(GameConfig.WORD_W,GameConfig.WORD_H);
-		this.addChild(this._groud);
+		this.groud = new GroundLayer(GameConfig.WORD_W,GameConfig.WORD_H);
+		this.addChild(this.groud);
 
 		this.createSelf();
 		this.monsterManager = new MonsterManager();
@@ -67,6 +65,5 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 		this._self.y = 1000;//GameData.playerData.posY * this.cf_Y;
 		this.addFocusRole(this._self);
 		this.setFocus(this._self.id);
-		this._self.amendPosition();
 	}
 }

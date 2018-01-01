@@ -1,9 +1,9 @@
 class MapBackground extends egret.DisplayObjectContainer {
 	public constructor() {
 		super()
-		for(var i:number = 0;i<GameConfig.WORD_W-1 ;i+=GameConfig.GRID_W)
+		for(var i:number = 0;i<GameConfig.WORD_W-1 ;i+=GameConfig.GRID_SIZE)
 		{
-			for(var j:number = 0;j<GameConfig.WORD_H-1 ;j+=GameConfig.GRID_W)
+			for(var j:number = 0;j<GameConfig.WORD_H-1 ;j+=GameConfig.GRID_SIZE)
 			{
 				this.loadMapTile(i,j);
 			}
@@ -14,16 +14,18 @@ class MapBackground extends egret.DisplayObjectContainer {
 		if(dx<0 || dy <0){
 			return;
 		}
-		var i:number = Math.floor(dx / GameConfig.GRID_W);
-		var j:number =  Math.floor(dy /GameConfig.GRID_W);
+		var i:number = Math.floor(dx / GameConfig.GRID_SIZE);
+		var j:number =  Math.floor(dy /GameConfig.GRID_SIZE);
 		var key:String = i+"_"+j;
 		if(this.bitmaps.has(key)){
 			return;
 		}
 		var bitmap: egret.Bitmap = new egret.Bitmap();
 		this.addChild(bitmap);
-        bitmap.x = i*GameConfig.GRID_W;
-        bitmap.y = j*GameConfig.GRID_W;
+        bitmap.x = i*GameConfig.GRID_SIZE;
+        bitmap.y = j*GameConfig.GRID_SIZE;
+		bitmap.scaleX = 2;
+		bitmap.scaleY = 2;
 		this.bitmaps.set(key,bitmap);
 		RES.getResByUrl('resource/assets/map/1/' + key + '.png',function(event: any) {
             var img: egret.Texture = <egret.Texture>event;

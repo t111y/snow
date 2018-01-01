@@ -13,6 +13,22 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	public speedY: number;
 	private _ak: string;
 
+	public isDead:boolean = false;
+	public setDead(isDead:boolean){
+		this.isDead = isDead;
+		if(isDead){
+			Globals.killNum++;
+			WinsManager.getIns().showFloatText(Globals.killNum + "击");
+			if(this.filters == null){
+				var f:Array<egret.Filter> = new Array<egret.Filter>();
+				f.push(new egret.GlowFilter(0xffff00,1,10,10,100));
+				this.filters = f;
+			}
+			
+		}else{
+			this.filters = null;
+		}
+	}
 	public constructor() {
 		super();
 		FocusRole._addId++;
@@ -27,26 +43,48 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		this.addChild(this.mc);
 		this.mc.x = - 430;
 		this.mc.y = -400;
-		this.loadAnimation();
+		this.setWay(0);
 	}
 	
 	private mc:egret.MovieClip;
-	private loadAnimation(){
-		var data:any;
+	private mcData:any;
+	private _way:number = -1;
+	public setWay(way:number){
+		if(way == this._way){
+			return;
+		}
+		this._way = way;
+		if(way<0){
+			way = Math.abs(way);
+			this.scaleX = -1;
+		}else{
+			this.scaleX = 1;
+		}
 		var mcFactory:egret.MovieClipDataFactory ;
-		RES.getResByUrl("resource/assets/hero/Person/1003_attack_75aeb100.json",function(e){
-			data = JSON.parse(e);
-		},this,RES.ResourceItem.TYPE_TEXT)
+		if(!this.mcData){
+			RES.getResByUrl("resource/assets/hero/Person/1003_walk_2840d952.json",function(e){
+				this.mcData = JSON.parse(e);
+			},this,RES.ResourceItem.TYPE_TEXT);
+		}
+		
 		var m:egret.MovieClip = this.mc;
 		var t:egret.Texture;
-		RES.getResByUrl("resource/assets/hero/Person/1003_attack_902531dc.png",function(e){
+		RES.getResByUrl("resource/assets/hero/Person/1003_walk_4a5945e3.png",function(e){
 			t = <egret.Texture>e;
-			mcFactory = new egret.MovieClipDataFactory(data,t);
-			m.movieClipData =mcFactory.generateMovieClipData("0_3_attack_4");
+			mcFactory = new egret.MovieClipDataFactory(this.mcData,t);
+			m.movieClipData =mcFactory.generateMovieClipData("0_3_walk_" + way);
 			m.play(-1);
 		},this,RES.ResourceItem.TYPE_IMAGE);
 	}
 
+	protected synWay(tx:number,ty:number){
+		var r:number = Math.atan2(tx - this.x,ty - this.y);
+		r = (r * 180 / Math.PI + 360 );
+		var f:number = (8 - Math.round(r/45)) % 8;
+		console.log(f);
+		this.setWay(f);
+		
+	}
 	public renderUpdate(interval: number): void {
 
 	}

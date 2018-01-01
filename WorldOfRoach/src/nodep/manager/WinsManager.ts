@@ -181,7 +181,20 @@ class WinsManager {
 	{
 
 	}
-
+	public showFloatText(msg:string){
+		var txt:egret.TextField = new egret.TextField();
+		txt.text = msg;
+		txt.width = 500;
+		txt.size = 40;
+		txt.textColor = 0xff3300;
+		txt.x = WinsManager.stageWidth/2 - txt.width/2;
+		txt.y = WinsManager.stageHeight/2;
+		this.gameStage().addChild(txt);
+		egret.Tween.get(txt).to({y:txt.y - 200},1500).call(onComplete,this);
+		function onComplete(){
+			txt.parent.removeChild(txt);
+		}
+	}
 	/**
 	 * 快速获取游戏舞台
 	 */

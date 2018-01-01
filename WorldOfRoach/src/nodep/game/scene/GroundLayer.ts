@@ -4,7 +4,6 @@
  * @version 1.0
  */
 class GroundLayer extends egret.DisplayObjectContainer{
-	private _stage:StageLayer;
 	private _rolePath:RolePath;
 	private _mapBackground:MapBackground;
 	private mapW:number;
@@ -15,16 +14,18 @@ class GroundLayer extends egret.DisplayObjectContainer{
 		this.mapW = worldW;
 		this.mapH = worldH;
 		this._mapBackground = new MapBackground();
-		this._stage = new StageLayer();
 		this._rolePath = new RolePath();
 		this.addChild(this._mapBackground);
 		this.addChild(this._rolePath);
-		this.addChild(this._stage);
-
+		// var rockBar = new RockBarContorller();
+		
 		RenderManager.getIns().registRender(this._rolePath);
 	}
 
 
+	public hitTestRole(sx: number, sy: number){
+		return sx <0 || sy <0 || sx >GameConfig.WORD_W || sy >GameConfig.WORD_H;
+	}
 	/**同步到当前位置 */
 	public synPositionTo(cx:number,cy:number):void
 	{
@@ -45,13 +46,14 @@ class GroundLayer extends egret.DisplayObjectContainer{
 		}else{
 			this.y = hh-cy;
 		}
-		this._stage.trySynArea(cx,cy);
 		this._mapBackground.render(cx,cy);
+		// this.x = 0;
+		// this.y = 0;
 	}
 
 	/**添加一个演员 */
 	public addRole(dis:egret.DisplayObject):void
 	{
-		this._stage.addRole(dis);
+		this.addChild(dis);
 	}
 }

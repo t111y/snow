@@ -8,6 +8,7 @@ class PlayerRole extends FocusRole {
 	public static self: PlayerRole;
 	public path:Array<RolePathPoint>;
 	public roleMeshs:Array<RoleMesh>;
+	
 	public constructor() {
 		super();
 		PlayerRole.self = this;
@@ -30,25 +31,26 @@ class PlayerRole extends FocusRole {
 		var standType: number = StandType.LAND;
 		var canMove:boolean = false;
 		if (standType == StandType.LAND) {
-			if (!StageLayer.self.hitTestRole(tox, toy)) {
+			if (!Tiled_Ground.getIns().groud.hitTestRole(tox, toy)) {
 				canMove = true;
 			}
 			else {//优化移动
 				tox = this.x;
 				toy = this.y + RockBarContorller.multY * this.speedY;
-				if (!StageLayer.self.hitTestRole(tox, toy)) {
+				if (!Tiled_Ground.getIns().groud.hitTestRole(tox, toy)) {
 					canMove = true;
 				}
 				else {
 					tox = this.x + RockBarContorller.multX * this.speedX;
 					toy = this.y;
-					if (!StageLayer.self.hitTestRole(tox, toy)) {
+					if (!Tiled_Ground.getIns().groud.hitTestRole(tox, toy)) {
 						canMove = true;
 					}
 				}
 			}
 			if(canMove)
 			{
+				this.synWay(tox,toy);
 				this.x = tox;
 				this.y = toy;
 				var point:RolePathPoint = new RolePathPoint(new egret.Point(tox,toy));
@@ -62,9 +64,4 @@ class PlayerRole extends FocusRole {
 		
 	}
 
-	//错误位置修正
-	public amendPosition(): void {
-		while (StageLayer.self.hitTestRole(this.x, this.y))//如果位置不合法
-			this.y += 20;
-	}
 }
