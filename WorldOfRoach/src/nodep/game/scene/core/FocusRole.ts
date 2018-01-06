@@ -17,8 +17,8 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	public setDead(isDead:boolean){
 		this.isDead = isDead;
 		if(isDead){
-			Globals.killNum++;
-			WinsManager.getIns().showFloatText(Globals.killNum + "击");
+			Globals.i().killNum++;
+			WinsManager.getIns().showFloatText(Globals.i().killNum + "击");
 			if(this.filters == null){
 				var f:Array<egret.Filter> = new Array<egret.Filter>();
 				f.push(new egret.GlowFilter(0xffff00,1,10,10,100));

@@ -13,9 +13,9 @@
 	],
 	"game": [
 		"bin-debug/nodep/define/WindowType.js",
-		"bin-debug/nodep/game/window/GameWindow.js",
 		"bin-debug/nodep/game/scene/core/FocusRole.js",
-		"bin-debug/nodep/game/scene/StageLayer.js",
+		"bin-debug/nodep/game/window/GameWindow.js",
+		"bin-debug/nodep/game/scene/Tiled_Ground.js",
 		"bin-debug/nodep/data/Globals.js",
 		"bin-debug/nodep/define/AlignType.js",
 		"bin-debug/nodep/define/GameConfig.js",
@@ -35,8 +35,8 @@
 		"bin-debug/nodep/game/scene/RoleMesh.js",
 		"bin-debug/nodep/game/scene/RolePath.js",
 		"bin-debug/nodep/game/scene/RolePathPoint.js",
-		"bin-debug/nodep/utils/TimeUtil.js",
-		"bin-debug/nodep/game/scene/Tiled_Ground.js",
+		"bin-debug/nodep/game/scene/StageLayer.js",
+		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
 		"bin-debug/nodep/game/scene/core/IFocus.js",
 		"bin-debug/nodep/game/scene/core/IRole.js",
@@ -56,8 +56,9 @@
 		"bin-debug/nodep/manager/MonsterManager.js",
 		"bin-debug/nodep/manager/RenderManager.js",
 		"bin-debug/nodep/manager/WinsManager.js",
+		"bin-debug/nodep/net/NetworkManager.js",
 		"bin-debug/nodep/utils/DelayCall.js",
 		"bin-debug/nodep/utils/ObjectUtil.js",
-		"bin-debug/LoadingUI.js"
+		"bin-debug/nodep/utils/TimeUtil.js"
 	]
 }

@@ -113,6 +113,7 @@ class Main extends eui.UILayer {
     //正式进入游戏
     private startGame():void
     {
+        Globals.i();
         DelayCall.call(200,this.delayStart,this);
     }
 

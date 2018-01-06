@@ -59,6 +59,7 @@ class PlayerRole extends FocusRole {
 				if(mesh!=null){
 					this.roleMeshs.push(mesh);
 				}
+				Globals.i().net.send({x:Math.round(tox),y:Math.round(toy)});
 			}
 		}
 		
