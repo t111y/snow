@@ -79,7 +79,7 @@ var Main = (function (_super) {
     }
     Main.prototype.createChildren = function () {
         _super.prototype.createChildren.call(this);
-        this.stage.$scaleMode = egret.StageScaleMode.FIXED_WIDTH;
+        // this.stage.$scaleMode = egret.StageScaleMode.FIXED_WIDTH;
         egret.lifecycle.addLifecycleListener(function (context) {
             // custom lifecycle plugin
         });
@@ -181,8 +181,16 @@ var Main = (function (_super) {
     };
     //正式进入游戏
     Main.prototype.startGame = function () {
-        Globals.i();
-        DelayCall.call(200, this.delayStart, this);
+        Globals.i().net.addEventListener(MsgEvent.sc_login, this.onMsg, this);
+        Globals.i().net.addEventListener(egret.Event.CONNECT, this.onConnect, this);
+    };
+    Main.prototype.onConnect = function (e) {
+        Globals.i().net.removeEventListener(egret.Event.CONNECT, this.onMsg, this);
+        Globals.i().net.send({ "msgId": 10000, "name": "test1" });
+    };
+    Main.prototype.onMsg = function (e) {
+        // DelayCall.call(200,this.delayStart,this);
+        GameManager.getIns().startNewGame();
     };
     //延迟进入游戏
     Main.prototype.delayStart = function () {

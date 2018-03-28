@@ -18,16 +18,21 @@ var GroundLayer = (function (_super) {
     /**舞台宽度,舞台高度,世界宽度,世界高度 */
     function GroundLayer(worldW, worldH) {
         var _this = _super.call(this) || this;
+        _this.roles = {};
         _this.mapW = worldW;
         _this.mapH = worldH;
         _this._mapBackground = new MapBackground();
-        _this._rolePath = new RolePath();
         _this.addChild(_this._mapBackground);
-        _this.addChild(_this._rolePath);
         // var rockBar = new RockBarContorller();
-        RenderManager.getIns().registRender(_this._rolePath);
+        Globals.i().net.addEventListener(MsgEvent.sc_move, _this.onMove, _this);
         return _this;
     }
+    GroundLayer.prototype.onMove = function (e) {
+        var role = this.findRole(e.data.playerId);
+    };
+    GroundLayer.prototype.findRole = function (playerId) {
+        return this.roles[playerId];
+    };
     GroundLayer.prototype.hitTestRole = function (sx, sy) {
         return sx < 0 || sy < 0 || sx > GameConfig.WORD_W || sy > GameConfig.WORD_H;
     };
@@ -60,6 +65,12 @@ var GroundLayer = (function (_super) {
     /**添加一个演员 */
     GroundLayer.prototype.addRole = function (dis) {
         this.addChild(dis);
+        var role = dis;
+        if (role != null && role.rolePath != null) {
+            this.roles[role.id] = role;
+            this.addChildAt(role.rolePath, 1);
+            RenderManager.getIns().registRender(role.rolePath);
+        }
     };
     return GroundLayer;
 }(egret.DisplayObjectContainer));

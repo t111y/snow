@@ -1,5 +1,5 @@
 class RolePath extends egret.DisplayObjectContainer implements IRender {
-	
+	private role:UserRole;
 	private _shape: egret.Shape;
 	public constructor() {
 		super();
@@ -7,10 +7,10 @@ class RolePath extends egret.DisplayObjectContainer implements IRender {
 		this.addChild(this._shape);
 	}
 	public renderUpdate(interval: number): void {
-		this.drawPath(PlayerRole.self.path);
-		this.removeOvertimePoint(PlayerRole.self.path);
-		for(var i:number = PlayerRole.self.roleMeshs.length-1;i>=0;i--){
-			var roleMesh:RoleMesh = PlayerRole.self.roleMeshs[i];
+		this.drawPath(this.role.path);
+		this.removeOvertimePoint(this.role.path);
+		for(var i:number = this.role.roleMeshs.length-1;i>=0;i--){
+			var roleMesh:RoleMesh = this.role.roleMeshs[i];
 			if(egret.getTimer() - roleMesh.time<GameConfig.trapTime){
 				
 				if(roleMesh.shape.parent==null){
@@ -20,7 +20,7 @@ class RolePath extends egret.DisplayObjectContainer implements IRender {
 			}else{
 				
 				roleMesh.dispose();
-				PlayerRole.self.roleMeshs.splice(i,1);
+				this.role.roleMeshs.splice(i,1);
 				break;
 			}
 		}

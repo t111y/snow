@@ -3,20 +3,14 @@
  * @author nodep
  * @version 1.0
  */
-class PlayerRole extends FocusRole {
+class PlayerRole extends UserRole {
 
 	public static self: PlayerRole;
-	public path:Array<RolePathPoint>;
-	public roleMeshs:Array<RoleMesh>;
 	
 	public constructor() {
 		super();
 		PlayerRole.self = this;
 		this.type = RoleType.ROLE_PLAYER;
-		this.speedX = 8;
-		this.speedY = 4;
-		this.path = new Array<RolePathPoint>();
-		this.roleMeshs = new Array<RoleMesh>();
 	}
 
 
@@ -59,7 +53,7 @@ class PlayerRole extends FocusRole {
 				if(mesh!=null){
 					this.roleMeshs.push(mesh);
 				}
-				Globals.i().net.send({x:Math.round(tox),y:Math.round(toy)});
+				Globals.i().net.send({playerId:this.id,x:Math.round(tox),y:Math.round(toy)});
 			}
 		}
 		

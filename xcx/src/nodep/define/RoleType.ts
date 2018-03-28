@@ -1,5 +1,6 @@
 class RoleType {
 	public static ROLE_PLAYER:string = "ROLE_PLAYER";
+	public static USER_PLAYER:string = "USER_PLAYER";
 	public static ROLE_NPC:string = "ROLE_NPC";
 	public static ROLE_ANIMAL:string = "ROLE_ANIMAL";//动物
 	public static ROLE_WILD:string = "ROLE_WILD";//野兽

@@ -4,25 +4,28 @@
  * @version 1.0
  */
 class GroundLayer extends egret.DisplayObjectContainer{
-	private _rolePath:RolePath;
+	
 	private _mapBackground:MapBackground;
 	private mapW:number;
 	private mapH:number;
+	private roles:Object ={};
 	/**舞台宽度,舞台高度,世界宽度,世界高度 */
 	public constructor(worldW:number,worldH:number) {
 		super();
 		this.mapW = worldW;
 		this.mapH = worldH;
 		this._mapBackground = new MapBackground();
-		this._rolePath = new RolePath();
 		this.addChild(this._mapBackground);
-		this.addChild(this._rolePath);
 		// var rockBar = new RockBarContorller();
-		
-		RenderManager.getIns().registRender(this._rolePath);
+		Globals.i().net.addEventListener(MsgEvent.sc_move,this.onMove,this);
 	}
-
-
+	private onMove(e:egret.Event){
+		var role:UserRole = this.findRole(e.data.playerId);
+		
+	}
+	private findRole(playerId:string):UserRole{
+		return this.roles[playerId];
+	}
 	public hitTestRole(sx: number, sy: number){
 		return sx <0 || sy <0 || sx >GameConfig.WORD_W || sy >GameConfig.WORD_H;
 	}
@@ -52,8 +55,14 @@ class GroundLayer extends egret.DisplayObjectContainer{
 	}
 
 	/**添加一个演员 */
-	public addRole(dis:egret.DisplayObject):void
+	public addRole(dis:FocusRole):void
 	{
 		this.addChild(dis);
+		var role:UserRole = dis as UserRole;
+		if(role != null && role.rolePath!=null){
+			this.roles[role.id] = role;
+			this.addChildAt(role.rolePath,1);
+			RenderManager.getIns().registRender(role.rolePath);
+		}
 	}
 }

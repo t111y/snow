@@ -5,6 +5,7 @@ var RoleType = (function () {
     function RoleType() {
     }
     RoleType.ROLE_PLAYER = "ROLE_PLAYER";
+    RoleType.USER_PLAYER = "USER_PLAYER";
     RoleType.ROLE_NPC = "ROLE_NPC";
     RoleType.ROLE_ANIMAL = "ROLE_ANIMAL"; //动物
     RoleType.ROLE_WILD = "ROLE_WILD"; //野兽

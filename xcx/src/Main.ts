@@ -32,7 +32,7 @@ class Main extends eui.UILayer {
 
     protected createChildren(): void {
         super.createChildren();
-        this.stage.$scaleMode = egret.StageScaleMode.FIXED_WIDTH;
+        // this.stage.$scaleMode = egret.StageScaleMode.FIXED_WIDTH;
 
         egret.lifecycle.addLifecycleListener((context) => {
             // custom lifecycle plugin
@@ -115,10 +115,18 @@ class Main extends eui.UILayer {
     //正式进入游戏
     private startGame():void
     {
-        Globals.i();
-        DelayCall.call(200,this.delayStart,this);
+        Globals.i().net.addEventListener(MsgEvent.sc_login,this.onMsg,this);
+        Globals.i().net.addEventListener(egret.Event.CONNECT,this.onConnect,this);
+        
     }
-
+    private onConnect(e:egret.Event){
+        Globals.i().net.removeEventListener(egret.Event.CONNECT,this.onMsg,this);
+        Globals.i().net.send({"msgId": 10000, "name": "test1"});
+    }
+    private onMsg(e:egret.Event):void{
+        // DelayCall.call(200,this.delayStart,this);
+        GameManager.getIns().startNewGame();
+    }
     //延迟进入游戏
     private delayStart():void
     {

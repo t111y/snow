@@ -19,10 +19,6 @@ var PlayerRole = (function (_super) {
         var _this = _super.call(this) || this;
         PlayerRole.self = _this;
         _this.type = RoleType.ROLE_PLAYER;
-        _this.speedX = 8;
-        _this.speedY = 4;
-        _this.path = new Array();
-        _this.roleMeshs = new Array();
         return _this;
     }
     //角色的移动处理,这里的移动优化应该还可以继续优化
@@ -67,6 +63,6 @@ var PlayerRole = (function (_super) {
         }
     };
     return PlayerRole;
-}(FocusRole));
+}(UserRole));
 __reflect(PlayerRole.prototype, "PlayerRole");
 //# sourceMappingURL=PlayerRole.js.map
