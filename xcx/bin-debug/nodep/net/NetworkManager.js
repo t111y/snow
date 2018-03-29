@@ -30,7 +30,7 @@ var NetworkManager = (function (_super) {
         try {
             o = JSON.parse(m);
             console.log("收到消息 " + o);
-            this.dispatchEvent(new egret.Event(o.msgId, false, false, o));
+            this.dispatchEvent(new egret.Event(o.msgId, false, false, MessageType.paserScMsg(o)));
         }
         catch (error) {
             console.log("收到消息 " + m);

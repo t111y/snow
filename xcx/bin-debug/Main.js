@@ -181,14 +181,16 @@ var Main = (function (_super) {
     };
     //正式进入游戏
     Main.prototype.startGame = function () {
-        Globals.i().net.addEventListener(MsgEvent.sc_login, this.onMsg, this);
+        Globals.i().net.addEventListener(MessageType.sc_login + "", this.onScLogin, this);
         Globals.i().net.addEventListener(egret.Event.CONNECT, this.onConnect, this);
     };
     Main.prototype.onConnect = function (e) {
-        Globals.i().net.removeEventListener(egret.Event.CONNECT, this.onMsg, this);
-        Globals.i().net.send({ "msgId": 10000, "name": "test1" });
+        Globals.i().net.removeEventListener(egret.Event.CONNECT, this.onConnect, this);
+        Globals.i().net.send(MessageType.createLogin("user" + Math.round(999999)));
     };
-    Main.prototype.onMsg = function (e) {
+    Main.prototype.onScLogin = function (e) {
+        var msg = e.data;
+        MessageType.playerId = msg.playerId;
         // DelayCall.call(200,this.delayStart,this);
         GameManager.getIns().startNewGame();
     };

@@ -115,15 +115,17 @@ class Main extends eui.UILayer {
     //正式进入游戏
     private startGame():void
     {
-        Globals.i().net.addEventListener(MsgEvent.sc_login,this.onMsg,this);
+        Globals.i().net.addEventListener(MessageType.sc_login+"",this.onScLogin,this);
         Globals.i().net.addEventListener(egret.Event.CONNECT,this.onConnect,this);
         
     }
     private onConnect(e:egret.Event){
-        Globals.i().net.removeEventListener(egret.Event.CONNECT,this.onMsg,this);
-        Globals.i().net.send({"msgId": 10000, "name": "test1"});
+        Globals.i().net.removeEventListener(egret.Event.CONNECT,this.onConnect,this);
+        Globals.i().net.send(MessageType.createLogin("user" + Math.round(999999)));
     }
-    private onMsg(e:egret.Event):void{
+    private onScLogin(e:egret.Event):void{
+        var msg:ScLogin = e.data;
+        MessageType.playerId = msg.playerId;
         // DelayCall.call(200,this.delayStart,this);
         GameManager.getIns().startNewGame();
     }

@@ -17,10 +17,10 @@ var RolePath = (function (_super) {
         return _this;
     }
     RolePath.prototype.renderUpdate = function (interval) {
-        this.drawPath(PlayerRole.self.path);
-        this.removeOvertimePoint(PlayerRole.self.path);
-        for (var i = PlayerRole.self.roleMeshs.length - 1; i >= 0; i--) {
-            var roleMesh = PlayerRole.self.roleMeshs[i];
+        this.drawPath(this.role.path);
+        this.removeOvertimePoint(this.role.path);
+        for (var i = this.role.roleMeshs.length - 1; i >= 0; i--) {
+            var roleMesh = this.role.roleMeshs[i];
             if (egret.getTimer() - roleMesh.time < GameConfig.trapTime) {
                 if (roleMesh.shape.parent == null) {
                     this.addChild(roleMesh.shape);
@@ -29,7 +29,7 @@ var RolePath = (function (_super) {
             }
             else {
                 roleMesh.dispose();
-                PlayerRole.self.roleMeshs.splice(i, 1);
+                this.role.roleMeshs.splice(i, 1);
                 break;
             }
         }

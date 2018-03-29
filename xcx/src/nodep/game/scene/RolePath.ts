@@ -1,5 +1,5 @@
 class RolePath extends egret.DisplayObjectContainer implements IRender {
-	private role:UserRole;
+	public role:UserRole;
 	private _shape: egret.Shape;
 	public constructor() {
 		super();

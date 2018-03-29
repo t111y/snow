@@ -14,6 +14,7 @@ var UserRole = (function (_super) {
         var _this = _super.call(this) || this;
         _this.type = RoleType.USER_PLAYER;
         _this.rolePath = new RolePath();
+        _this.rolePath.role = _this;
         _this.speedX = 8;
         _this.speedY = 4;
         _this.path = new Array();

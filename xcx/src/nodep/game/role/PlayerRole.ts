@@ -53,7 +53,7 @@ class PlayerRole extends UserRole {
 				if(mesh!=null){
 					this.roleMeshs.push(mesh);
 				}
-				Globals.i().net.send({playerId:this.id,x:Math.round(tox),y:Math.round(toy)});
+				Globals.i().net.send(MessageType.createMove(this.path));
 			}
 		}
 		

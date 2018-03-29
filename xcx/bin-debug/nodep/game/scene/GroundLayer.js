@@ -24,7 +24,7 @@ var GroundLayer = (function (_super) {
         _this._mapBackground = new MapBackground();
         _this.addChild(_this._mapBackground);
         // var rockBar = new RockBarContorller();
-        Globals.i().net.addEventListener(MsgEvent.sc_move, _this.onMove, _this);
+        Globals.i().net.addEventListener(MessageType.sc_move + "", _this.onMove, _this);
         return _this;
     }
     GroundLayer.prototype.onMove = function (e) {

@@ -6,6 +6,7 @@ class UserRole extends FocusRole {
 		super();
 		this.type = RoleType.USER_PLAYER;
 		this.rolePath = new RolePath();
+		this.rolePath.role = this;
 		this.speedX = 8;
 		this.speedY = 4;
 		this.path = new Array<RolePathPoint>();

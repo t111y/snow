@@ -58,7 +58,7 @@ var PlayerRole = (function (_super) {
                 if (mesh != null) {
                     this.roleMeshs.push(mesh);
                 }
-                Globals.i().net.send({ x: Math.round(tox), y: Math.round(toy) });
+                Globals.i().net.send(MessageType.createMove(this.path));
             }
         }
     };

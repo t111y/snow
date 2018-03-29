@@ -17,7 +17,7 @@ class GroundLayer extends egret.DisplayObjectContainer{
 		this._mapBackground = new MapBackground();
 		this.addChild(this._mapBackground);
 		// var rockBar = new RockBarContorller();
-		Globals.i().net.addEventListener(MsgEvent.sc_move,this.onMove,this);
+		Globals.i().net.addEventListener(MessageType.sc_move+"",this.onMove,this);
 	}
 	private onMove(e:egret.Event){
 		var role:UserRole = this.findRole(e.data.playerId);
