@@ -16,7 +16,6 @@ class NetworkManager extends egret.EventDispatcher {
 	private _type:number;
 	private onReceiveMessage(e:egret.ProgressEvent):void{
 		var m:string = this.socket.readUTF();
-		m = m.replace("That's what she said!","");
 		var o:any;
 		try {
 			o = JSON.parse(m);
@@ -29,6 +28,7 @@ class NetworkManager extends egret.EventDispatcher {
 		
 	}
 	public send(s:any){
-		this.socket.writeUTF(JSON.stringify(s));
+		var str = JSON.stringify(s);
+		this.socket.writeUTF(s);
 	}
 }

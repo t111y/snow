@@ -80,7 +80,6 @@ var FocusRole = (function (_super) {
         var r = Math.atan2(tx - this.x, ty - this.y);
         r = (r * 180 / Math.PI + 360);
         var f = (8 - Math.round(r / 45)) % 8;
-        console.log(f);
         this.setWay(f);
     };
     FocusRole.prototype.renderUpdate = function (interval) {

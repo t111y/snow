@@ -121,7 +121,7 @@ class Main extends eui.UILayer {
     }
     private onConnect(e:egret.Event){
         Globals.i().net.removeEventListener(egret.Event.CONNECT,this.onConnect,this);
-        Globals.i().net.send(MessageType.createLogin("user" + Math.round(999999)));
+        Globals.i().net.send(MessageType.createLogin("user" + Math.round(Math.random()*9999999)));
     }
     private onScLogin(e:egret.Event):void{
         var msg:ScLogin = e.data;

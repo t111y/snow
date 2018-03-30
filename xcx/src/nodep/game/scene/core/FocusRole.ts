@@ -81,7 +81,6 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		var r:number = Math.atan2(tx - this.x,ty - this.y);
 		r = (r * 180 / Math.PI + 360 );
 		var f:number = (8 - Math.round(r/45)) % 8;
-		console.log(f);
 		this.setWay(f);
 		
 	}

@@ -186,7 +186,7 @@ var Main = (function (_super) {
     };
     Main.prototype.onConnect = function (e) {
         Globals.i().net.removeEventListener(egret.Event.CONNECT, this.onConnect, this);
-        Globals.i().net.send(MessageType.createLogin("user" + Math.round(999999)));
+        Globals.i().net.send(MessageType.createLogin("user" + Math.round(Math.random() * 9999999)));
     };
     Main.prototype.onScLogin = function (e) {
         var msg = e.data;

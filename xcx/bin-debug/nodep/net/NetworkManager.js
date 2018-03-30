@@ -25,7 +25,6 @@ var NetworkManager = (function (_super) {
     }
     NetworkManager.prototype.onReceiveMessage = function (e) {
         var m = this.socket.readUTF();
-        m = m.replace("That's what she said!", "");
         var o;
         try {
             o = JSON.parse(m);
@@ -37,7 +36,8 @@ var NetworkManager = (function (_super) {
         }
     };
     NetworkManager.prototype.send = function (s) {
-        this.socket.writeUTF(JSON.stringify(s));
+        var str = JSON.stringify(s);
+        this.socket.writeUTF(s);
     };
     return NetworkManager;
 }(egret.EventDispatcher));
