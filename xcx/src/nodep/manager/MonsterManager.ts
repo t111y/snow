@@ -20,6 +20,7 @@ class MonsterManager implements IRender {
 	private createMonster(){
 		for(var i:number = 0;i < GameConfig.Monster_NUM; i++){
 			var m:Monster = new Monster();
+			m.name = "m"+ i;
 			this.monsters.push(m);
 			m.x = Math.abs(Math.random() * GameConfig.WORD_W );
 			m.y = Math.abs(Math.random() * GameConfig.WORD_H);

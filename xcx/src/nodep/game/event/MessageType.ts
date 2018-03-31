@@ -35,6 +35,11 @@ class MessageType {
 	 * */
 	public static sc_circlePath:number = 12004;
 
+	/**
+	 * {"msgId": 60000, "time": 1522296176}
+	 */
+	public static sc_tick:number = 60000;
+
 	public static playerId:string = "";
 
 	public static createLogin(name:String):Object{
@@ -44,10 +49,31 @@ class MessageType {
 		return {"msgId": 12000};
 	}
 	public static createMove(path:Array<RolePathPoint>):Object{
-		return {"msgId": 12001, "path": [[1,2]]};
+		return {"msgId": 12001, "path": MessageType.pathToArray(path)};
 	}
 	public static createCirclePath(mesh:RoleMesh):Object{
-		return {"msgId": 12004, "circlePath": [[1,2]]};
+		return {"msgId": 12004, "circlePath": MessageType.pathToArray(mesh.points),"time":mesh.time};
+	}
+
+	private static pathToArray(path:Array<RolePathPoint>){
+		let arr:Array<Array<number>> = new Array<Array<number>>();
+		for(let i:number = 0;i<path.length;i++){
+			let p:RolePathPoint = path[i];
+			arr.push([Math.round(p.point.x),Math.round(p.point.y),p.time]);
+		}
+		return arr;
+	}
+	private static arrayToPath(arr:Array<Array<number>>):Array<RolePathPoint>{
+		let path:Array<RolePathPoint> = new Array<RolePathPoint>();
+		for(let i:number = 0;i<arr.length;i++){
+			let p:RolePathPoint = new RolePathPoint(new egret.Point(arr[i][0],arr[i][1]));
+			p.time = arr[i][2];
+			path.push(p);
+		}
+		return path;
+	}
+	public static createTick(){
+		return {"msgId": 60000};
 	}
 
 	private static parseLogin(o:any):ScLogin{
@@ -62,17 +88,25 @@ class MessageType {
 	}
 	private static parseUserEnter(o:any):ScUserEnter{
 		var msg:ScUserEnter = new ScUserEnter();
-		msg.sceneId = o.sceneId;
+		msg.players = o.players;
 		return msg;
 	}
 	private static parseMove(o:any):ScMove{
 		var msg:ScMove = new ScMove();
 		msg.playerId = o.playerId;
-		msg.path = new Array<RolePathPoint>();
+		msg.path = MessageType.arrayToPath(o.path);;
 		return msg;
 	}
 	private static parseCirclePath(o:any):ScCirclePath{
 		var msg:ScCirclePath = new ScCirclePath();
+		msg.playerId = o.playerId;
+		msg.circlePath = MessageType.arrayToPath(o.circlePath);
+		msg.time = o.time;
+		return msg;
+	}
+	private static parseTick(o:any):ScTick{
+		let msg:ScTick = new ScTick();
+		msg.time = o.time;
 		return msg;
 	}
 
@@ -88,8 +122,13 @@ class MessageType {
 			return MessageType.parseCirclePath(o);
 			case MessageType.sc_enterScene:
 			return MessageType.parseEnterScene(o);
+			case MessageType.sc_tick:
+			return MessageType.parseTick(o);
 		}
 	}
+}
+class ScTick{
+	public time:number;
 }
 
 class ScLogin{
@@ -102,7 +141,7 @@ class ScEnterScene{
 
 }
 class ScUserEnter{
-	public sceneId:string;
+	public players:Array<string>;
 
 }
 class ScMove{

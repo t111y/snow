@@ -45,6 +45,7 @@
 		"resource/eui_skins/VSliderSkin.exml",
 		"resource/eui_skins/button/ButtonSkinGreen.exml",
 		"resource/eui_skins/button/ButtonSkinRed.exml",
+		"resource/eui_skins/display/H.exml",
 		"resource/eui_skins/display/RockerBar.exml",
 		"resource/eui_skins/panel/AlertWindow.exml",
 		"resource/eui_skins/window/GameMainLoaderWindow.exml",

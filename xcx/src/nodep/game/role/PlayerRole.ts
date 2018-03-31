@@ -49,11 +49,12 @@ class PlayerRole extends UserRole {
 				this.y = toy;
 				var point:RolePathPoint = new RolePathPoint(new egret.Point(tox,toy));
 				this.path.push(point);
+				Globals.i().net.send(MessageType.createMove(this.path));
 				var mesh:RoleMesh = RoleMesh.check(this.path);
 				if(mesh!=null){
 					this.roleMeshs.push(mesh);
+					Globals.i().net.send(MessageType.createCirclePath(mesh));
 				}
-				Globals.i().net.send(MessageType.createMove(this.path));
 			}
 		}
 		

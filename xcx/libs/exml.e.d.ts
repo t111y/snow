@@ -54,6 +54,8 @@ declare class ButtonSkinGreenSkin extends eui.Skin{
 }
 declare class ButtonSkinRedSkin extends eui.Skin{
 }
+declare class H extends eui.Skin{
+}
 declare class RockerBarSkin extends eui.Skin{
 }
 declare class AlertWindowSkin extends eui.Skin{

@@ -115,18 +115,39 @@ class Main extends eui.UILayer {
     //正式进入游戏
     private startGame():void
     {
-        Globals.i().net.addEventListener(MessageType.sc_login+"",this.onScLogin,this);
         Globals.i().net.addEventListener(egret.Event.CONNECT,this.onConnect,this);
         
+        // DelayCall.call(200,this.delayStart,this);
     }
+    private userManager:UserManager;
     private onConnect(e:egret.Event){
         Globals.i().net.removeEventListener(egret.Event.CONNECT,this.onConnect,this);
         Globals.i().net.send(MessageType.createLogin("user" + Math.round(Math.random()*9999999)));
+        
+
+        Globals.i().net.addEventListener(MessageType.sc_login+"",this.onScLogin,this);
+        Globals.i().net.addEventListener(MessageType.sc_tick+"",this.onScTick,this);
+        Globals.i().net.addEventListener(MessageType.sc_enterScene+"",this.onEnterScene,this)
+        let timer:egret.Timer = new egret.Timer(10000);
+        timer.addEventListener(egret.TimerEvent.TIMER,this.onTimer,this);
+        timer.start();
+        this.onTimer(null);
+        this.userManager = new UserManager()
+    }
+    private onTimer(e:egret.TimerEvent){
+        Globals.i().net.send(MessageType.createTick());
+    }
+    private onScTick(e:egret.Event):void{
+        let msg:ScTick = e.data;
+        Globals.i().serverTime.init(msg.time);
     }
     private onScLogin(e:egret.Event):void{
         var msg:ScLogin = e.data;
         MessageType.playerId = msg.playerId;
-        // DelayCall.call(200,this.delayStart,this);
+        Globals.i().net.send(MessageType.createEnterScene());
+    }
+    private onEnterScene(e:egret.Event){
+        var msg:ScEnterScene = e.data;
         GameManager.getIns().startNewGame();
     }
     //延迟进入游戏

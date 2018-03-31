@@ -36,5 +36,10 @@
     {
       "name": "promise"
     }
+    ,
+    {
+      "name": "weixinapi",
+      "path":"D:/git/egret/egret-game-library/weixinapi/libsrc/src"
+    }
   ]
 }

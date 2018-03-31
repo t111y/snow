@@ -17,7 +17,8 @@ class GameManager {
 	public startNewGame(): void {
 		//创建角色
 		WinsManager.getIns().openWindow(GameMainLoaderWindow);//打开游戏主加载界面
-		DelayCall.call(100,this.buildEnter,this)
+		this.buildEnter();
+		// DelayCall.call(100,this.buildEnter,this)
 	}
 
 	//游戏创建的方式进入游戏

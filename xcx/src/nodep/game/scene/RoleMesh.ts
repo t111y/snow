@@ -38,7 +38,7 @@ class RoleMesh {
 				this.y2 = point.point.y;
 			}
 			point.isUsed = true;
-			this.time = egret.getTimer();
+			this.time = Globals.i().serverTime.getServerTime();
 			this.points.push(point);
 		}
 		
@@ -67,7 +67,7 @@ class RoleMesh {
 	//画面
 	public drawMesh(){
 		this.shape.graphics.clear();
-		this.shape.graphics.beginFill(0x00ff00,1-(egret.getTimer() - this.time) / GameConfig.trapTime);
+		this.shape.graphics.beginFill(0x00ff00,1-(Globals.i().serverTime.getServerTime() - this.time) / GameConfig.trapTime);
 		var point:egret.Point = this.points[0].point;
 		this.shape.graphics.moveTo(point.x,point.y);
 		for(var i:number =1;i<this.points.length;i++){

@@ -3,7 +3,7 @@ class RolePathPoint {
 	public time:number;
 	public isUsed:boolean=false;
 	public constructor(point:egret.Point) {
-		this.time = egret.getTimer();
+		this.time = Globals.i().serverTime.getServerTime();
 		this.point = point;
 	}
 }

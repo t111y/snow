@@ -13,9 +13,9 @@ class GameConfig {
 	public static map_cfx:number;//世界缩放比例
 	public static map_cfy:number;//世界缩放比例
 
-	public static pointOvertime:number = 5000;
+	public static pointOvertime:number = 5;
 
-	public static trapTime:number = 5000;
+	public static trapTime:number = 5;
 	public static game_time_t_my:number = 10;
 	
 	public static Monster_NUM =20;

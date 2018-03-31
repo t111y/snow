@@ -19,16 +19,15 @@ class NetworkManager extends egret.EventDispatcher {
 		var o:any;
 		try {
 			o = JSON.parse(m);
-			console.log("收到消息 "+o);
+			// console.log("收到消息 "+o);
 			this.dispatchEvent(new egret.Event(o.msgId,false,false,MessageType.paserScMsg(o)));
 		} catch (error) {
-			console.log("收到消息 "+m);
-			
+			console.log("消息处理错误 "+m);
+			console.log(error);
 		}
 		
 	}
 	public send(s:any){
-		var str = JSON.stringify(s);
-		this.socket.writeUTF(s);
+		this.socket.writeUTF(JSON.stringify(s));
 	}
 }

@@ -29,7 +29,7 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 
 
 	/**设置当前焦点对象 */
-	public setFocus(roleId:number):void
+	public setFocus(roleId:string):void
 	{
 		if(this._focus!=null)
 			this._focus.__isFocus = false;
@@ -40,9 +40,13 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 	/**添加一个焦点显示对象 */
 	public addFocusRole(role:FocusRole):void
 	{
-		this.roleMap[role.id]=role;
+		this.roleMap[role.name]=role;
 		this.groud.addRole(role);
 		role.addToWorld();
+	}
+
+	public getUserRole(playerId:string):UserRole{
+		return this.roleMap[playerId];
 	}
 
 	//初始化地图
@@ -61,9 +65,10 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 	private createSelf():void
 	{
 		this._self = new PlayerRole();
+		this._self.name = "player";
 		this._self.x = 1000;// GameData.playerData.posX * this.cf_X;
 		this._self.y = 1000;//GameData.playerData.posY * this.cf_Y;
 		this.addFocusRole(this._self);
-		this.setFocus(this._self.id);
+		this.setFocus(this._self.name);
 	}
 }

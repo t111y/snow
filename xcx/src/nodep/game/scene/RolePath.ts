@@ -11,7 +11,7 @@ class RolePath extends egret.DisplayObjectContainer implements IRender {
 		this.removeOvertimePoint(this.role.path);
 		for(var i:number = this.role.roleMeshs.length-1;i>=0;i--){
 			var roleMesh:RoleMesh = this.role.roleMeshs[i];
-			if(egret.getTimer() - roleMesh.time<GameConfig.trapTime){
+			if(Globals.i().serverTime.getServerTime() - roleMesh.time<GameConfig.trapTime){
 				
 				if(roleMesh.shape.parent==null){
 					this.addChild(roleMesh.shape);
@@ -44,7 +44,7 @@ class RolePath extends egret.DisplayObjectContainer implements IRender {
 	}
 	//删除超时的点
 	private removeOvertimePoint(path:Array<RolePathPoint>){
-		if(path.length>0 && egret.getTimer() -  path[0].time>GameConfig.pointOvertime){
+		if(path.length>0 && Globals.i().serverTime.getServerTime() -  path[0].time>GameConfig.pointOvertime){
 			path.shift();
 		}
 	}
