@@ -39,11 +39,11 @@ class Main extends eui.UILayer {
         })
 
         egret.lifecycle.onPause = () => {
-            egret.ticker.pause();
+            // egret.ticker.pause();
         }
 
         egret.lifecycle.onResume = () => {
-            egret.ticker.resume();
+            // egret.ticker.resume();
         }
 
         //inject the custom material parser
@@ -121,9 +121,7 @@ class Main extends eui.UILayer {
     }
     private userManager:UserManager;
     private onConnect(e:egret.Event){
-        Globals.i().net.removeEventListener(egret.Event.CONNECT,this.onConnect,this);
-        Globals.i().net.send(MessageType.createLogin("user" + Math.round(Math.random()*9999999)));
-        
+        Globals.i().net.removeEventListener(egret.Event.CONNECT,this.onConnect,this);        
 
         Globals.i().net.addEventListener(MessageType.sc_login+"",this.onScLogin,this);
         Globals.i().net.addEventListener(MessageType.sc_tick+"",this.onScTick,this);
@@ -133,7 +131,10 @@ class Main extends eui.UILayer {
         timer.start();
         this.onTimer(null);
         this.userManager = new UserManager()
+
+        WinsManager.getIns().openWindow(LoginWin);
     }
+
     private onTimer(e:egret.TimerEvent){
         Globals.i().net.send(MessageType.createTick());
     }

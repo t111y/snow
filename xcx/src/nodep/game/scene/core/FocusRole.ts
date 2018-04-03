@@ -41,8 +41,8 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		
 		this.mc = new egret.MovieClip();
 		this.addChild(this.mc);
-		this.mc.x = - 430;
-		this.mc.y = -400;
+		// this.mc.x = -430;
+		// this.mc.y = -400;
 		this.setWay(0);
 	}
 	
@@ -62,18 +62,18 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		}
 		var mcFactory:egret.MovieClipDataFactory ;
 		if(!this.mcData){
-			RES.getResByUrl("resource/assets/hero/Person/1003_walk_2840d952.json",function(e){
+			RES.getResByUrl("resource/assets/hero/nvl/nvl-walk1.json",function(e){
 				this.mcData = JSON.parse(e);
 			},this,RES.ResourceItem.TYPE_TEXT);
 		}
 		
 		var m:egret.MovieClip = this.mc;
 		var t:egret.Texture;
-		RES.getResByUrl("resource/assets/hero/Person/1003_walk_4a5945e3.png",function(e){
+		RES.getResByUrl("resource/assets/hero/nvl/nvl-walk1.png",function(e){
 			t = <egret.Texture>e;
 			mcFactory = new egret.MovieClipDataFactory(this.mcData,t);
-			m.movieClipData =mcFactory.generateMovieClipData("0_3_walk_" + way);
-			m.play(-1);
+			m.movieClipData =mcFactory.generateMovieClipData("nv1-run");
+			m.gotoAndPlay("run" + 0,-1)
 		},this,RES.ResourceItem.TYPE_IMAGE);
 	}
 

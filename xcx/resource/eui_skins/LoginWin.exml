@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginWinSkin" width="400" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="16283eed354" ></w:Config>
+	<e:TextInput id="txt_name" width="201" height="37" x="152" y="121.5" anchorOffsetY="0"/>
+	<e:Label text="用户名" x="57" y="125"/>
+	<e:Button id="btn_ok" label="进入游戏" x="152" y="182"/>
+</e:Skin>

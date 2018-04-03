@@ -18,6 +18,6 @@ class GameConfig {
 	public static trapTime:number = 5;
 	public static game_time_t_my:number = 10;
 	
-	public static Monster_NUM =20;
+	public static Monster_NUM =0;
 
 }
