@@ -1,27 +1,21 @@
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import redis.clients.jedis.Jedis;
-import top.yaovan.redis.RedisProvider;
+import org.junit.jupiter.api.Test;
+import top.yaovan.redis.RedisHelper;
+import top.yaovan.transactional.User;
+
+import java.io.Serializable;
 
 public class TestRedis {
-    private Jedis jedis;
-    private String listKey = "testList";
-    private String value = "listKey";
-    @Before
-    public void testConnectRedis(){
-        jedis =  RedisProvider.getJedis();
-        System.out.println(jedis.get("hello"));
-        Assert.assertNotNull(jedis);
-    }
+
+
     @Test
-    public void testLPush(){
-        jedis.rpush(listKey,value);
-        jedis.rpush(listKey,value+1);
-        out();
+    public void testSaveObject(){
+        User o1 = new User();
+        RedisHelper.setHObject("o","1",o1);
     }
 
-    public void out(){
-        System.out.println(jedis.lrange(listKey,0,-1));
+    @Test
+    public void testLoadObject(){
+        User o1 = RedisHelper.getHObject("o","1");
+        System.out.println(o1);
     }
 }

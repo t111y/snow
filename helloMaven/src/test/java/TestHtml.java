@@ -1,4 +1,4 @@
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import top.yaovan.utils.HttpClientHelper;
 import top.yaovan.utils.HttpUtils;
 

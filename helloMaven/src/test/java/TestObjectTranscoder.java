@@ -1,5 +1,4 @@
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import top.yaovan.ObjectTranscoder;
 import top.yaovan.TestObject;
 import top.yaovan.redis.ListTranscoder;
@@ -11,7 +10,7 @@ public class TestObjectTranscoder {
     private Map<String,TestObject> map;
 
     ListTranscoder<TestObject> listTranscoder = new ListTranscoder<>();
-    @Before
+
     public void init(){
         list = new ArrayList<>();
 

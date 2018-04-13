@@ -1,12 +1,11 @@
-import org.junit.Test;
-
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class TestRandom {
-    @Test
-    public void testRandom(){
+    public TestRandom(){
+
+
         Random random = new Random();
         final Map<Long,Boolean> ids = new ConcurrentHashMap<>();
         for (int i=0;i<10;i++){

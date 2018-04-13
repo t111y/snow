@@ -1,5 +1,3 @@
-import org.junit.Test;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -9,8 +7,7 @@ public class VolatileValue {
         return ++_id;
     }
 
-    @Test
-    public void volatileValue(){
+    public VolatileValue(){
         final Map<Long,Boolean> ids = new ConcurrentHashMap<>();
         for (int i=0;i<10;i++){
             new Thread(new Runnable() {

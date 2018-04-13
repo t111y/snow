@@ -24,6 +24,6 @@ class UserManager {
 	private onMove(e:egret.Event){
 		let msg:ScMove = e.data;
 		let role:UserRole = Tiled_Ground.getIns().getUserRole(msg.playerId);
-		role.path = msg.path;
+		role.path = role.path.concat(msg.path);
 	}
 }

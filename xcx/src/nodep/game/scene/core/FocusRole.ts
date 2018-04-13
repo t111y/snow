@@ -48,6 +48,7 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	
 	private mc:egret.MovieClip;
 	private mcData:any;
+	private mcTexture:egret.Texture;
 	private _way:number = -1;
 	public setWay(way:number){
 		if(way == this._way){
@@ -60,21 +61,27 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		}else{
 			this.scaleX = 1;
 		}
-		var mcFactory:egret.MovieClipDataFactory ;
 		if(!this.mcData){
 			RES.getResByUrl("resource/assets/hero/nvl/nvl-walk1.json",function(e){
 				this.mcData = JSON.parse(e);
+				this.playMc();
 			},this,RES.ResourceItem.TYPE_TEXT);
+			RES.getResByUrl("resource/assets/hero/nvl/nvl-walk1.png",function(e){
+				this.mcTexture = <egret.Texture>e;
+				this.playMc();
+			},this,RES.ResourceItem.TYPE_IMAGE);
 		}
-		
-		var m:egret.MovieClip = this.mc;
-		var t:egret.Texture;
-		RES.getResByUrl("resource/assets/hero/nvl/nvl-walk1.png",function(e){
-			t = <egret.Texture>e;
-			mcFactory = new egret.MovieClipDataFactory(this.mcData,t);
-			m.movieClipData =mcFactory.generateMovieClipData("nv1-run");
-			m.gotoAndPlay("run" + 0,-1)
-		},this,RES.ResourceItem.TYPE_IMAGE);
+	}
+	private mcFactory:egret.MovieClipDataFactory;
+	private playMc(){
+		if(this.mcData == null || this.mcTexture == null){
+			return;
+		}
+		if(this.mcFactory == null){
+			this.mcFactory = new egret.MovieClipDataFactory(this.mcData,this.mcTexture);
+			this.mc.movieClipData =this.mcFactory.generateMovieClipData("nv1-run");
+		}
+		this.mc.gotoAndPlay("run" + 0,-1);
 	}
 
 	protected synWay(tx:number,ty:number){

@@ -54,9 +54,9 @@ public class RedisProvider {
         return jedis;
     }
 
-    public static void returnResource(JedisPool pool, Jedis jedis) {
+    public static void returnResource(Jedis jedis) {
         if (jedis != null) {
-            pool.returnResource(jedis);
+            jedis.close();
         }
     }
 }
