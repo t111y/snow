@@ -7,9 +7,12 @@ class UserManager {
 	private onUserEnter(e:egret.Event){
 		let msg:ScUserEnter = e.data;
 		for(let i:number = 0;i<msg.players.length;i++){
-			let role:UserRole = new UserRole();
-			role.name = msg.players[i];
-			Tiled_Ground.getIns().addFocusRole(role);
+			let role:UserRole = Tiled_Ground.getIns().getUserRole(msg.players[i]);
+			if(role ==null){
+				role = new UserRole();
+				role.name = msg.players[i];
+				Tiled_Ground.getIns().addFocusRole(role);
+			}
 		}
 	}
 	private onCirclePath(e:egret.Event){
@@ -25,5 +28,6 @@ class UserManager {
 		let msg:ScMove = e.data;
 		let role:UserRole = Tiled_Ground.getIns().getUserRole(msg.playerId);
 		role.path = role.path.concat(msg.path);
+		role.moveTo(role.path[role.path.length-1].point.x,role.path[role.path.length-1].point.y);
 	}
 }

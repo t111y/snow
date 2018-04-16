@@ -37,20 +37,10 @@ class GameManager {
 		Tiled_Ground.getIns().initWorld();//初始化世界的宽度和高度
 		WinsManager.getIns().openWindow(RockerBar);//初始化摇杆到界面
 		WinsManager.getIns().openWindow(TopToolBar);//初始化顶部导航栏
-		WinsManager.getIns().gameStage().addEventListener(egret.Event.DEACTIVATE,this.deactivateHandler,this);
-		WinsManager.getIns().gameStage().addEventListener(egret.Event.ACTIVATE,this.activateHandler,this);
 		WinsManager.getIns().closeWin(GameMainLoaderWindow);//关闭加载
 	}
 
-	public deactivateHandler():void
-	{
-		LogTrace.log("暂停游戏");
-	}
 
-	public activateHandler():void
-	{
-		LogTrace.log("继续游戏->继续");
-	}
 
 	/**
 	 * 开启业务窗口,判断互斥

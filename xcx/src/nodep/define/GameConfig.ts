@@ -13,7 +13,7 @@ class GameConfig {
 	public static map_cfx:number;//世界缩放比例
 	public static map_cfy:number;//世界缩放比例
 
-	public static pointOvertime:number = 100;
+	public static pointOvertime:number = 5;
 
 	public static trapTime:number = 5;
 	

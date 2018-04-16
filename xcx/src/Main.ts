@@ -67,15 +67,14 @@ class Main extends eui.UILayer {
         console.log(userInfo);
 
     }
-
+private loadingView:LoadingUI;
     private async loadResource() {
         try {
-            const loadingView = new LoadingUI();
-            this.stage.addChild(loadingView);
+            this.loadingView = new LoadingUI();
+            this.stage.addChild(this.loadingView);
             await RES.loadConfig("resource/default.res.json", "resource/");
             await this.loadTheme();
-            await RES.loadGroup("preload", 0, loadingView);
-            this.stage.removeChild(loadingView);
+            await RES.loadGroup("preload", 0, this.loadingView);
         }
         catch (e) {
             console.error(e);
@@ -88,6 +87,7 @@ class Main extends eui.UILayer {
             //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
             let theme = new eui.Theme("resource/default.thm.json", this.stage);
             theme.addEventListener(eui.UIEvent.COMPLETE, () => {
+                this.stage.removeChild(this.loadingView);
                 resolve();
             }, this);
 
@@ -111,6 +111,17 @@ class Main extends eui.UILayer {
         WinsManager.getIns().addLayer(LayerType.LAYER_UI, new GameLayer());
         WinsManager.getIns().addLayer(LayerType.LAYER_POP,new GameLayer());
         this.startGame();
+    }
+    private initFairyGui(){
+        fairygui.UIPackage.addPackage("basic");
+        
+        fairygui.UIConfig.defaultFont = "SimSun";
+        fairygui.UIConfig.verticalScrollBar = "ui://Basic/ScrollBar_VT";
+        fairygui.UIConfig.horizontalScrollBar = "ui://Basic/ScrollBar_HZ";
+        fairygui.UIConfig.popupMenu = "ui://Basic/PopupMenu";
+        fairygui.UIConfig.buttonSound = "ui://Basic/click";
+        
+        this.stage.addChild(fairygui.GRoot.inst.displayObject);
     }
     //正式进入游戏
     private startGame():void

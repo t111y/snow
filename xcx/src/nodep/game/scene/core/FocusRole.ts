@@ -24,7 +24,7 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 				f.push(new egret.GlowFilter(0xffff00,1,10,10,100));
 				this.filters = f;
 			}
-			
+			this.changeAction(RoleAction.DROP);
 		}else{
 			this.filters = null;
 		}
@@ -43,6 +43,7 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		this.addChild(this.mc);
 		// this.mc.x = -430;
 		// this.mc.y = -400;
+		this.action = RoleAction.RUN ;
 		this.setWay(0);
 	}
 	
@@ -62,16 +63,15 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 			this.scaleX = 1;
 		}
 		if(!this.mcData){
-			RES.getResByUrl("resource/assets/hero/nvl/nvl-walk1.json",function(e){
+			RES.getResByUrl("resource/assets/hero/nvl/nvl.json",function(e){
 				this.mcData = JSON.parse(e);
 				this.playMc();
 			},this,RES.ResourceItem.TYPE_TEXT);
-			RES.getResByUrl("resource/assets/hero/nvl/nvl-walk1.png",function(e){
+			RES.getResByUrl("resource/assets/hero/nvl/nvl.png",function(e){
 				this.mcTexture = <egret.Texture>e;
 				this.playMc();
 			},this,RES.ResourceItem.TYPE_IMAGE);
 		}
-		this.action = "run" ;
 	}
 	private mcFactory:egret.MovieClipDataFactory;
 	private playMc(){
@@ -80,13 +80,19 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		}
 		if(this.mcFactory == null){
 			this.mcFactory = new egret.MovieClipDataFactory(this.mcData,this.mcTexture);
-			this.mc.movieClipData =this.mcFactory.generateMovieClipData(this.action);
+			this.mc.movieClipData =this.mcFactory.generateMovieClipData("run");
 		}
 		this.mc.gotoAndPlay(this.action+ 0,-1);
 	}
 	private action:string;
 	public changeAction(action:string){
 		this.action = action;
+		this.playMc();
+	}
+	public moveTo(dx:number,dy:number){
+		this.synWay(dx,dy);
+		this.x = dx;
+		this.y = dy;
 	}
 	protected synWay(tx:number,ty:number){
 		var r:number = Math.atan2(tx - this.x,ty - this.y);

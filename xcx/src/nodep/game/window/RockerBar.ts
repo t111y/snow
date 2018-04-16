@@ -28,7 +28,7 @@ class RockerBar extends GameWindow implements eui.UIComponent {
 		}
 		this._bgShape.graphics.clear();
 		this._bgShape.graphics.beginFill(0xFFFFFF, 0.5);
-		this._bgShape.graphics.drawCircle((this.getChildByName("barBtn") as eui.Button).anchorOffsetX, (this.getChildByName("barBtn") as eui.Button).anchorOffsetY, GameConfig.rocker_bar_sensitivity);
-		this._bgShape.graphics.endFill();
+		this._bgShape.graphics.drawCircle(this.getChildByName("barBtn").anchorOffsetX, this.getChildByName("barBtn").anchorOffsetY, GameConfig.rocker_bar_sensitivity);
+		this._bgShape.graphics.endFill(); 
 	}
 }

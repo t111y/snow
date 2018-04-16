@@ -12,4 +12,7 @@ class UserRole extends FocusRole {
 		this.path = new Array<RolePathPoint>();
 		this.roleMeshs = new Array<RoleMesh>();
 	}
+	public renderUpdate(interval: number): void {
+		super.renderUpdate(interval);
+	}
 }
