@@ -17,7 +17,7 @@ class GroundLayer extends egret.DisplayObjectContainer{
 		this.addChild(this._mapBackground);
 	}
 	public hitTestRole(sx: number, sy: number){
-		return sx <0 || sy <0 || sx >GameConfig.WORD_W || sy >GameConfig.WORD_H;
+		return this._mapBackground.canMove(sx,sy);
 	}
 	/**同步到当前位置 */
 	public synPositionTo(cx:number,cy:number):void

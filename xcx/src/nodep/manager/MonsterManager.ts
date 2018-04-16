@@ -12,6 +12,7 @@ class MonsterManager implements IRender {
 					var point:egret.Point = element.localToGlobal();
 					var isHit:boolean = roleMeshs.hitTest(point.x,point.y);
 					element.setDead(isHit);
+					return;
 				}
 			}
 		});

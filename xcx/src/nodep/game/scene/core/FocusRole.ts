@@ -71,6 +71,7 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 				this.playMc();
 			},this,RES.ResourceItem.TYPE_IMAGE);
 		}
+		this.action = "run" ;
 	}
 	private mcFactory:egret.MovieClipDataFactory;
 	private playMc(){
@@ -79,11 +80,14 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		}
 		if(this.mcFactory == null){
 			this.mcFactory = new egret.MovieClipDataFactory(this.mcData,this.mcTexture);
-			this.mc.movieClipData =this.mcFactory.generateMovieClipData("nv1-run");
+			this.mc.movieClipData =this.mcFactory.generateMovieClipData(this.action);
 		}
-		this.mc.gotoAndPlay("run" + 0,-1);
+		this.mc.gotoAndPlay(this.action+ 0,-1);
 	}
-
+	private action:string;
+	public changeAction(action:string){
+		this.action = action;
+	}
 	protected synWay(tx:number,ty:number){
 		var r:number = Math.atan2(tx - this.x,ty - this.y);
 		r = (r * 180 / Math.PI + 360 );

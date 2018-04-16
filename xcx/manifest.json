@@ -11,9 +11,9 @@
 	],
 	"game": [
 		"bin-debug/nodep/game/scene/core/FocusRole.js",
-		"bin-debug/nodep/game/window/GameWindow.js",
 		"bin-debug/nodep/define/WindowType.js",
 		"bin-debug/nodep/game/role/UserRole.js",
+		"bin-debug/nodep/game/window/GameWindow.js",
 		"bin-debug/nodep/game/scene/StageLayer.js",
 		"bin-debug/nodep/data/Globals.js",
 		"bin-debug/nodep/data/ServerTime.js",
