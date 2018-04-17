@@ -25,8 +25,34 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 	/**刷新函数 */
 	public renderUpdate(interval:number) {
 		this.groud.synPositionTo(this._focus.x,this._focus.y);
+		this.checkMesh();
 	}
+	/**判断是否有玩家掉坑 */
+	private checkMesh(){
+		for (var key in this.roleMap) {
+			if (this.roleMap.hasOwnProperty(key)) {
+				var role:UserRole = this.roleMap[key];
+				if(role.type == RoleType.NPC || role.isDead){
+					if(role.isDead && Globals.i().serverTime.now()> role.deadTime + GameConfig.deadTime){
+						role.setDead(false);
+					}
+					continue;
+				}
+				for(let i:number = 0;i<PlayerRole.self.roleMeshs.length;i++){
+					var e:RoleMesh = PlayerRole.self.roleMeshs[i];
+					var point:egret.Point = role.localToGlobal();
+					var isHit:boolean = e.hitTest(point.x,point.y);
+					if(isHit){
+						role.setDead(isHit);
+						MessageType.sendRoleDrop(e.id,role.name,Globals.i().serverTime.now())
+						break;
+					}
+				}
 
+			}
+		}
+
+	}
 
 	/**设置当前焦点对象 */
 	public setFocus(roleId:string):void
@@ -65,9 +91,10 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 	private createSelf():void
 	{
 		this._self = new PlayerRole();
+		this._self.pointExistTime = Globals.i().enterScene.pointExistTime;
 		this._self.name = "player";
-		this._self.x = 1000;// GameData.playerData.posX * this.cf_X;
-		this._self.y = 1000;//GameData.playerData.posY * this.cf_Y;
+		this._self.x = Globals.i().enterScene.pos[0];
+		this._self.y = Globals.i().enterScene.pos[1];
 		this.addFocusRole(this._self);
 		this.setFocus(this._self.name);
 	}

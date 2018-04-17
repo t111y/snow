@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<packageDescription id="i79xqev3" jpegQuality="80" compressPNG="true">
-  <resources>
-    <component id="bgn00" name="RockerBar.xml" path="/" exported="true"/>
-  </resources>
-  <publish name="sceneUi" genCode="true"/>
-</packageDescription>

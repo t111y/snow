@@ -46,29 +46,19 @@
     <component id="rpmb18" name="Checkbox.xml" path="/components/"/>
     <component id="rpmb19" name="OnOffButton.xml" path="/components/"/>
     <component id="rpmb1a" name="RadioButton.xml" path="/components/"/>
-    <component id="rpmb1b" name="Demo_Button.xml" path="/" exported="true"/>
-    <component id="rpmb1c" name="Main.xml" path="/" exported="true"/>
     <image id="sner1h" name="pic.png" path="/images/"/>
-    <component id="sner1i" name="Demo_Image.xml" path="/" exported="true"/>
     <component id="hixt1j" name="Button10.xml" path="/components/"/>
     <image id="hixt1k" name="b4.png" path="/images/" scale="9grid" scale9grid="40,17,80,34"/>
     <image id="hixt1l" name="b5.png" path="/images/" scale="9grid" scale9grid="40,17,80,34"/>
-    <component id="hixt1m" name="Demo_Graph.xml" path="/" exported="true"/>
-    <component id="hixt1n" name="Demo_MovieClip.xml" path="/" exported="true"/>
     <movieclip id="hixt1v" name="nlge1k.jta" path="/images/"/>
-    <component id="nz0z1z" name="Demo_Text.xml" path="/" exported="true"/>
     <image id="nz0z20" name="long_dead2_png.png" path="/images/" scale="tile"/>
     <image id="h5p722" name="i256.png" path="/images/"/>
     <image id="wa8u2q" name="k27.png" path="/images/"/>
     <font id="wa8u2r" name="BMFontTest.fnt" path="/font/" exported="true" texture="jb800"/>
     <image id="jb800" name="BMFontTest_atlas.png" path="/font/"/>
-    <component id="wa8u2s" name="Demo_Loader.xml" path="/" exported="true"/>
     <image id="wa8u2t" name="r3.png" path="/images/" exported="true"/>
     <image id="wa8u2u" name="r4.png" path="/images/" exported="true"/>
-    <component id="wa8u2v" name="Demo_Controller.xml" path="/" exported="true"/>
     <swf id="wa8u2w" name="qtm01d.swf" path="/images/"/>
-    <component id="wa8u2x" name="Demo_Relation.xml" path="/" exported="true"/>
-    <component id="es412y" name="Demo_Clip&amp;Scroll.xml" path="/" exported="true"/>
     <component id="es412z" name="Component1.xml" path="/components/"/>
     <image id="es4130" name="change.png" path="/images/" scale="tile"/>
     <component id="smv731" name="Component7.xml" path="/components/"/>
@@ -76,7 +66,6 @@
     <component id="smv73g" name="Component8.xml" path="/components/"/>
     <component id="smv73h" name="Component9.xml" path="/components/"/>
     <component id="smv73i" name="Component10.xml" path="/components/"/>
-    <component id="w42o3j" name="Demo_Label.xml" path="/" exported="true"/>
     <component id="rt103l" name="WindowFrame.xml" path="/components/"/>
     <image id="rt103m" name="6_png.png" path="/images/" scale="9grid" scale9grid="40,40,80,142"/>
     <component id="rt103n" name="WindowCloseButton.xml" path="/components/"/>
@@ -84,7 +73,6 @@
     <image id="rt103p" name="9_png.png" path="/images/"/>
     <image id="rt103q" name="8_png.png" path="/images/"/>
     <component id="rt103r" name="Component3.xml" path="/components/"/>
-    <component id="rt103s" name="Demo_ComboBox.xml" path="/" exported="true"/>
     <component id="rt103t" name="ComboBox.xml" path="/components/"/>
     <image id="rt103u" name="c1_png.png" path="/images/" scale="9grid" scale9grid="7,5,73,10"/>
     <image id="rt103v" name="c3_png.png" path="/images/" scale="9grid" scale9grid="11,5,71,10"/>
@@ -106,9 +94,6 @@
     <image id="zd9g4b" name="k21.png" path="/images/" scale="9grid" scale9grid="11,7,82,26"/>
     <image id="zd9g4c" name="k24.png" path="/images/" scale="9grid" scale9grid="26,10,52,20"/>
     <image id="zd9g4d" name="k22.png" path="/images/" scale="9grid" scale9grid="26,10,52,20"/>
-    <component id="zd9g4e" name="Demo_Slider.xml" path="/" exported="true"/>
-    <component id="zd9g4f" name="Demo_ProgressBar.xml" path="/" exported="true"/>
-    <component id="zd9g4g" name="Demo_List.xml" path="/" exported="true"/>
     <component id="suiz4i" name="Slider_HZ.xml" path="/components/"/>
     <image id="suiz4j" name="p10_png.png" path="/images/"/>
     <image id="suiz4k" name="p11_png.png" path="/images/"/>
@@ -183,39 +168,28 @@
     <image id="l6f470" name="a8_png.png" path="/images/" scale="9grid" scale9grid="8,5,70,10"/>
     <image id="l6f471" name="VtSeperator.jpg" path="/images/"/>
     <image id="l6f472" name="a18_png.png" path="/images/"/>
-    <component id="l6f473" name="WindowA.xml" path="/" exported="true"/>
     <component id="f2ax74" name="Component4.xml" path="/components/"/>
-    <component id="gx2b76" name="Demo_Popup.xml" path="/" exported="true"/>
-    <component id="gx2b77" name="Demo_Window.xml" path="/" exported="true"/>
-    <component id="gx2b78" name="Demo_Drag&amp;Drop.xml" path="/" exported="true"/>
     <component id="gx2b79" name="BagGridSub2.xml" path="/components/"/>
-    <component id="796x7a" name="WindowB.xml" path="/" exported="true"/>
     <component id="niii7b" name="CloseButton.xml" path="/components/"/>
     <image id="niii7c" name="close_png.png" path="/images/"/>
     <component id="niii7d" name="WindowFrameB.xml" path="/components/"/>
     <component id="poiq7e" name="Button1.xml" path="/components/"/>
-    <component id="t24n7f" name="Demo_Component.xml" path="/" exported="true"/>
     <component id="t24n7g" name="Component5.xml" path="/components/"/>
     <component id="qa477h" name="Component6.xml" path="/components/"/>
     <component id="dyz47i" name="Button52.xml" path="/components/"/>
     <component id="fjqr7j" name="Component11.xml" path="/components/"/>
     <image id="fjqr7k" name="start.png" path="/images/" scale="tile"/>
-    <component id="c2z47l" name="Demo_Grid.xml" path="/" exported="true"/>
     <image id="a7vt7m" name="grid_header_png.png" path="/images/" scale="9grid" scale9grid="50,5,100,10"/>
     <component id="a7vt7n" name="GridItem.xml" path="/components/"/>
     <component id="atih7o" name="GridItem2.xml" path="/components/"/>
     <component id="mulj7p" name="Component12.xml" path="/components/" exported="true"/>
-    <component id="fou97q" name="Demo_Depth.xml" path="/" exported="true"/>
     <component id="fou97r" name="Component13.xml" path="/components/"/>
     <component id="gojg7s" name="Button16.xml" path="/components/"/>
     <image id="gojg7t" name="22.png" path="/images/"/>
-    <sound id="gojg7u" name="tabswitch.wav" path="/sound/" exported="true"/>
-    <sound id="o4lt7w" name="click.wav" path="/sound/" exported="true"/>
     <component id="iehu7x" name="Button82.xml" path="/components/"/>
     <image id="iehu7y" name="k36.png" path="/images/"/>
     <image id="iehu7z" name="k35.png" path="/images/"/>
     <image id="gzpr80" name="Shape 1 copy 4.png" path="/images/"/>
-    <component id="gzpr81" name="CircleProgress.xml" path="/" exported="true"/>
     <component id="gxip82" name="Component14.xml" path="/components/"/>
     <image id="srct83" name="back btn.png" path="/images/"/>
     <image id="srct84" name="full bar.png" path="/images/" scale="9grid" scale9grid="15,6,109,12"/>
@@ -224,7 +198,7 @@
     <component id="srct87" name="Slider2.xml" path="/components/"/>
     <movieclip id="iwqq89" name="gz.jta" path="/images/"/>
   </resources>
-  <publish name="Basics" packageCount="1" genCode="true">
+  <publish name="basics" packageCount="1" genCode="true">
     <atlas name="Default" index="0"/>
     <atlas name="Point_Mode" index="1"/>
   </publish>

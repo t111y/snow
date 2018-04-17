@@ -1,11 +1,19 @@
 {
+	"hidden_packages": [],
+	"docs": [
+		"5alcomxv",
+		"waht0",
+		"co8erd7u",
+		"stal0"
+	],
 	"expanded_nodes": [
 		"co8erd7u",
 		"/",
 		"5alcomxv",
 		"/"
 	],
-	"active_doc": null,
-	"hidden_packages": [],
-	"docs": []
+	"active_doc": [
+		"co8erd7u",
+		"stal0"
+	]
 }

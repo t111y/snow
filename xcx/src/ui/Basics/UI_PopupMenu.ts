@@ -1,6 +1,6 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
-module Basics {
+module basics {
 
 	export class UI_PopupMenu extends fairygui.GComponent {
 
@@ -9,7 +9,7 @@ module Basics {
 		public static URL:string = "ui://9leh0eyfl6f46x";
 
 		public static createInstance():UI_PopupMenu {
-			return <UI_PopupMenu><any>(fairygui.UIPackage.createObject("Basics","PopupMenu"));
+			return <UI_PopupMenu><any>(fairygui.UIPackage.createObject("basics","PopupMenu"));
 		}
 
 		public constructor() {

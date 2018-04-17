@@ -1,5 +1,5 @@
 class Npc {
-	public id:number;
+	public id:string;
 	public tid:number;
 	public type:number;
 	public pos:Array<number>;

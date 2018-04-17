@@ -8,7 +8,7 @@ class ServerTime {
 		this.loginServerTime = serverTime;
 		this.loginLocalTime = egret.getTimer();
 	}
-	public getServerTime():number{
+	public now():number{
 		return this.loginServerTime + (egret.getTimer() -  this.loginLocalTime)/1000;
 	}
 }

@@ -8,14 +8,16 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	private static _addId: number = 0;
 	public __isFocus: boolean = false;
 	public id: number = 0;
-	public type: string;
+	public type: number;
 	public speedX: number;
 	public speedY: number;
 	private _ak: string;
 
 	public isDead:boolean = false;
+	public deadTime:number;
 	public setDead(isDead:boolean){
 		this.isDead = isDead;
+		this.deadTime = Globals.i().serverTime.now();
 		if(isDead){
 			Globals.i().killNum++;
 			WinsManager.getIns().showFloatText(Globals.i().killNum + "击");
@@ -26,6 +28,7 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 			}
 			this.changeAction(RoleAction.DROP);
 		}else{
+			this.changeAction(RoleAction.RUN);
 			this.filters = null;
 		}
 	}
@@ -134,8 +137,5 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	}
 	public hitTestArea(px:number,py:number):boolean{
 		return false;
-	}
-	public getOptType():string{
-		return this.type;
 	}
 }

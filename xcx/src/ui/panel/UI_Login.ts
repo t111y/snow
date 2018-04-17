@@ -6,6 +6,7 @@ module panel {
 
 		public m_txt_name:fairygui.GTextInput;
 		public m_btn_ok:fairygui.GButton;
+		public m_txt_version:fairygui.GTextField;
 
 		public static URL:string = "ui://5alcomxvwaht0";
 
@@ -22,6 +23,7 @@ module panel {
 
 			this.m_txt_name = <fairygui.GTextInput><any>(this.getChild("txt_name"));
 			this.m_btn_ok = <fairygui.GButton><any>(this.getChild("btn_ok"));
+			this.m_txt_version = <fairygui.GTextField><any>(this.getChild("txt_version"));
 		}
 	}
 }

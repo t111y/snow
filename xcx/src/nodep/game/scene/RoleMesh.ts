@@ -1,4 +1,6 @@
 class RoleMesh {
+	public static count = 0;
+	public id:number = 0;
 	public points:Array<RolePathPoint> = new Array<RolePathPoint>();
 	public time:number;
 	public shape:egret.Shape;
@@ -7,7 +9,9 @@ class RoleMesh {
 	private y1:number=9999999;
 	private y2:number=-9999999;
 	private rect:egret.Rectangle = new egret.Rectangle();
+	public existTime:number = 3;
 	public constructor() {
+		this.id = ++RoleMesh.count;
 		this.shape = new egret.Shape();
 		WinsManager.getIns().gameStage().addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onStageTouch,this);
 	}
@@ -38,7 +42,7 @@ class RoleMesh {
 				this.y2 = point.point.y;
 			}
 			point.isUsed = true;
-			this.time = Globals.i().serverTime.getServerTime();
+			this.time = Globals.i().serverTime.now();
 			this.points.push(point);
 		}
 		
@@ -67,7 +71,7 @@ class RoleMesh {
 	//画面
 	public drawMesh(){
 		this.shape.graphics.clear();
-		this.shape.graphics.beginFill(0x00ff00,1-(Globals.i().serverTime.getServerTime() - this.time) / GameConfig.trapTime);
+		this.shape.graphics.beginFill(0x00ff00,1-(Globals.i().serverTime.now() - this.time) / this.existTime);
 		var point:egret.Point = this.points[0].point;
 		this.shape.graphics.moveTo(point.x,point.y);
 		for(var i:number =1;i<this.points.length;i++){

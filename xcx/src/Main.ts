@@ -94,21 +94,21 @@ public constructor() {
         this.startGame();
     }
     private initFairyGui(){
-        fairygui.UIPackage.addPackage("basic");
+        fairygui.UIPackage.addPackage("basics");
         fairygui.UIPackage.addPackage("panel");
         fairygui.UIPackage.addPackage("joystick");
         panel.panelBinder.bindAll();
-        Basics.BasicsBinder.bindAll();
-        Joystick.JoystickBinder.bindAll();
+        basics.basicsBinder.bindAll();
+        joystick.joystickBinder.bindAll();
         
         this.stage.scaleMode = egret.StageScaleMode.NO_SCALE;
         this.stage.orientation = egret.OrientationMode.LANDSCAPE;
 
         fairygui.UIConfig.defaultFont = "SimSun";
-        fairygui.UIConfig.verticalScrollBar = "ui://Basic/ScrollBar_VT";
-        fairygui.UIConfig.horizontalScrollBar = "ui://Basic/ScrollBar_HZ";
-        fairygui.UIConfig.popupMenu = "ui://Basic/PopupMenu";
-        fairygui.UIConfig.buttonSound = "ui://Basic/click";
+        fairygui.UIConfig.verticalScrollBar = "ui://basic/ScrollBar_VT";
+        fairygui.UIConfig.horizontalScrollBar = "ui://basic/ScrollBar_HZ";
+        fairygui.UIConfig.popupMenu = "ui://basic/PopupMenu";
+        fairygui.UIConfig.buttonSound = "ui://basic/click";
 
         this.stage.addChild(fairygui.GRoot.inst.displayObject);
     }
@@ -149,6 +149,7 @@ public constructor() {
     }
     private onEnterScene(e:egret.Event){
         var msg:ScEnterScene = e.data;
+        Globals.i().enterScene = msg;
         GameManager.getIns().startNewGame();
     }
     //延迟进入游戏

@@ -10,14 +10,15 @@ class PlayerRole extends UserRole {
 	public constructor() {
 		super();
 		PlayerRole.self = this;
-		this.type = RoleType.ROLE_PLAYER;
+		this.isSelf = true;
+		this.type = RoleType.PLAYER;
 	}
 
 
 
 	//角色的移动处理,这里的移动优化应该还可以继续优化
 	public renderUpdate(interval: number): void {
-		if (JoystickModule.offset == 0)
+		if (JoystickModule.offset == 0 || this.isDead)
 			return;
 		//在这里检查某个点是否可以到达
 		var tox: number = this.x + JoystickModule.multX * this.speedX;
@@ -50,6 +51,7 @@ class PlayerRole extends UserRole {
 				Globals.i().net.send(MessageType.createMove([point]));
 				var mesh:RoleMesh = RoleMesh.check(this.path);
 				if(mesh!=null){
+					mesh.existTime = this.pointExistTime;
 					this.roleMeshs.push(mesh);
 					Globals.i().net.send(MessageType.createCirclePath(mesh));
 				}

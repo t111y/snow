@@ -24,7 +24,7 @@ class MessageType {
 
 	/** 
 	 * 别的玩家进入场景
-	 * s2c => {"msgId": 12002, "players": [玩家id]}
+	 * s2c => {"msgId": 12002, "players": [{玩家id,"pos":[2,2],"pointExistTime":3}]}
 	 * */
 	public static sc_userEnter:number = 12002;
 
@@ -38,6 +38,7 @@ class MessageType {
 
 	public static sc_npcEnter:number = 12008;
 
+	public static sc_updateUserProperty:number = 12011;
 	/**
 	 * {"msgId": 60000, "time": 1522296176}
 	 */
@@ -56,8 +57,15 @@ class MessageType {
 		return {"msgId": 12001, "path": MessageType.pathToArray(path)};
 	}
 	public static createCirclePath(mesh:RoleMesh):Object{
-		return {"msgId": 12004, "circlePath": MessageType.pathToArray(mesh.points),"time":mesh.time};
+		return {"msgId": 12004, "circlePath": MessageType.pathToArray(mesh.points),"time":mesh.time,"id":mesh.id};
 	}
+	public static sendRoleDrop(circleId:number,dropPlayerId:string,time:number){
+		Globals.i().net.send({"msgId":12007,"circleId":circleId,"dropPlayerId":dropPlayerId,"time":time});
+	}
+	public static sendHitNpc(npcId:string){
+		Globals.i().net.send({"msgId":12010,"tileId":npcId});
+	}
+	//global.i().net.send({"msgId":12010,});
 	/**
 	 * 掉进坑里
 	 * {"msgId": 12007, "circleId": 1, "dropPlayerId": 429501024567298, "time": 1522296176}
@@ -99,6 +107,8 @@ class MessageType {
 	private static parseEnterScene(o:any):ScEnterScene{
 		var msg:ScEnterScene = new ScEnterScene();
 		msg.sceneId = o.sceneId;
+		msg.pos = o.pos;
+		msg.pointExistTime = o.pointExistTime / 1000;
 		return msg;
 	}
 	private static parseNpcEnter(o:any):ScNpcEnter{
@@ -106,13 +116,24 @@ class MessageType {
 		msg.tiles = [];
 		o.tiles.forEach(element => {
 			let npc:Npc = new Npc();
+			npc.id = element.id;
+			npc.pos = element.pos;
+			npc.tid = element.tid;
+			npc.type = element.type;
 			msg.tiles[msg.tiles.length] = npc;
 		});
 		return msg;
 	}
 	private static parseUserEnter(o:any):ScUserEnter{
 		var msg:ScUserEnter = new ScUserEnter();
-		msg.players = o.players;
+		msg.players = [o.players];
+		for(let i:number = 1;i<o.players.length;i++){
+			let user:User = new User();
+			user.id = o.players[i].id;
+			user.pos = o.players[i].pos;
+			user.pointExistTime = o.players[i].pointExistTime /1000;
+			msg.players.push(user);
+		}
 		return msg;
 	}
 	private static parseMove(o:any):ScMove{
@@ -131,6 +152,12 @@ class MessageType {
 	private static parseTick(o:any):ScTick{
 		let msg:ScTick = new ScTick();
 		msg.time = o.time;
+		return msg;
+	}
+	private static parseUpdateUserProperty(o:any):ScUpdateUserProperty{
+		let msg:ScUpdateUserProperty = new ScUpdateUserProperty();
+		msg.playerId = o.playerId;
+		msg.attrs = o.attrs;
 		return msg;
 	}
 
@@ -152,6 +179,8 @@ class MessageType {
 			return MessageType.parseNpcEnter(o);
 			case MessageType.sc_drop:
 			return MessageType.parseDrop(o);
+			case MessageType.sc_updateUserProperty:
+			return MessageType.parseUpdateUserProperty(o);
 		}
 	}
 }
@@ -170,6 +199,7 @@ class ScLogin{
 class ScEnterScene{
 	public sceneId:string;
 	public pos:Array<number>;
+	public pointExistTime:number;
 }
 class ScUserEnter{
 	public players:Array<User>;
@@ -186,4 +216,8 @@ class ScCirclePath{
 	public playerId:string;
 	public circlePath:Array<RolePathPoint>;
 	public time:number;
+}
+class ScUpdateUserProperty{
+	public playerId:string;
+	public attrs:Array<Array<number>>;
 }

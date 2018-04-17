@@ -14,12 +14,16 @@ class NetworkManager extends egret.EventDispatcher {
 	}
 	private _len:number = -1;
 	private _type:number;
+	private _notShowMsgs:Array<number> = [12000,60000];
 	private onReceiveMessage(e:egret.ProgressEvent):void{
 		var m:string = this.socket.readUTF();
 		var o:any;
 		try {
 			o = JSON.parse(m);
-			// console.log("收到消息 "+o);
+			if(this._notShowMsgs.indexOf(o.msgId)==-1){
+				console.log("收到消息 "+m);
+			}
+			
 			this.dispatchEvent(new egret.Event(o.msgId,false,false,MessageType.paserScMsg(o)));
 		} catch (error) {
 			console.log("消息处理错误 "+m);

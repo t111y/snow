@@ -10,6 +10,7 @@ class LoginWin extends GameWindow {
         this.contentPane = this.skin;
 		this.skin.m_txt_name.text = "user" + Math.round(Math.random()*9999999);
 		this.skin.m_btn_ok.addEventListener(egret.TouchEvent.TOUCH_END,this.onTouchEnd,this);
+		this.skin.m_txt_version.text = WinsManager.stageWidth+"_"+WinsManager.stageHeight;
     }
 
 	private onTouchEnd(e:egret.TouchEvent){

@@ -12,11 +12,8 @@ class GameConfig {
 	public static WORD_H:number = 2560;
 	public static map_cfx:number;//世界缩放比例
 	public static map_cfy:number;//世界缩放比例
-
-	public static pointOvertime:number = 5;
-
-	public static trapTime:number = 5;
-	
+	deadTime
+	public static deadTime =4;
 	public static Monster_NUM =20;
 
 }

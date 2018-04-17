@@ -1,6 +1,6 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
-module Joystick {
+module joystick {
 
 	export class UI_circle extends fairygui.GButton {
 
@@ -9,7 +9,7 @@ module Joystick {
 		public static URL:string = "ui://co8erd7uojxk2";
 
 		public static createInstance():UI_circle {
-			return <UI_circle><any>(fairygui.UIPackage.createObject("Joystick","circle"));
+			return <UI_circle><any>(fairygui.UIPackage.createObject("joystick","circle"));
 		}
 
 		public constructor() {

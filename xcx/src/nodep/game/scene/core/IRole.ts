@@ -17,8 +17,4 @@ interface IRole {
 	 * 碰撞检测
 	 */
 	hitTestArea(px:number,py:number):boolean;
-	/**
-	 * 获取操作类型
-	 */
-	getOptType():string;
 }

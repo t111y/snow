@@ -1,301 +1,11 @@
 {
 	"groups": [
 		{
-			"keys": "0_02_png,0_12_png,0_22_png,0_32_png,0_42_png,1_02_png,1_12_png,1_22_png,1_32_png,1_42_png,2_02_png,2_12_png,2_22_png,2_32_png,2_42_png,3_02_png,3_12_png,3_22_png,3_32_png,3_42_png,4_02_png,4_12_png,4_22_png,4_32_png,4_42_png,map2_json,0_03_png,0_13_png,0_23_png,0_33_png,0_43_png,1_03_png,1_13_png,1_23_png,1_33_png,1_43_png,2_03_png,2_13_png,2_23_png,2_33_png,2_43_png,3_03_png,3_13_png,3_23_png,3_33_png,3_43_png,4_03_png,4_13_png,4_23_png,4_33_png,4_43_png,map3_json,a_png,b_png,c_png,d_png,f_png,g_png,sceneUi_fui,panel_fui,Basics@o4lt7w_wav,Basics@gojg7u_wav,Basics@atlas1_png,Basics@atlas0_png,Basics_fui,basic@mejr82_mp3,basic@mejr81_mp3,basic@atlas0_png,basic_fui,joystick_fui,joystick@atlas0_png",
+			"keys": "0_0_jpg,0_1_jpg,0_2_jpg,0_3_jpg,0_4_jpg,1_0_jpg,1_1_jpg,1_2_jpg,1_3_jpg,1_4_jpg,2_0_jpg,2_1_jpg,2_2_jpg,2_3_jpg,2_4_jpg,3_0_jpg,3_1_jpg,3_2_jpg,3_3_jpg,3_4_jpg,4_0_jpg,4_1_jpg,4_2_jpg,4_3_jpg,4_4_jpg,small_jpg,a_png,b_png,c_png,d_png,f_png,g_png,map_json,monster1_png,nvl_png,monster1_json,nvl_json,basics_fui,basics@atlas0_png,basics@atlas1_png,joystick_fui,joystick@atlas0_png,panel_fui",
 			"name": "preload"
 		}
 	],
 	"resources": [
-		{
-			"url": "assets/map/2/0_0.png",
-			"type": "image",
-			"name": "0_02_png"
-		},
-		{
-			"url": "assets/map/2/0_1.png",
-			"type": "image",
-			"name": "0_12_png"
-		},
-		{
-			"url": "assets/map/2/0_2.png",
-			"type": "image",
-			"name": "0_22_png"
-		},
-		{
-			"url": "assets/map/2/0_3.png",
-			"type": "image",
-			"name": "0_32_png"
-		},
-		{
-			"url": "assets/map/2/0_4.png",
-			"type": "image",
-			"name": "0_42_png"
-		},
-		{
-			"url": "assets/map/2/1_0.png",
-			"type": "image",
-			"name": "1_02_png"
-		},
-		{
-			"url": "assets/map/2/1_1.png",
-			"type": "image",
-			"name": "1_12_png"
-		},
-		{
-			"url": "assets/map/2/1_2.png",
-			"type": "image",
-			"name": "1_22_png"
-		},
-		{
-			"url": "assets/map/2/1_3.png",
-			"type": "image",
-			"name": "1_32_png"
-		},
-		{
-			"url": "assets/map/2/1_4.png",
-			"type": "image",
-			"name": "1_42_png"
-		},
-		{
-			"url": "assets/map/2/2_0.png",
-			"type": "image",
-			"name": "2_02_png"
-		},
-		{
-			"url": "assets/map/2/2_1.png",
-			"type": "image",
-			"name": "2_12_png"
-		},
-		{
-			"url": "assets/map/2/2_2.png",
-			"type": "image",
-			"name": "2_22_png"
-		},
-		{
-			"url": "assets/map/2/2_3.png",
-			"type": "image",
-			"name": "2_32_png"
-		},
-		{
-			"url": "assets/map/2/2_4.png",
-			"type": "image",
-			"name": "2_42_png"
-		},
-		{
-			"url": "assets/map/2/3_0.png",
-			"type": "image",
-			"name": "3_02_png"
-		},
-		{
-			"url": "assets/map/2/3_1.png",
-			"type": "image",
-			"name": "3_12_png"
-		},
-		{
-			"url": "assets/map/2/3_2.png",
-			"type": "image",
-			"name": "3_22_png"
-		},
-		{
-			"url": "assets/map/2/3_3.png",
-			"type": "image",
-			"name": "3_32_png"
-		},
-		{
-			"url": "assets/map/2/3_4.png",
-			"type": "image",
-			"name": "3_42_png"
-		},
-		{
-			"url": "assets/map/2/4_0.png",
-			"type": "image",
-			"name": "4_02_png"
-		},
-		{
-			"url": "assets/map/2/4_1.png",
-			"type": "image",
-			"name": "4_12_png"
-		},
-		{
-			"url": "assets/map/2/4_2.png",
-			"type": "image",
-			"name": "4_22_png"
-		},
-		{
-			"url": "assets/map/2/4_3.png",
-			"type": "image",
-			"name": "4_32_png"
-		},
-		{
-			"url": "assets/map/2/4_4.png",
-			"type": "image",
-			"name": "4_42_png"
-		},
-		{
-			"url": "assets/map/2/map.json",
-			"type": "json",
-			"name": "map2_json"
-		},
-		{
-			"url": "assets/map/3/0_0.png",
-			"type": "image",
-			"name": "0_03_png"
-		},
-		{
-			"url": "assets/map/3/0_1.png",
-			"type": "image",
-			"name": "0_13_png"
-		},
-		{
-			"url": "assets/map/3/0_2.png",
-			"type": "image",
-			"name": "0_23_png"
-		},
-		{
-			"url": "assets/map/3/0_3.png",
-			"type": "image",
-			"name": "0_33_png"
-		},
-		{
-			"url": "assets/map/3/0_4.png",
-			"type": "image",
-			"name": "0_43_png"
-		},
-		{
-			"url": "assets/map/3/1_0.png",
-			"type": "image",
-			"name": "1_03_png"
-		},
-		{
-			"url": "assets/map/3/1_1.png",
-			"type": "image",
-			"name": "1_13_png"
-		},
-		{
-			"url": "assets/map/3/1_2.png",
-			"type": "image",
-			"name": "1_23_png"
-		},
-		{
-			"url": "assets/map/3/1_3.png",
-			"type": "image",
-			"name": "1_33_png"
-		},
-		{
-			"url": "assets/map/3/1_4.png",
-			"type": "image",
-			"name": "1_43_png"
-		},
-		{
-			"url": "assets/map/3/2_0.png",
-			"type": "image",
-			"name": "2_03_png"
-		},
-		{
-			"url": "assets/map/3/2_1.png",
-			"type": "image",
-			"name": "2_13_png"
-		},
-		{
-			"url": "assets/map/3/2_2.png",
-			"type": "image",
-			"name": "2_23_png"
-		},
-		{
-			"url": "assets/map/3/2_3.png",
-			"type": "image",
-			"name": "2_33_png"
-		},
-		{
-			"url": "assets/map/3/2_4.png",
-			"type": "image",
-			"name": "2_43_png"
-		},
-		{
-			"url": "assets/map/3/3_0.png",
-			"type": "image",
-			"name": "3_03_png"
-		},
-		{
-			"url": "assets/map/3/3_1.png",
-			"type": "image",
-			"name": "3_13_png"
-		},
-		{
-			"url": "assets/map/3/3_2.png",
-			"type": "image",
-			"name": "3_23_png"
-		},
-		{
-			"url": "assets/map/3/3_3.png",
-			"type": "image",
-			"name": "3_33_png"
-		},
-		{
-			"url": "assets/map/3/3_4.png",
-			"type": "image",
-			"name": "3_43_png"
-		},
-		{
-			"url": "assets/map/3/4_0.png",
-			"type": "image",
-			"name": "4_03_png"
-		},
-		{
-			"url": "assets/map/3/4_1.png",
-			"type": "image",
-			"name": "4_13_png"
-		},
-		{
-			"url": "assets/map/3/4_2.png",
-			"type": "image",
-			"name": "4_23_png"
-		},
-		{
-			"url": "assets/map/3/4_3.png",
-			"type": "image",
-			"name": "4_33_png"
-		},
-		{
-			"url": "assets/map/3/4_4.png",
-			"type": "image",
-			"name": "4_43_png"
-		},
-		{
-			"url": "assets/map/3/map.json",
-			"type": "json",
-			"name": "map3_json"
-		},
-		{
-			"url": "assets/map/deathmatch_spr/a.png",
-			"type": "image",
-			"name": "a_png"
-		},
-		{
-			"url": "assets/map/deathmatch_spr/b.png",
-			"type": "image",
-			"name": "b_png"
-		},
-		{
-			"url": "assets/map/deathmatch_spr/c.png",
-			"type": "image",
-			"name": "c_png"
-		},
-		{
-			"url": "assets/map/deathmatch_spr/d.png",
-			"type": "image",
-			"name": "d_png"
-		},
-		{
-			"url": "assets/map/deathmatch_spr/f.png",
-			"type": "image",
-			"name": "f_png"
-		},
-		{
-			"url": "assets/map/deathmatch_spr/g.png",
-			"type": "image",
-			"name": "g_png"
-		},
 		{
 			"url": "assets/map/1/0_0.jpg",
 			"type": "image",
@@ -427,6 +137,36 @@
 			"name": "small_jpg"
 		},
 		{
+			"url": "assets/map/deathmatch_spr/a.png",
+			"type": "image",
+			"name": "a_png"
+		},
+		{
+			"url": "assets/map/deathmatch_spr/b.png",
+			"type": "image",
+			"name": "b_png"
+		},
+		{
+			"url": "assets/map/deathmatch_spr/c.png",
+			"type": "image",
+			"name": "c_png"
+		},
+		{
+			"url": "assets/map/deathmatch_spr/d.png",
+			"type": "image",
+			"name": "d_png"
+		},
+		{
+			"url": "assets/map/deathmatch_spr/f.png",
+			"type": "image",
+			"name": "f_png"
+		},
+		{
+			"url": "assets/map/deathmatch_spr/g.png",
+			"type": "image",
+			"name": "g_png"
+		},
+		{
 			"url": "assets/map/1/map.json",
 			"type": "json",
 			"name": "map_json"
@@ -452,59 +192,19 @@
 			"name": "nvl_json"
 		},
 		{
-			"url": "assets/ui/Basics.fui",
+			"url": "assets/ui/basics.fui",
 			"type": "bin",
-			"name": "Basics_fui"
+			"name": "basics_fui"
 		},
 		{
-			"url": "assets/ui/Basics@atlas0.png",
+			"url": "assets/ui/basics@atlas0.png",
 			"type": "image",
-			"name": "Basics@atlas0_png"
+			"name": "basics@atlas0_png"
 		},
 		{
-			"url": "assets/ui/Basics@atlas1.png",
+			"url": "assets/ui/basics@atlas1.png",
 			"type": "image",
-			"name": "Basics@atlas1_png"
-		},
-		{
-			"url": "assets/ui/Basics@gojg7u.wav",
-			"type": "sound",
-			"name": "Basics@gojg7u_wav"
-		},
-		{
-			"url": "assets/ui/Basics@o4lt7w.wav",
-			"type": "sound",
-			"name": "Basics@o4lt7w_wav"
-		},
-		{
-			"url": "assets/ui/basic.fui",
-			"type": "bin",
-			"name": "basic_fui"
-		},
-		{
-			"url": "assets/ui/basic@atlas0.png",
-			"type": "image",
-			"name": "basic@atlas0_png"
-		},
-		{
-			"url": "assets/ui/basic@mejr81.mp3",
-			"type": "sound",
-			"name": "basic@mejr81_mp3"
-		},
-		{
-			"url": "assets/ui/basic@mejr82.mp3",
-			"type": "sound",
-			"name": "basic@mejr82_mp3"
-		},
-		{
-			"url": "assets/ui/panel.fui",
-			"type": "bin",
-			"name": "panel_fui"
-		},
-		{
-			"url": "assets/ui/sceneUi.fui",
-			"type": "bin",
-			"name": "sceneUi_fui"
+			"name": "basics@atlas1_png"
 		},
 		{
 			"url": "assets/ui/joystick.fui",
@@ -515,6 +215,11 @@
 			"url": "assets/ui/joystick@atlas0.png",
 			"type": "image",
 			"name": "joystick@atlas0_png"
+		},
+		{
+			"url": "assets/ui/panel.fui",
+			"type": "bin",
+			"name": "panel_fui"
 		}
 	]
 }

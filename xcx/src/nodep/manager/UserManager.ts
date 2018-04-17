@@ -3,6 +3,13 @@ class UserManager {
 		Globals.i().net.addEventListener(MessageType.sc_userEnter+"",this.onUserEnter,this);
 		Globals.i().net.addEventListener(MessageType.sc_circlePath+"",this.onCirclePath,this);
 		Globals.i().net.addEventListener(MessageType.sc_move+"",this.onMove,this);
+		Globals.i().net.addEventListener(MessageType.sc_updateUserProperty+"",this.onUpdateUserProperty,this);
+	}
+
+	private onUpdateUserProperty(e:egret.Event){
+		let msg:ScUpdateUserProperty = e.data;
+		let role:UserRole = Tiled_Ground.getIns().getUserRole(msg.playerId);
+		role.updateProperty(msg.attrs);
 	}
 	private onUserEnter(e:egret.Event){
 		let msg:ScUserEnter = e.data;
@@ -22,6 +29,7 @@ class UserManager {
 		let role:UserRole = Tiled_Ground.getIns().getUserRole(msg.playerId);
 
 		let mesh:RoleMesh = new RoleMesh();
+		mesh.existTime = role.pointExistTime;
 		mesh.addPoints(msg.circlePath);
 		mesh.time = msg.time;
 		role.roleMeshs.push(mesh);
