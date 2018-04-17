@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="960,540">
+  <displayList>
+    <image id="n0" name="joystick_center" src="ojxk1" xy="69,396">
+      <relation target="" sidePair="bottom-bottom"/>
+    </image>
+    <component id="n1" name="joystick" src="ojxk2" xy="1,328">
+      <relation target="" sidePair="bottom-bottom"/>
+    </component>
+    <graph id="n2" name="joystick_touch" xy="1,328" size="212,212" type="rect" lineSize="0" fillColor="#00ffffff">
+      <relation target="" sidePair="bottom-bottom"/>
+    </graph>
+    <text id="n3" name="n3" xy="566,1" size="90,31" fontSize="24" color="#ffffff" strokeColor="#000000" text="Degree:"/>
+    <text id="n4" name="n4" xy="656,1" size="302,31" fontSize="24" color="#ffffff" autoSize="height" strokeColor="#000000" text=""/>
+  </displayList>
+</component>

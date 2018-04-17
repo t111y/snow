@@ -36,6 +36,7 @@ export class WxgamePlugin implements plugins.Command {
                 if (filename == 'main.js') {
                     content += ";window.Main = Main;"
                 }
+
                 file.contents = new Buffer(content);
             }
         }

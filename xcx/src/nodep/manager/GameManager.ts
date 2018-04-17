@@ -35,8 +35,7 @@ class GameManager {
 		WinsManager.getIns().gameStage().addChildAt(Tiled_Ground.getIns(),0);
 		//初始化游戏界面->实际开发中需要加入初始化进度条
 		Tiled_Ground.getIns().initWorld();//初始化世界的宽度和高度
-		WinsManager.getIns().openWindow(RockerBar);//初始化摇杆到界面
-		WinsManager.getIns().openWindow(TopToolBar);//初始化顶部导航栏
+		WinsManager.getIns().openWindow(JoystickModule);//初始化摇杆到界面
 		WinsManager.getIns().closeWin(GameMainLoaderWindow);//关闭加载
 	}
 

@@ -27,12 +27,15 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //egret publish --target wxgame 
-class Main extends eui.UILayer {
+class Main extends egret.DisplayObjectContainer {
+public constructor() {
+        super();
+        
 
+        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+    }
 
-    protected createChildren(): void {
-        super.createChildren();
-        // this.stage.$scaleMode = egret.StageScaleMode.FIXED_WIDTH;
+    private onAddToStage(event: egret.Event) {
 
         egret.lifecycle.addLifecycleListener((context) => {
             // custom lifecycle plugin
@@ -46,13 +49,6 @@ class Main extends eui.UILayer {
             // egret.ticker.resume();
         }
 
-        //inject the custom material parser
-        //注入自定义的素材解析器
-        let assetAdapter = new AssetAdapter();
-        egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
-        egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
-
-
         this.runGame().catch(e => {
             console.log(e);
         })
@@ -61,38 +57,25 @@ class Main extends eui.UILayer {
     private async runGame() {
         await this.loadResource()
         this.createGameScene();
-        const result = await RES.getResAsync("description_json")
         await platform.login();
         const userInfo = await platform.getUserInfo();
         console.log(userInfo);
 
     }
-private loadingView:LoadingUI;
+    private loadingView:LoadingUI;
     private async loadResource() {
         try {
             this.loadingView = new LoadingUI();
             this.stage.addChild(this.loadingView);
             await RES.loadConfig("resource/default.res.json", "resource/");
-            await this.loadTheme();
             await RES.loadGroup("preload", 0, this.loadingView);
+            this.stage.removeChild(this.loadingView);
         }
         catch (e) {
             console.error(e);
         }
     }
 
-    private loadTheme() {
-        return new Promise((resolve, reject) => {
-            // load skin theme configuration file, you can manually modify the file. And replace the default skin.
-            //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
-            let theme = new eui.Theme("resource/default.thm.json", this.stage);
-            theme.addEventListener(eui.UIEvent.COMPLETE, () => {
-                this.stage.removeChild(this.loadingView);
-                resolve();
-            }, this);
-
-        })
-    }
 
     private textfield: egret.TextField;
     /**
@@ -100,27 +83,33 @@ private loadingView:LoadingUI;
      * Create scene interface
      */
     protected createGameScene(): void {
-        this.stage.scaleMode = egret.StageScaleMode.NO_SCALE;
+        this.initFairyGui();
         LogTrace.log("application loadcompleted...");
         WinsManager.getIns().initGame(this);
         //启动主Render
         RenderManager.getIns().startRender(this.stage);
         //初始化层级
         WinsManager.getIns().addLayer(LayerType.LAYER_GROUND, new GameLayer());
-        WinsManager.getIns().addLayer(LayerType.LAYER_MENU,new GameLayer());
-        WinsManager.getIns().addLayer(LayerType.LAYER_UI, new GameLayer());
-        WinsManager.getIns().addLayer(LayerType.LAYER_POP,new GameLayer());
+        
         this.startGame();
     }
     private initFairyGui(){
         fairygui.UIPackage.addPackage("basic");
+        fairygui.UIPackage.addPackage("panel");
+        fairygui.UIPackage.addPackage("joystick");
+        panel.panelBinder.bindAll();
+        Basics.BasicsBinder.bindAll();
+        Joystick.JoystickBinder.bindAll();
         
+        this.stage.scaleMode = egret.StageScaleMode.NO_SCALE;
+        this.stage.orientation = egret.OrientationMode.LANDSCAPE;
+
         fairygui.UIConfig.defaultFont = "SimSun";
         fairygui.UIConfig.verticalScrollBar = "ui://Basic/ScrollBar_VT";
         fairygui.UIConfig.horizontalScrollBar = "ui://Basic/ScrollBar_HZ";
         fairygui.UIConfig.popupMenu = "ui://Basic/PopupMenu";
         fairygui.UIConfig.buttonSound = "ui://Basic/click";
-        
+
         this.stage.addChild(fairygui.GRoot.inst.displayObject);
     }
     //正式进入游戏

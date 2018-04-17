@@ -7,7 +7,7 @@
 class WinsManager {
 
 	private static _ins: WinsManager;
-	private _baseUi: eui.UILayer;
+	private _baseUi: egret.DisplayObjectContainer;
 	/**游戏的层级 */
 	private _layerMap: Object;
 	/**当前已创建的界面 */
@@ -28,7 +28,7 @@ class WinsManager {
 
 	private initScale():void{
 		LogTrace.log(WinsManager.stageWidth+"_"+WinsManager.stageHeight);
-		WinsManager.scaleX = WinsManager.stageWidth/1254;
+		WinsManager.scaleX = WinsManager.stageWidth/960;
 		WinsManager.scaleY = WinsManager.scaleX;
 	}
 
@@ -44,7 +44,7 @@ class WinsManager {
 	/**
 	 * 初始化
 	 */
-	public initGame(ui: eui.UILayer): void {
+	public initGame(ui: egret.DisplayObjectContainer): void {
 		this._baseUi = ui;
 		this._baseUi.stage.addEventListener(egret.Event.RESIZE,this.stageResizeHandler,this);
 		WinsManager.stageWidth = this._baseUi.stage.stageWidth;
@@ -55,7 +55,7 @@ class WinsManager {
 	/**
 	 * 添加一个层级
 	 */
-	public addLayer(layerName: string, layer: GameLayerInterface): void {
+	public addLayer(layerName: string, layer: GameLayer): void {
 		this._layerMap[layerName]= layer;
 		this._baseUi.addChild(layer as GameLayer);
 		LogTrace.log("add layer:" + layerName);
@@ -66,7 +66,7 @@ class WinsManager {
 		if (this._windowMap[cls]==null)
 			this._windowMap[cls]=new cls();
 		let win: GameWindow = this._windowMap[(cls)];
-		if(win.stage==null)
+		if(win.isShowing)
 			this.openWindow(cls);
 		else
 			this.closeWin(cls);
@@ -79,15 +79,18 @@ class WinsManager {
 		if (this._windowMap[(cls)]==null)
 			this._windowMap[cls]=new cls();
 		let win: GameWindow = this._windowMap[cls];
-		if (!win.stage) {
-			if (this._layerMap[win.layerType])//如果有對應層級可以打開
-			{
-				this._layerMap[(win.layerType)].addWindow(win);
-				LogTrace.log("openWindow->" + win.typeName);
-			}
-			else {
-				throw (new Error(NodepErrorType.LAYER_NO_EXISTENT));
-			}
+		if (!win.isShowing) {
+			win.show();
+			win.width = WinsManager.stageWidth;
+			win.height = WinsManager.stageHeight;
+			// if (this._layerMap[win.layerType])//如果有對應層級可以打開
+			// {
+			// 	this._layerMap[(win.layerType)].addWindow(win);
+			// 	LogTrace.log("openWindow->" + win.typeName);
+			// }
+			// else {
+			// 	throw (new Error(NodepErrorType.LAYER_NO_EXISTENT));
+			// }
 		}
 	}
 
@@ -98,7 +101,10 @@ class WinsManager {
 		if (!this._windowMap[(cls)])
 			this._windowMap[cls]= new cls();
 		let win: GameWindow = this._windowMap[(cls)];
-		if (!win.stage) {
+		if (!win.isShowing) {
+			win.show();
+			win.height = this._baseUi.stage.stageHeight;
+			win.width = this._baseUi.stage.stageWidth;
 			if (this._layerMap[(layerType)])//如果有對應層級可以打開
 			{
 				this._layerMap[(layerType)].addWindow(win);
@@ -125,10 +131,10 @@ class WinsManager {
 			case "function":win = this._windowMap[(target)];
 				break;
 		}
-		if(!win||!win.parent)
+		if(!win||!win.isShowing)
 			return;
 		if (win.beforeClose())
-			(win.parent as GameLayer).removeWindow(win);
+			win.hide();
 	}
 
 	/**
@@ -138,7 +144,7 @@ class WinsManager {
 
 		for(let key in this._windowMap){
 			var win:GameWindow = this._windowMap[key];
-			if (typeNames.indexOf(win.typeName) >= 0 && win.stage != null)
+			if (typeNames.indexOf(win.typeName) >= 0 && win.isShowing)
 				win.update(updateType, updateData);
 		}
 	}
@@ -149,10 +155,11 @@ class WinsManager {
 	public globalUpdate(updateType: number, updateData: any): void {
 		for(let key in this._windowMap){
 			var win:GameWindow = this._windowMap[key];
-			if(win.stage!=null)
+			if(win.isShowing)
 				win.update(updateType, updateData);
 		}
 	}
+	
 
 	/**
 	 * 屏幕尺寸变化
@@ -162,12 +169,13 @@ class WinsManager {
 		WinsManager.stageWidth = this._baseUi.stage.stageWidth;
 		WinsManager.stageHeight = this._baseUi.stage.stageHeight;
 		this.initScale();
-		LogTrace.log("stageReszie!");
+		LogTrace.log("stageReszie! " + WinsManager.stageWidth +"_" + WinsManager.stageHeight);
 		//通知所有的layer
 
-		for(let key in this._layerMap){
-			var win:GameLayerInterface = this._layerMap[key];
-			win.resize();
+		for(let key in this._windowMap){
+			var win:GameWindow = this._windowMap[key];
+			win.height = this._baseUi.stage.stageHeight;
+			win.width = this._baseUi.stage.stageWidth;
 		}
 	}
 

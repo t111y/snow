@@ -1,7 +1,7 @@
 /**
  * 日志,任务,记录
  */
-class LogWindow extends GameWindow implements  eui.UIComponent {
+class LogWindow extends GameWindow  {
 	public constructor() {
 		super();
 		this.layerType = LayerType.LAYER_UI;
@@ -9,10 +9,5 @@ class LogWindow extends GameWindow implements  eui.UIComponent {
 		this.pop = true;
 	}
 
-
-	protected childrenCreated():void
-	{
-		super.childrenCreated();
-	}
 	
 }

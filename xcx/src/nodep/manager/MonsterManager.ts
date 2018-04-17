@@ -2,7 +2,20 @@ class MonsterManager implements IRender {
 	private monsters:Array<Monster>;
 	public constructor() {
 		this.monsters = new Array<Monster>();
-		this.createMonster();
+		Globals.i().net.addEventListener(MessageType.sc_move+"",this.onAddNpc,this);
+	}
+	public onAddNpc(e:egret.Event){
+		let npcs:Array<Npc> = e.data;
+
+		for(var i:number = 0;i < npcs.length; i++){
+			let npc:Npc = npcs[i];
+			var m:Monster = new Monster();
+			m.name = npc.id+"";
+			this.monsters.push(m);
+			m.x = npc.pos[0];
+			m.y = npc.pos[0];
+			Tiled_Ground.getIns().addFocusRole(m);
+		}
 	}
 	public renderUpdate(interval:number){
 		this.monsters.forEach(element => {
@@ -16,18 +29,5 @@ class MonsterManager implements IRender {
 				}
 			}
 		});
-		
-	}
-	private createMonster(){
-		for(var i:number = 0;i < GameConfig.Monster_NUM; i++){
-			var m:Monster = new Monster();
-			m.name = "m"+ i;
-			this.monsters.push(m);
-			m.x = Math.abs(Math.random() * GameConfig.WORD_W );
-			m.y = Math.abs(Math.random() * GameConfig.WORD_H);
-			// m.x = 300;
-			// m.y = 300;
-			Tiled_Ground.getIns().addFocusRole(m);
-		}
 	}
 }

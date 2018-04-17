@@ -7,10 +7,12 @@ class UserManager {
 	private onUserEnter(e:egret.Event){
 		let msg:ScUserEnter = e.data;
 		for(let i:number = 0;i<msg.players.length;i++){
-			let role:UserRole = Tiled_Ground.getIns().getUserRole(msg.players[i]);
+			let role:UserRole = Tiled_Ground.getIns().getUserRole(msg.players[i].id);
 			if(role ==null){
 				role = new UserRole();
-				role.name = msg.players[i];
+				role.name = msg.players[i].id;
+				role.x = msg.players[i].pos[0];
+				role.x = msg.players[i].pos[1];
 				Tiled_Ground.getIns().addFocusRole(role);
 			}
 		}

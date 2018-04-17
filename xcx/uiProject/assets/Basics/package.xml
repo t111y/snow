@@ -42,7 +42,7 @@
     <component id="rpmb14" name="Button6.xml" path="/components/"/>
     <component id="rpmb15" name="Button7.xml" path="/components/"/>
     <component id="rpmb16" name="Button8.xml" path="/components/"/>
-    <component id="rpmb17" name="Button9.xml" path="/components/"/>
+    <component id="rpmb17" name="Button9.xml" path="/components/" exported="true"/>
     <component id="rpmb18" name="Checkbox.xml" path="/components/"/>
     <component id="rpmb19" name="OnOffButton.xml" path="/components/"/>
     <component id="rpmb1a" name="RadioButton.xml" path="/components/"/>
@@ -224,7 +224,7 @@
     <component id="srct87" name="Slider2.xml" path="/components/"/>
     <movieclip id="iwqq89" name="gz.jta" path="/images/"/>
   </resources>
-  <publish name="Basics" packageCount="1">
+  <publish name="Basics" packageCount="1" genCode="true">
     <atlas name="Default" index="0"/>
     <atlas name="Point_Mode" index="1"/>
   </publish>

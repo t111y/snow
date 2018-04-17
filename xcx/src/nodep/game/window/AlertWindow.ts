@@ -3,7 +3,7 @@
  * @author nodep
  * @version 1.0
  */
-class AlertWindow extends GameWindow implements eui.UIComponent {
+class AlertWindow extends GameWindow {
 
 	private static _message:string;
 	private static _callBack:Function;
@@ -15,7 +15,6 @@ class AlertWindow extends GameWindow implements eui.UIComponent {
 		this.layerType = LayerType.LAYER_POP;
 		this.typeName = WindowType.ALERT_WIN;
 		this.pop = true;
-		this.align(AlignType.CENTER,0,0);
 	}
 
 	//打开一个确认框
@@ -29,13 +28,6 @@ class AlertWindow extends GameWindow implements eui.UIComponent {
 	}
 
 
-	protected childrenCreated():void
-	{
-		super.childrenCreated();
-		(this.getChildByName("okBtn") as eui.Button).addEventListener(egret.TouchEvent.TOUCH_TAP,this.handler,this);
-		(this.getChildByName("cancelBtn") as eui.Button).addEventListener(egret.TouchEvent.TOUCH_TAP,this.handler,this);
-		this.reOpen();
-	}
 
 	private handler(evt:egret.TouchEvent):void
 	{
@@ -44,9 +36,5 @@ class AlertWindow extends GameWindow implements eui.UIComponent {
 		WinsManager.getIns().closeWin(this);
 	}
 
-	public reOpen():void
-	{
-		super.reOpen();
-		(this.getChildByName("infoTxt") as eui.Label).text = AlertWindow._message;
-	}
+
 }

@@ -1,27 +1,20 @@
-class LoginWin extends GameWindow implements  eui.UIComponent {
+class LoginWin extends GameWindow {
+	private skin:panel.UI_Login;
 	public constructor() {
 		super();
 		this.layerType = LayerType.LAYER_POP;
 		this.typeName = WorWindowType.LOGIN_WINDOW;
 	}
+	protected onInit():void {
+		this.skin = panel.UI_Login.createInstance();
+        this.contentPane = this.skin;
+		this.skin.m_txt_name.text = "user" + Math.round(Math.random()*9999999);
+		this.skin.m_btn_ok.addEventListener(egret.TouchEvent.TOUCH_END,this.onTouchEnd,this);
+    }
 
-	protected partAdded(partName:string,instance:any):void
-	{
-		super.partAdded(partName,instance);
-	}
-
-	private btn_ok:egret.DisplayObject;
-	protected childrenCreated():void
-	{
-		super.childrenCreated();
-		(this.getChildByName("txt_name") as eui.TextInput).text = "user" + Math.round(Math.random()*9999999);
-		this.btn_ok = this.getChildByName("btn_ok");
-		this.btn_ok.addEventListener(egret.TouchEvent.TOUCH_END,this.onTouchEnd,this);
-	}
 	private onTouchEnd(e:egret.TouchEvent){
-		this.btn_ok.removeEventListener(egret.TouchEvent.TOUCH_END,this.onTouchEnd,this);
-		let txt_name:eui.TextInput = this.getChildByName("txt_name") as eui.TextInput;
-		Globals.i().net.send(MessageType.createLogin(txt_name.text));
+		this.skin.m_btn_ok.removeEventListener(egret.TouchEvent.TOUCH_END,this.onTouchEnd,this);
+		Globals.i().net.send(MessageType.createLogin(this.skin.m_txt_name.text));
 		this.parent.removeChild(this);
 	}
 }

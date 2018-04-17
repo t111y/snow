@@ -34,11 +34,15 @@ class MessageType {
     s2c => {"msgId": 12004, "playerId": 429501024567297, "time": 1522296176, "circlePath": [[2,3], [23, 23]]}
 	 * */
 	public static sc_circlePath:number = 12004;
+	public static sc_drop:number = 12007;
+
+	public static sc_npcEnter:number = 12008;
 
 	/**
 	 * {"msgId": 60000, "time": 1522296176}
 	 */
 	public static sc_tick:number = 60000;
+
 
 	public static playerId:string = "";
 
@@ -54,7 +58,18 @@ class MessageType {
 	public static createCirclePath(mesh:RoleMesh):Object{
 		return {"msgId": 12004, "circlePath": MessageType.pathToArray(mesh.points),"time":mesh.time};
 	}
-
+	/**
+	 * 掉进坑里
+	 * {"msgId": 12007, "circleId": 1, "dropPlayerId": 429501024567298, "time": 1522296176}
+	 */
+	public static createDrop(circleId:number,dropPlayerId:string,time:number){
+		return {"msgId": 12007,"dropPlayerId":dropPlayerId,"circleId":circleId,"time":time};
+	}
+	public static parseDrop(o:any):ScDrop{
+		let msg:ScDrop = new ScDrop();
+		msg.dropPlayerId = o.dropPlayerId;
+		return msg;
+	}
 	private static pathToArray(path:Array<RolePathPoint>){
 		let arr:Array<Array<number>> = new Array<Array<number>>();
 		for(let i:number = 0;i<path.length;i++){
@@ -84,6 +99,15 @@ class MessageType {
 	private static parseEnterScene(o:any):ScEnterScene{
 		var msg:ScEnterScene = new ScEnterScene();
 		msg.sceneId = o.sceneId;
+		return msg;
+	}
+	private static parseNpcEnter(o:any):ScNpcEnter{
+		var msg:ScNpcEnter = new ScNpcEnter();
+		msg.tiles = [];
+		o.tiles.forEach(element => {
+			let npc:Npc = new Npc();
+			msg.tiles[msg.tiles.length] = npc;
+		});
 		return msg;
 	}
 	private static parseUserEnter(o:any):ScUserEnter{
@@ -124,8 +148,15 @@ class MessageType {
 			return MessageType.parseEnterScene(o);
 			case MessageType.sc_tick:
 			return MessageType.parseTick(o);
+			case MessageType.sc_npcEnter:
+			return MessageType.parseNpcEnter(o);
+			case MessageType.sc_drop:
+			return MessageType.parseDrop(o);
 		}
 	}
+}
+class ScDrop{
+	public dropPlayerId:number;
 }
 class ScTick{
 	public time:number;
@@ -138,11 +169,14 @@ class ScLogin{
 
 class ScEnterScene{
 	public sceneId:string;
-
+	public pos:Array<number>;
 }
 class ScUserEnter{
-	public players:Array<string>;
+	public players:Array<User>;
 
+}
+class ScNpcEnter{
+	public tiles:Array<Npc>;
 }
 class ScMove{
 	public playerId:string;

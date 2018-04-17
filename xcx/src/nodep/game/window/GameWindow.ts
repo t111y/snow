@@ -5,7 +5,7 @@
  * @author nodep
  * @version 1.01
  */
-class GameWindow extends eui.Component {
+class GameWindow extends fairygui.Window {
     /**
      *所屬層級,需要在業務中自定義
      */
@@ -25,16 +25,7 @@ class GameWindow extends eui.Component {
      */
     public pop: boolean = false;
 
-    protected partAdded(partName: string, instance: any): void {
-        instance.name = partName;
-        super.partAdded(partName, instance);
-    }
 
-    protected childrenCreated(): void {
-        super.childrenCreated();
-        this.visible = true;
-        this.resize();
-    }
     /**
      *再次加入舞臺
      */
@@ -56,81 +47,7 @@ class GameWindow extends eui.Component {
         return true;
     }
 
-    /**
-     * 舞台大小发生变化
-     */
-    public resize(): void {
-        switch (this.__align) {
-            case AlignType.TOP_LEFT:
-                this.x = this.__offsetX;
-                this.y = this.__offsetY;
-                break;
-            case AlignType.TOP_CENTER:
-                this.x = (WinsManager.stageWidth - this.width*this.scaleX) / 2 + this.__offsetX;
-                this.y = this.__offsetY;
-                break;
-            case AlignType.TOP_RIGHT:
-                this.x = WinsManager.stageWidth - this.width*this.scaleX + this.__offsetX;
-                this.y = this.__offsetY;
-                break;
-            case AlignType.CENTER:
-                this.x = (WinsManager.stageWidth - this.width*this.scaleX) / 2 + this.__offsetX;
-                this.y = (WinsManager.stageHeight - this.height*this.scaleY) / 2 + this.__offsetY;
-                break;
-            case AlignType.BOTTOM_LEFT:
-                this.x = this.__offsetX;
-                this.y = WinsManager.stageHeight - this.height*this.scaleY + this.__offsetY;
-                break;
-            case AlignType.BOTTOM_CENTER:
-                this.x = this.x = (WinsManager.stageWidth - this.width*this.scaleX) / 2 + this.__offsetX;
-                this.y = WinsManager.stageHeight - this.height*this.scaleY + this.__offsetY;
-                break;
-            case AlignType.BOTTOM_RIGHT:
-                this.x = WinsManager.stageWidth - this.width*this.scaleX + this.__offsetX;
-                this.y = WinsManager.stageHeight - this.height*this.scaleY + this.__offsetY;
-                break;
-        }
-    }
-
-    /**
-     * 设置布局方式
-     */
-    public align(alignType: string, offsetX: number=0, offsetY: number=0): void {
-        this.__align = alignType;
-        this.__offsetX = offsetX*this.scaleX;
-        this.__offsetY = offsetY*this.scaleY;
-        if (this.stage != null)
-            this.resize();
-    }
-
-    /**
-     * 为自己的子对象增加事件监听:点击
-     * 可传数组或字符串
-     */
-    protected addEventTap(args: any): void {
-        switch (typeof args) {
-            case "string":
-                this.getChildByName(args).addEventListener(egret.TouchEvent.TOUCH_TAP, this.eventTapHandler, this);
-                break;
-            case "object":
-                var key: any;
-                for (key in args) {
-                    this.getChildByName(args[key]).addEventListener(egret.TouchEvent.TOUCH_TAP, this.eventTapHandler, this);
-                }
-                break;
-            default:
-                throw (new Error(NodepErrorType.PARAM_TYPE_ERROR));
-        }
-    }
-
-    /**
-     * tap响应函数
-     */
-    protected tapCallback(childName: string): void {
-
-    }
-
-    private eventTapHandler(evt: egret.TouchEvent): void {
-        this.tapCallback(evt.currentTarget.name);
+    public resize(){
+        
     }
 }

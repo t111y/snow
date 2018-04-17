@@ -3,7 +3,7 @@
  * @author nodep
  * @version 1.0
  */
-class GameLayer extends egret.DisplayObjectContainer implements GameLayerInterface {
+class GameLayer extends egret.DisplayObjectContainer {
     /**
      * 层级的唯一名称
      */
@@ -19,7 +19,7 @@ class GameLayer extends egret.DisplayObjectContainer implements GameLayerInterfa
      */
     public addWindow(win: GameWindow): void {
         win.visible = false;
-        this.addChild(win);
+        this.addChild(win._container);
         this._wins.push(win);
         if (win.pop)
             this._popCount++;
@@ -36,7 +36,7 @@ class GameLayer extends egret.DisplayObjectContainer implements GameLayerInterfa
         if (win.pop)
             this._popCount--;
         this.updateModel();
-        this.removeChild(win);
+        this.removeChild(win._container);
         this._wins.splice(this._wins.indexOf(win), 1);
     }
 
@@ -62,13 +62,4 @@ class GameLayer extends egret.DisplayObjectContainer implements GameLayerInterfa
         }
     }
 
-    /**
-     * 界面大小变化
-     */
-    public resize(): void {
-        var key: any;
-        for (key in this._wins) {
-            this._wins[key].resize();
-        }
-    }
 }
