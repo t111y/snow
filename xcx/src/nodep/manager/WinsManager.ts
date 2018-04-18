@@ -15,8 +15,8 @@ class WinsManager {
 	
 	public static stageWidth:number = 0;
 	public static stageHeight:number = 0;
-	public static scaleX:number = 1;
-	public static scaleY:number = 1;
+	// public static scaleX:number = 1;
+	// public static scaleY:number = 1;
 
 	public constructor() {
 		if (WinsManager._ins != null)
@@ -28,8 +28,8 @@ class WinsManager {
 
 	private initScale():void{
 		LogTrace.log(WinsManager.stageWidth+"_"+WinsManager.stageHeight);
-		WinsManager.scaleX = WinsManager.stageWidth/960;
-		WinsManager.scaleY = WinsManager.scaleX;
+		// WinsManager.scaleX = WinsManager.stageWidth/960;
+		// WinsManager.scaleY = WinsManager.scaleX;
 	}
 
 	/**

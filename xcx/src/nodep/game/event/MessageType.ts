@@ -34,6 +34,8 @@ class MessageType {
     s2c => {"msgId": 12004, "playerId": 429501024567297, "time": 1522296176, "circlePath": [[2,3], [23, 23]]}
 	 * */
 	public static sc_circlePath:number = 12004;
+	public static sc_monsterEnter:number = 12005;
+	public static sc_monsterExit:number = 12006;
 	public static sc_drop:number = 12007;
 
 	public static sc_npcEnter:number = 12008;
@@ -43,9 +45,6 @@ class MessageType {
 	 * {"msgId": 60000, "time": 1522296176}
 	 */
 	public static sc_tick:number = 60000;
-
-
-	public static playerId:string = "";
 
 	public static createLogin(name:String):Object{
 		return {"msgId": 10000,"name":name};
@@ -59,23 +58,21 @@ class MessageType {
 	public static createCirclePath(mesh:RoleMesh):Object{
 		return {"msgId": 12004, "circlePath": MessageType.pathToArray(mesh.points),"time":mesh.time,"id":mesh.id};
 	}
-	public static sendRoleDrop(circleId:number,dropPlayerId:string,time:number){
-		Globals.i().net.send({"msgId":12007,"circleId":circleId,"dropPlayerId":dropPlayerId,"time":time});
+	/**
+	 * 掉进坑里
+	 * {"msgId": 12007, "circleId": 1, "dropId": 429501024567298, "time": 1522296176}
+	 */
+	public static sendRoleDrop(circleId:number,dropId:string,dropType:number,time:number){
+		Globals.i().net.send({"msgId":12007,"circleId":circleId,"dropId":dropId,"dropType":dropType,"time":time});
 	}
 	public static sendHitNpc(npcId:string){
 		Globals.i().net.send({"msgId":12010,"tileId":npcId});
 	}
-	//global.i().net.send({"msgId":12010,});
-	/**
-	 * 掉进坑里
-	 * {"msgId": 12007, "circleId": 1, "dropPlayerId": 429501024567298, "time": 1522296176}
-	 */
-	public static createDrop(circleId:number,dropPlayerId:string,time:number){
-		return {"msgId": 12007,"dropPlayerId":dropPlayerId,"circleId":circleId,"time":time};
-	}
+
 	public static parseDrop(o:any):ScDrop{
 		let msg:ScDrop = new ScDrop();
-		msg.dropPlayerId = o.dropPlayerId;
+		msg.dropId = o.dropId;
+		msg.dropType = o.dropType;
 		return msg;
 	}
 	private static pathToArray(path:Array<RolePathPoint>){
@@ -126,7 +123,7 @@ class MessageType {
 	}
 	private static parseUserEnter(o:any):ScUserEnter{
 		var msg:ScUserEnter = new ScUserEnter();
-		msg.players = [o.players];
+		msg.players = [];
 		for(let i:number = 1;i<o.players.length;i++){
 			let user:User = new User();
 			user.id = o.players[i].id;
@@ -160,6 +157,24 @@ class MessageType {
 		msg.attrs = o.attrs;
 		return msg;
 	}
+	private static parseMonsterEnter(o:any):ScMonsterEnter{
+		let msg:ScMonsterEnter = new ScMonsterEnter();
+		msg.monsters = [];
+		for(let i=0;i<o.monsters.length;i++){
+			let monster:Monster = new Monster();
+			monster.endPos = o.monsters[i].endPos;
+			monster.speed = o.monsters[i].speed;
+			monster.id = o.monsters[i].id;
+			monster.pos = o.monsters[i].pos;
+			msg.monsters.push(monster);
+		}
+		return msg;
+	}
+	private static parseMonsterExit(o:any):ScMonsterExit{
+		let msg:ScMonsterExit = new ScMonsterExit();
+		msg.monsters = o.monsters;
+		return msg;
+	}
 
 	public static paserScMsg(o:any):any{
 		switch(o.msgId){
@@ -181,11 +196,16 @@ class MessageType {
 			return MessageType.parseDrop(o);
 			case MessageType.sc_updateUserProperty:
 			return MessageType.parseUpdateUserProperty(o);
+			case MessageType.sc_monsterEnter:
+			return MessageType.parseMonsterEnter(o);
+			case MessageType.sc_monsterExit:
+			return MessageType.parseMonsterExit(o);
 		}
 	}
 }
 class ScDrop{
-	public dropPlayerId:number;
+	public dropType:number;
+	public dropId:string;
 }
 class ScTick{
 	public time:number;
@@ -220,4 +240,11 @@ class ScCirclePath{
 class ScUpdateUserProperty{
 	public playerId:string;
 	public attrs:Array<Array<number>>;
+}
+class ScMonsterEnter{
+	public monsters:Array<Monster>;
+}
+
+class ScMonsterExit{
+	public monsters:Array<string>;
 }

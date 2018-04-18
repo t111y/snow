@@ -69,7 +69,6 @@ public constructor() {
             this.stage.addChild(this.loadingView);
             await RES.loadConfig("resource/default.res.json", "resource/");
             await RES.loadGroup("preload", 0, this.loadingView);
-            this.stage.removeChild(this.loadingView);
         }
         catch (e) {
             console.error(e);
@@ -83,6 +82,7 @@ public constructor() {
      * Create scene interface
      */
     protected createGameScene(): void {
+        this.stage.removeChild(this.loadingView);
         this.initFairyGui();
         LogTrace.log("application loadcompleted...");
         WinsManager.getIns().initGame(this);
@@ -101,8 +101,7 @@ public constructor() {
         basics.basicsBinder.bindAll();
         joystick.joystickBinder.bindAll();
         
-        this.stage.scaleMode = egret.StageScaleMode.NO_SCALE;
-        this.stage.orientation = egret.OrientationMode.LANDSCAPE;
+        this.stage.scaleMode = egret.StageScaleMode.FIXED_WIDTH;
 
         fairygui.UIConfig.defaultFont = "SimSun";
         fairygui.UIConfig.verticalScrollBar = "ui://basic/ScrollBar_VT";
@@ -144,7 +143,7 @@ public constructor() {
     }
     private onScLogin(e:egret.Event):void{
         var msg:ScLogin = e.data;
-        MessageType.playerId = msg.playerId;
+        Globals.i().playerId = msg.playerId;
         Globals.i().net.send(MessageType.createEnterScene());
     }
     private onEnterScene(e:egret.Event){

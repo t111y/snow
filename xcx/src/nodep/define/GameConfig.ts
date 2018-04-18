@@ -16,4 +16,6 @@ class GameConfig {
 	public static deadTime =4;
 	public static Monster_NUM =20;
 
+	public static killNpc_distance = 30;
+
 }

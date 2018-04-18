@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="960,540">
+<component size="540,960">
   <displayList>
-    <graph id="n4_waht" name="n4" xy="226,160" size="508,221" group="n3_waht" type="rect" lineSize="0" fillColor="#ffcccccc"/>
-    <graph id="n6_waht" name="n6" xy="313,182" size="407,50" group="n3_waht" type="rect" lineSize="0" fillColor="#ff999999"/>
-    <text id="n0_waht" name="n0" xy="241,190" size="60,31" group="n3_waht" fontSize="24" text="登陆:"/>
-    <text id="n1_waht" name="txt_name" xy="323,190" size="386,31" group="n3_waht" input="true" fontSize="24" autoSize="none" text="user"/>
-    <component id="n2_waht" name="btn_ok" src="rpmb17" pkg="9leh0eyf" xy="400,276" group="n3_waht">
+    <graph id="n4_waht" name="n4" xy="16,370" size="508,221" group="n3_waht" type="rect" lineSize="0" fillColor="#ffcccccc"/>
+    <graph id="n6_waht" name="n6" xy="103,392" size="407,50" group="n3_waht" type="rect" lineSize="0" fillColor="#ff999999"/>
+    <text id="n0_waht" name="n0" xy="31,400" size="60,31" group="n3_waht" fontSize="24" text="登陆:"/>
+    <text id="n1_waht" name="txt_name" xy="113,400" size="386,31" group="n3_waht" input="true" fontSize="24" autoSize="none" text="user"/>
+    <component id="n2_waht" name="btn_ok" src="rpmb17" pkg="9leh0eyf" xy="190,486" group="n3_waht">
       <Button title="登陆"/>
     </component>
-    <text id="n7_xw72" name="txt_version" xy="376,343" size="347,27" group="n3_waht" fontSize="18" align="right" vAlign="middle" autoSize="none" text=""/>
-    <group id="n3_waht" name="n3" xy="226,160" size="508,221" advanced="true">
+    <text id="n7_xw72" name="txt_version" xy="166,553" size="347,27" group="n3_waht" fontSize="18" align="right" vAlign="middle" autoSize="none" text=""/>
+    <group id="n3_waht" name="n3" xy="16,370" size="508,221" advanced="true">
       <relation target="" sidePair="middle-middle,center-center"/>
     </group>
   </displayList>

@@ -12,15 +12,16 @@ class RoleMesh {
 	public existTime:number = 3;
 	public constructor() {
 		this.id = ++RoleMesh.count;
+		this.time = Globals.i().serverTime.now();
 		this.shape = new egret.Shape();
-		WinsManager.getIns().gameStage().addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onStageTouch,this);
-	}
-	private onStageTouch(e:egret.TouchEvent){
-		console.log(e.stageX,e.stageY);
-		console.log("点中了吗 " +this.shape.hitTestPoint(e.stageX,e.stageY));
 	}
 	public hitTest(x:number,y:number):boolean{
-		if((x<this.x1 && x > this.x2) || (y < this.y1 && y>this.y2)){
+		//过一点时间才能掉进去,不然自己必掉
+		if(this.time > Globals.i().serverTime.now() - 0.3 
+		|| (x<this.x1 && x > this.x2) 
+		|| (y < this.y1 && y>this.y2)
+		|| this.shape.width + this.shape.height < 60
+		){
 			return false;
 		}
 		var s:boolean = this.shape.hitTestPoint(x,y,false);
@@ -42,10 +43,8 @@ class RoleMesh {
 				this.y2 = point.point.y;
 			}
 			point.isUsed = true;
-			this.time = Globals.i().serverTime.now();
 			this.points.push(point);
 		}
-		
 	}
 	public static check(path:Array<RolePathPoint>):RoleMesh {
 		var l:number = 5;
@@ -71,7 +70,8 @@ class RoleMesh {
 	//画面
 	public drawMesh(){
 		this.shape.graphics.clear();
-		this.shape.graphics.beginFill(0x00ff00,1-(Globals.i().serverTime.now() - this.time) / this.existTime);
+		this.shape.graphics.beginFill(0xcb6a20,1-(Globals.i().serverTime.now() - this.time) / this.existTime);
+		// this.shape.graphics.beginGradientFill(egret.GradientType.LINEAR,[0xff0000,0x00ff00],[0.1,0.8],[1,80]);
 		var point:egret.Point = this.points[0].point;
 		this.shape.graphics.moveTo(point.x,point.y);
 		for(var i:number =1;i<this.points.length;i++){
@@ -83,6 +83,5 @@ class RoleMesh {
 		if(this.shape.parent!=null){
 			this.shape.parent.removeChild(this.shape);
 		}
-		WinsManager.getIns().gameStage().removeEventListener(egret.TouchEvent.TOUCH_BEGIN,this.onStageTouch,this);
 	}
 }

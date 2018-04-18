@@ -2,7 +2,7 @@ class UserRole extends FocusRole {
 	public rolePath:RolePath;
 	public path:Array<RolePathPoint>;
 	public roleMeshs:Array<RoleMesh>;
-	public pointExistTime:number = 3000;
+	public pointExistTime:number = 3;
 	public isSelf:boolean = false;
 	public constructor() {
 		super();
@@ -25,5 +25,15 @@ class UserRole extends FocusRole {
 				break;
 			}
 		})
+	}
+	public addToWorld(): void {
+		super.addToWorld();
+
+		RenderManager.getIns().registRender(this.rolePath);
+	}
+
+	public dispose(){
+		super.dispose();
+		RenderManager.getIns().unregistRender(this.rolePath);
 	}
 }

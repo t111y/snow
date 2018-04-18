@@ -12,7 +12,11 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	public speedX: number;
 	public speedY: number;
 	private _ak: string;
-
+	private mc:egret.MovieClip;
+	private mcData:any;
+	private mcTexture:egret.Texture;
+	private _way:number = -1;
+	private model:string = null;
 	public isDead:boolean = false;
 	public deadTime:number;
 	public setDead(isDead:boolean){
@@ -37,23 +41,18 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		FocusRole._addId++;
 		this.id = FocusRole._addId;
 
-		var s:egret.Shape = new egret.Shape();
-		this.addChild(s);
-		s.graphics.beginFill(0x0000ff);
-		s.graphics.drawCircle(0,0,10);
+		let p:egret.Shape = new egret.Shape();
+		this.addChild(p);
+		p.graphics.beginFill(0xffff00);
+		p.graphics.drawCircle(0,0,5);
 		
 		this.mc = new egret.MovieClip();
 		this.addChild(this.mc);
 		// this.mc.x = -430;
 		// this.mc.y = -400;
 		this.action = RoleAction.RUN ;
-		this.setWay(0);
 	}
 	
-	private mc:egret.MovieClip;
-	private mcData:any;
-	private mcTexture:egret.Texture;
-	private _way:number = -1;
 	public setWay(way:number){
 		if(way == this._way){
 			return;
@@ -66,15 +65,24 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 			this.scaleX = 1;
 		}
 		if(!this.mcData){
-			RES.getResByUrl("resource/assets/hero/nvl/nvl.json",function(e){
-				this.mcData = JSON.parse(e);
-				this.playMc();
-			},this,RES.ResourceItem.TYPE_TEXT);
-			RES.getResByUrl("resource/assets/hero/nvl/nvl.png",function(e){
-				this.mcTexture = <egret.Texture>e;
-				this.playMc();
-			},this,RES.ResourceItem.TYPE_IMAGE);
+			this.setModel(this.model);
 		}
+	}
+	public setModel(model:string){
+		if(model == null){
+			return;
+		}
+		this.mcData = null;
+		this.mcTexture = null;
+		this.mcFactory = null;
+		RES.getResByUrl("resource/assets/hero/nvl/"+model+".json",function(e){
+			this.mcData = JSON.parse(e);
+			this.playMc();
+		},this,RES.ResourceItem.TYPE_TEXT);
+		RES.getResByUrl("resource/assets/hero/nvl/"+model+".png",function(e){
+			this.mcTexture = <egret.Texture>e;
+			this.playMc();
+		},this,RES.ResourceItem.TYPE_IMAGE);
 	}
 	private mcFactory:egret.MovieClipDataFactory;
 	private playMc(){
@@ -111,6 +119,10 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	/**增加到世界 */
 	public addToWorld(): void {
 		RenderManager.getIns().registRender(this);
+	}
+
+	public dispose(){
+		RenderManager.getIns().unregistRender(this);
 	}
 
 	/**设置当前焦点 */

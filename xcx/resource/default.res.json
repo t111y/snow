@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "0_0_jpg,0_1_jpg,0_2_jpg,0_3_jpg,0_4_jpg,1_0_jpg,1_1_jpg,1_2_jpg,1_3_jpg,1_4_jpg,2_0_jpg,2_1_jpg,2_2_jpg,2_3_jpg,2_4_jpg,3_0_jpg,3_1_jpg,3_2_jpg,3_3_jpg,3_4_jpg,4_0_jpg,4_1_jpg,4_2_jpg,4_3_jpg,4_4_jpg,small_jpg,a_png,b_png,c_png,d_png,f_png,g_png,map_json,monster1_png,nvl_png,monster1_json,nvl_json,basics_fui,basics@atlas0_png,basics@atlas1_png,joystick_fui,joystick@atlas0_png,panel_fui",
+			"keys": "0_0_jpg,0_1_jpg,0_2_jpg,0_3_jpg,0_4_jpg,1_0_jpg,1_1_jpg,1_2_jpg,1_3_jpg,1_4_jpg,2_0_jpg,2_1_jpg,2_2_jpg,2_3_jpg,2_4_jpg,3_0_jpg,3_1_jpg,3_2_jpg,3_3_jpg,3_4_jpg,4_0_jpg,4_1_jpg,4_2_jpg,4_3_jpg,4_4_jpg,small_jpg,a_png,b_png,c_png,d_png,f_png,g_png,map_json,monster1_png,nvl_png,monster1_json,nvl_json,basics_fui,basics@atlas0_png,basics@atlas1_png,joystick_fui,joystick@atlas0_png,panel_fui,candy_png,candy_json",
 			"name": "preload"
 		}
 	],
@@ -220,6 +220,16 @@
 			"url": "assets/ui/panel.fui",
 			"type": "bin",
 			"name": "panel_fui"
+		},
+		{
+			"url": "assets/hero/nvl/candy.png",
+			"type": "image",
+			"name": "candy_png"
+		},
+		{
+			"url": "assets/hero/nvl/candy.json",
+			"type": "json",
+			"name": "candy_json"
 		}
 	]
 }

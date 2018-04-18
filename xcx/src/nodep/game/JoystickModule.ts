@@ -163,7 +163,7 @@ class JoystickModule extends GameWindow {
             this.dispatchEventWith(JoystickModule.JoystickMoving,false,degree);
         }
     }
-    private speed:number = 1;
+    private speed:number = 1.5;
     public static multX:number=0;
     public static multY:number = 0;
     public static offset:number = 0;

@@ -1,16 +1,41 @@
 class MonsterManager implements IRender {
-	private monsters:Array<Monster>;
+	private monsters:Array<MonsterRole>;
 	public constructor() {
-		this.monsters = new Array<Monster>();
+		this.monsters = new Array<MonsterRole>();
 		Globals.i().net.addEventListener(MessageType.sc_npcEnter+"",this.onAddNpc,this);
+		Globals.i().net.addEventListener(MessageType.sc_monsterEnter+"",this.onMonsterEnter,this);
+		Globals.i().net.addEventListener(MessageType.sc_monsterExit+"",this.onMonsterExit,this);
+	}
+	
+	public onMonsterExit(e:egret.Event){
+		let msg:ScMonsterExit = e.data;
+		for(let i:number = 0;i<msg.monsters.length;i++){
+			let role:UserRole = Tiled_Ground.getIns().getUserRole(msg.monsters[i]);
+			Tiled_Ground.getIns().addFocusRole
+		}
+	}
+	public onMonsterEnter(e:egret.Event){
+		let msg:ScMonsterEnter = e.data;
+		for(var i:number = 0;i < msg.monsters.length; i++){
+			let npc:Monster =  msg.monsters[i];
+			var m:MonsterRole = new MonsterRole();
+			m.name = npc.id;
+			m.x = npc.pos[0];
+			m.y = npc.pos[1];
+			m.speedX = npc.speed;
+			m.speedY = npc.speed;
+			m.setModel("monster1");
+			Tiled_Ground.getIns().addFocusRole(m);
+		}
 	}
 	public onAddNpc(e:egret.Event){
 		let msg:ScNpcEnter = e.data;
 
 		for(var i:number = 0;i < msg.tiles.length; i++){
 			let npc:Npc =  msg.tiles[i];
-			var m:Monster = new Monster();
+			var m:NpcRole = new NpcRole();
 			m.name = npc.id;
+			m.setModel("candy");
 			this.monsters.push(m);
 			m.x = npc.pos[0];
 			m.y = npc.pos[1];
@@ -21,12 +46,12 @@ class MonsterManager implements IRender {
 	private p2:egret.Point = new egret.Point();
 	public renderUpdate(interval:number){
 		this.monsters.forEach(element => {
-			if(!element.isDead && PlayerRole.self.roleMeshs.length>0){
+			if(!element.isDead){
 				this.p1.x = element.x;
 				this.p1.y = element.y;
 				this.p2.x = PlayerRole.self.x;
 				this.p2.y = PlayerRole.self.y;
-				if(egret.Point.distance(this.p1,this.p2)<50){
+				if(egret.Point.distance(this.p1,this.p2)<GameConfig.killNpc_distance){
 					element.setDead(true);
 					MessageType.sendHitNpc(element.name)
 				}

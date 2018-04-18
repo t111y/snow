@@ -33,7 +33,7 @@ class RolePath extends egret.DisplayObjectContainer implements IRender {
 			return;
 		}
 		this._shape.graphics.clear();
-		this._shape.graphics.lineStyle(2,0xff0000);
+		this._shape.graphics.lineStyle(4,0xfff49f);
 		var point:egret.Point = path[0].point;
 		this._shape.graphics.moveTo(point.x,point.y);
 		for(var i:number =1;i<path.length;i++){

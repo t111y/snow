@@ -18,8 +18,8 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 
 	public constructor(){
 		super();
-		this.scaleX = WinsManager.scaleX;
-		this.scaleY = WinsManager.scaleY;
+		// this.scaleX = WinsManager.scaleX;
+		// this.scaleY = WinsManager.scaleY;
 	}
 
 	/**刷新函数 */
@@ -27,6 +27,7 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 		this.groud.synPositionTo(this._focus.x,this._focus.y);
 		this.checkMesh();
 	}
+	private hitPoint:egret.Point = new egret.Point();
 	/**判断是否有玩家掉坑 */
 	private checkMesh(){
 		for (var key in this.roleMap) {
@@ -40,11 +41,11 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 				}
 				for(let i:number = 0;i<PlayerRole.self.roleMeshs.length;i++){
 					var e:RoleMesh = PlayerRole.self.roleMeshs[i];
-					var point:egret.Point = role.localToGlobal();
-					var isHit:boolean = e.hitTest(point.x,point.y);
+					role.localToGlobal(0,0,this.hitPoint);
+					var isHit:boolean = e.hitTest(this.hitPoint.x,this.hitPoint.y);
 					if(isHit){
 						role.setDead(isHit);
-						MessageType.sendRoleDrop(e.id,role.name,Globals.i().serverTime.now())
+						MessageType.sendRoleDrop(e.id,role.name,role.type,Globals.i().serverTime.now())
 						break;
 					}
 				}
@@ -61,6 +62,13 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 			this._focus.__isFocus = false;
 		this._focus = this.roleMap[roleId];
 		this._focus.__isFocus = true;
+	}
+	public removeRole(roleId:string){
+		let role:FocusRole = this.roleMap[roleId];
+		if(role==null){
+			return;
+		}
+		role.dispose();
 	}
 
 	/**添加一个焦点显示对象 */
@@ -92,7 +100,8 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 	{
 		this._self = new PlayerRole();
 		this._self.pointExistTime = Globals.i().enterScene.pointExistTime;
-		this._self.name = "player";
+		this._self.name = Globals.i().playerId;
+		this._self.setModel("nvl");
 		this._self.x = Globals.i().enterScene.pos[0];
 		this._self.y = Globals.i().enterScene.pos[1];
 		this.addFocusRole(this._self);

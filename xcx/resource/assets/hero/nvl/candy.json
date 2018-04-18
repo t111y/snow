@@ -1,0 +1,31 @@
+{"mc":{
+	"run":{
+		"frameRate":1,
+		"labels":[
+			{"name":"run0","frame":1,"end":1},
+			{"name":"run1","frame":1,"end":1},
+			{"name":"run2","frame":1,"end":1},
+			{"name":"run3","frame":1,"end":1},
+			{"name":"run4","frame":1,"end":1},
+			{"name":"drop0","frame":1,"end":1},
+			{"name":"drop1","frame":1,"end":1},
+			{"name":"drop2","frame":1,"end":1},
+			{"name":"drop3","frame":1,"end":1},
+			{"name":"drop4","frame":1,"end":1}
+			
+			],
+		"events":[
+			
+			],
+		"frames":[
+			
+			{
+			"res":"1",
+			"x":1,
+			"y":0
+			}
+			]
+}},
+	"res":{
+		"1":{"x":1,"y":1,"w":39,"h":57}
+	}}

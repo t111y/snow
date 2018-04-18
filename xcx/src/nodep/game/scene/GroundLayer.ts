@@ -28,20 +28,19 @@ class GroundLayer extends egret.DisplayObjectContainer{
 		if(hw>cx){
 			this.x = 0;
 		}else if(this.mapW - cx < hw){
-			this.x = -(this.mapW-this.stage.stageWidth);
+			this.x = this.stage.stageWidth - this.mapW;
 		}else{
 			this.x = hw-cx;
 		}
 		if(hh>cy){
 			this.y = 0;
 		}else if(this.mapH - cy < hh){
-			this.y = -(this.mapH-this.stage.stageHeight);
+			this.y = this.stage.stageHeight - this.mapH;
 		}else{
 			this.y = hh-cy;
 		}
 		this._mapBackground.render(cx,cy);
-		// this.x = 0;
-		// this.y = 0;
+		
 	}
 
 	/**添加一个演员 */
@@ -51,7 +50,16 @@ class GroundLayer extends egret.DisplayObjectContainer{
 		var role:UserRole = dis as UserRole;
 		if(role != null && role.rolePath!=null){
 			this.addChildAt(role.rolePath,1);
-			RenderManager.getIns().registRender(role.rolePath);
+		}
+	}
+
+	public removeRole(dis:FocusRole){
+		if(dis!=null && dis.parent!=null){
+			dis.parent.removeChild(dis);
+		}
+		var role:UserRole = dis as UserRole;
+		if(role != null && role.rolePath!=null && role.rolePath.parent!=null){
+			role.rolePath.parent.removeChild(role.rolePath);
 		}
 	}
 }
