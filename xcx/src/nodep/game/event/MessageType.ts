@@ -124,7 +124,7 @@ class MessageType {
 	private static parseUserEnter(o:any):ScUserEnter{
 		var msg:ScUserEnter = new ScUserEnter();
 		msg.players = [];
-		for(let i:number = 1;i<o.players.length;i++){
+		for(let i:number = 0;i<o.players.length;i++){
 			let user:User = new User();
 			user.id = o.players[i].id;
 			user.pos = o.players[i].pos;

@@ -15,7 +15,7 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	private mc:egret.MovieClip;
 	private mcData:any;
 	private mcTexture:egret.Texture;
-	private _way:number = -1;
+	private _way:number = 0;
 	private model:string = null;
 	public isDead:boolean = false;
 	public deadTime:number;
@@ -58,14 +58,13 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 			return;
 		}
 		this._way = way;
-		if(way<0){
-			way = Math.abs(way);
-			this.scaleX = -1;
-		}else{
-			this.scaleX = 1;
-		}
+		
 		if(!this.mcData){
 			this.setModel(this.model);
+		}else{
+			this.playMc(way);
+			
+			
 		}
 	}
 	public setModel(model:string){
@@ -77,15 +76,15 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		this.mcFactory = null;
 		RES.getResByUrl("resource/assets/hero/nvl/"+model+".json",function(e){
 			this.mcData = JSON.parse(e);
-			this.playMc();
+			this.playMc(this._way);
 		},this,RES.ResourceItem.TYPE_TEXT);
 		RES.getResByUrl("resource/assets/hero/nvl/"+model+".png",function(e){
 			this.mcTexture = <egret.Texture>e;
-			this.playMc();
+			this.playMc(this._way);
 		},this,RES.ResourceItem.TYPE_IMAGE);
 	}
 	private mcFactory:egret.MovieClipDataFactory;
-	private playMc(){
+	private playMc(way:number){
 		if(this.mcData == null || this.mcTexture == null){
 			return;
 		}
@@ -93,12 +92,18 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 			this.mcFactory = new egret.MovieClipDataFactory(this.mcData,this.mcTexture);
 			this.mc.movieClipData =this.mcFactory.generateMovieClipData("run");
 		}
-		this.mc.gotoAndPlay(this.action+ 0,-1);
+		if(way>4){
+			this.scaleX = 1;
+			way = 8-way;
+		}else{
+			this.scaleX = -1;
+		}
+		this.mc.gotoAndPlay(this.action+ way,-1);
 	}
 	private action:string;
 	public changeAction(action:string){
 		this.action = action;
-		this.playMc();
+		this.playMc(this._way);
 	}
 	public moveTo(dx:number,dy:number){
 		this.synWay(dx,dy);
@@ -107,8 +112,8 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	}
 	protected synWay(tx:number,ty:number){
 		var r:number = Math.atan2(tx - this.x,ty - this.y);
-		r = (r * 180 / Math.PI + 360 );
-		var f:number = (8 - Math.round(r/45)) % 8;
+		r = (r * 180 / Math.PI + 360 ) % 360;
+		var f:number = Math.round(r/45);
 		this.setWay(f);
 		
 	}
