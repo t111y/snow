@@ -27,6 +27,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 //egret publish --target wxgame 
+//egret publish --target html5 
 class Main extends egret.DisplayObjectContainer {
 public constructor() {
         super();
