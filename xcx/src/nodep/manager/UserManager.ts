@@ -5,6 +5,13 @@ class UserManager {
 		Globals.i().net.addEventListener(MessageType.sc_move+"",this.onMove,this);
 		Globals.i().net.addEventListener(MessageType.sc_drop+"",this.onDrop,this);
 		Globals.i().net.addEventListener(MessageType.sc_updateUserProperty+"",this.onUpdateUserProperty,this);
+		Globals.i().net.addEventListener(MessageType.sc_invalidMovePath+"",this.onInvalidMovePath,this);
+	}
+
+	private onInvalidMovePath(e:egret.Event){
+		let msg:ScInvalidMovePath = e.data;
+		PlayerRole.self.x = msg.pos[0];
+		PlayerRole.self.y = msg.pos[1];
 	}
 	private onDrop(e:egret.Event){
 		let msg:ScDrop = e.data;

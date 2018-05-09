@@ -101,6 +101,7 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 		this._self = new PlayerRole();
 		this._self.pointExistTime = Globals.i().enterScene.pointExistTime;
 		this._self.name = Globals.i().playerId;
+		this._self.viscosity = Globals.i().enterScene.viscosity;
 		this._self.setModel("nvl");
 		this._self.x = Globals.i().enterScene.pos[0];
 		this._self.y = Globals.i().enterScene.pos[1];

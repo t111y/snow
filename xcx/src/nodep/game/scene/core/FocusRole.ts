@@ -19,6 +19,8 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	private model:string = null;
 	public isDead:boolean = false;
 	public deadTime:number;
+	/** 粘稠值 */
+	public viscosity:number = 0;
 	public setDead(isDead:boolean){
 		this.isDead = isDead;
 		this.deadTime = Globals.i().serverTime.now();
@@ -41,15 +43,13 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		FocusRole._addId++;
 		this.id = FocusRole._addId;
 
-		let p:egret.Shape = new egret.Shape();
-		this.addChild(p);
-		p.graphics.beginFill(0xffff00);
-		p.graphics.drawCircle(0,0,5);
+		// let p:egret.Shape = new egret.Shape();
+		// this.addChild(p);
+		// p.graphics.beginFill(0xffff00);
+		// p.graphics.drawCircle(0,0,5);
 		
 		this.mc = new egret.MovieClip();
 		this.addChild(this.mc);
-		// this.mc.x = -430;
-		// this.mc.y = -400;
 		this.action = RoleAction.RUN ;
 	}
 	

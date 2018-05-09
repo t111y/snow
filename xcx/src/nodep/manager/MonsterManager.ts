@@ -1,17 +1,23 @@
 class MonsterManager implements IRender {
-	private monsters:Array<MonsterRole>;
+	private monsters:Array<NpcRole>;
 	public constructor() {
-		this.monsters = new Array<MonsterRole>();
+		this.monsters = new Array<NpcRole>();
 		Globals.i().net.addEventListener(MessageType.sc_npcEnter+"",this.onAddNpc,this);
 		Globals.i().net.addEventListener(MessageType.sc_monsterEnter+"",this.onMonsterEnter,this);
 		Globals.i().net.addEventListener(MessageType.sc_monsterExit+"",this.onMonsterExit,this);
+		Globals.i().net.addEventListener(MessageType.sc_npcExit+"",this.onNpcExit,this);
 	}
 	
 	public onMonsterExit(e:egret.Event){
 		let msg:ScMonsterExit = e.data;
 		for(let i:number = 0;i<msg.monsters.length;i++){
-			let role:UserRole = Tiled_Ground.getIns().getUserRole(msg.monsters[i]);
-			Tiled_Ground.getIns().addFocusRole
+			Tiled_Ground.getIns().removeRole(msg.monsters[i]);
+		}
+	}
+	public onNpcExit(e:egret.Event){
+		let msg:ScNpcExit = e.data;
+		for(let i:number = 0;i<msg.tiles.length;i++){
+			Tiled_Ground.getIns().removeRole(msg.tiles[i]);
 		}
 	}
 	public onMonsterEnter(e:egret.Event){
@@ -35,6 +41,7 @@ class MonsterManager implements IRender {
 			let npc:Npc =  msg.tiles[i];
 			var m:NpcRole = new NpcRole();
 			m.name = npc.id;
+			m.npcType = npc.type;
 			m.setModel("candy");
 			this.monsters.push(m);
 			m.x = npc.pos[0];
@@ -46,7 +53,7 @@ class MonsterManager implements IRender {
 	private p2:egret.Point = new egret.Point();
 	public renderUpdate(interval:number){
 		this.monsters.forEach(element => {
-			if(!element.isDead){
+			if(!element.isDead && element.npcType != NpcType.MAGIC_BUILDERE){
 				this.p1.x = element.x;
 				this.p1.y = element.y;
 				this.p2.x = PlayerRole.self.x;

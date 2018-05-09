@@ -18,7 +18,7 @@ class PlayerRole extends UserRole {
 
 	//角色的移动处理,这里的移动优化应该还可以继续优化
 	public renderUpdate(interval: number): void {
-		if (JoystickModule.offset == 0 || this.isDead)
+		if (JoystickModule.offset == 0 || this.isDead || this.frozen)
 			return;
 		//在这里检查某个点是否可以到达
 		var tox: number = this.x + JoystickModule.multX * this.speedX;

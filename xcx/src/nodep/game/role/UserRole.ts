@@ -4,6 +4,8 @@ class UserRole extends FocusRole {
 	public roleMeshs:Array<RoleMesh>;
 	public pointExistTime:number = 3;
 	public isSelf:boolean = false;
+	/** 冰冻 */
+	public frozen:boolean = false;
 	public constructor() {
 		super();
 		this.type = RoleType.PLAYER;
@@ -22,6 +24,12 @@ class UserRole extends FocusRole {
 			switch(o[0]){
 				case PropertyType.POINT_EXIST_TIME:
 					this.pointExistTime = o[1]/1000;
+				break;
+				case PropertyType.frozen:
+				this.frozen = o[1]>0?true:false;
+				break;
+				case PropertyType.viscosity:
+				this.viscosity = o[1];
 				break;
 			}
 		})

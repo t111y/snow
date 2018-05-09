@@ -39,8 +39,11 @@ class MessageType {
 	public static sc_drop:number = 12007;
 
 	public static sc_npcEnter:number = 12008;
+	public static sc_npcExit:number = 12009;
 
 	public static sc_updateUserProperty:number = 12011;
+	/** 无效移动 */
+	public static sc_invalidMovePath:number = 12012;
 	/**
 	 * {"msgId": 60000, "time": 1522296176}
 	 */
@@ -101,11 +104,20 @@ class MessageType {
 		msg.playerId = o.playerId;
 		return msg;
 	}
+
+	private static parseInvalidMovePath(o:any):ScInvalidMovePath{
+		let msg:ScInvalidMovePath = new ScInvalidMovePath();
+		msg.path = MessageType.arrayToPath(o.path);
+		msg.pos = o.pos;
+		return msg;
+	}
+
 	private static parseEnterScene(o:any):ScEnterScene{
 		var msg:ScEnterScene = new ScEnterScene();
 		msg.sceneId = o.sceneId;
 		msg.pos = o.pos;
 		msg.pointExistTime = o.pointExistTime / 1000;
+		msg.viscosity = o.viscosity;
 		return msg;
 	}
 	private static parseNpcEnter(o:any):ScNpcEnter{
@@ -119,6 +131,11 @@ class MessageType {
 			npc.type = element.type;
 			msg.tiles[msg.tiles.length] = npc;
 		});
+		return msg;
+	}
+	private static parseNpcExit(o:any):ScNpcExit{
+		var msg:ScNpcExit = new ScNpcExit();
+		msg.tiles = o.tiles;
 		return msg;
 	}
 	private static parseUserEnter(o:any):ScUserEnter{
@@ -136,7 +153,7 @@ class MessageType {
 	private static parseMove(o:any):ScMove{
 		var msg:ScMove = new ScMove();
 		msg.playerId = o.playerId;
-		msg.path = MessageType.arrayToPath(o.path);;
+		msg.path = MessageType.arrayToPath(o.path);
 		return msg;
 	}
 	private static parseCirclePath(o:any):ScCirclePath{
@@ -200,6 +217,8 @@ class MessageType {
 			return MessageType.parseMonsterEnter(o);
 			case MessageType.sc_monsterExit:
 			return MessageType.parseMonsterExit(o);
+			case MessageType.sc_invalidMovePath:
+			return MessageType.parseInvalidMovePath(o);
 		}
 	}
 }
@@ -220,6 +239,7 @@ class ScEnterScene{
 	public sceneId:string;
 	public pos:Array<number>;
 	public pointExistTime:number;
+	public viscosity:number;
 }
 class ScUserEnter{
 	public players:Array<User>;
@@ -227,6 +247,9 @@ class ScUserEnter{
 }
 class ScNpcEnter{
 	public tiles:Array<Npc>;
+}
+class ScNpcExit{
+	public tiles:Array<string>;
 }
 class ScMove{
 	public playerId:string;
@@ -247,4 +270,8 @@ class ScMonsterEnter{
 
 class ScMonsterExit{
 	public monsters:Array<string>;
+}
+class ScInvalidMovePath{
+	public path:Array<RolePathPoint>;
+	public pos:Array<number>;
 }
