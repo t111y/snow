@@ -21,10 +21,11 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 	public deadTime:number;
 	/** 粘稠值 */
 	public viscosity:number = 0;
+	public reliveTime:number = 0;
 	public setDead(isDead:boolean){
 		this.isDead = isDead;
-		this.deadTime = Globals.i().serverTime.now();
 		if(isDead){
+			this.deadTime = Globals.i().serverTime.now();
 			Globals.i().killNum++;
 			WinsManager.getIns().showFloatText(Globals.i().killNum + "击");
 			if(this.filters == null){
@@ -36,6 +37,7 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		}else{
 			this.changeAction(RoleAction.RUN);
 			this.filters = null;
+			this.reliveTime = Globals.i().serverTime.now();
 		}
 	}
 	public constructor() {
@@ -51,6 +53,12 @@ class FocusRole extends egret.DisplayObjectContainer implements IFocus, IRender,
 		this.mc = new egret.MovieClip();
 		this.addChild(this.mc);
 		this.action = RoleAction.RUN ;
+	}
+	public isRelive():boolean{
+		return this.isDead && Globals.i().serverTime.now()> this.deadTime + GameConfig.deadTime;
+	}
+	public isInvincible():boolean{
+		return this.reliveTime + GameConfig.invincible_time > Globals.i().serverTime.now();
 	}
 	
 	public setWay(way:number){

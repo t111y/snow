@@ -34,7 +34,7 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 			if (this.roleMap.hasOwnProperty(key)) {
 				var role:UserRole = this.roleMap[key];
 				if(role.type == RoleType.NPC || role.isDead){
-					if(role.isDead && Globals.i().serverTime.now()> role.deadTime + GameConfig.deadTime){
+					if(role.isRelive()){
 						role.setDead(false);
 					}
 					continue;
@@ -42,7 +42,7 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 				for(let i:number = 0;i<PlayerRole.self.roleMeshs.length;i++){
 					var e:RoleMesh = PlayerRole.self.roleMeshs[i];
 					role.localToGlobal(0,0,this.hitPoint);
-					var isHit:boolean = e.hitTest(this.hitPoint.x,this.hitPoint.y);
+					var isHit:boolean = role.isInvincible()?false:e.hitTest(this.hitPoint.x,this.hitPoint.y);
 					if(isHit){
 						role.setDead(isHit);
 						MessageType.sendRoleDrop(e.id,role.name,role.type,Globals.i().serverTime.now())
@@ -69,6 +69,8 @@ class Tiled_Ground extends egret.DisplayObjectContainer implements IRender {
 			return;
 		}
 		role.dispose();
+		delete this.roleMap[roleId];
+		this.groud.removeRole(role);
 	}
 
 	/**添加一个焦点显示对象 */

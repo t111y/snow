@@ -12,7 +12,8 @@ class GameConfig {
 	public static WORD_H:number = 2560;
 	public static map_cfx:number;//世界缩放比例
 	public static map_cfy:number;//世界缩放比例
-	deadTime
+	/** 复活无敌时间 */
+	public static invincible_time = 2;
 	public static deadTime =4;
 	public static Monster_NUM =20;
 

@@ -209,6 +209,8 @@ class MessageType {
 			return MessageType.parseTick(o);
 			case MessageType.sc_npcEnter:
 			return MessageType.parseNpcEnter(o);
+			case MessageType.sc_npcExit:
+			return MessageType.parseNpcExit(o);
 			case MessageType.sc_drop:
 			return MessageType.parseDrop(o);
 			case MessageType.sc_updateUserProperty:

@@ -27,6 +27,9 @@ class UserRole extends FocusRole {
 				break;
 				case PropertyType.frozen:
 				this.frozen = o[1]>0?true:false;
+				if(this.frozen){
+					this.setDead(true);
+				}
 				break;
 				case PropertyType.viscosity:
 				this.viscosity = o[1];
