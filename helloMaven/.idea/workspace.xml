@@ -64,8 +64,11 @@
       <file leaf-file-name="ReferencePipeline.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/stream/ReferencePipeline.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9174">
+            <state relative-caret-position="7590">
               <caret line="417" selection-start-line="417" selection-end-line="417" />
+              <folding>
+                <element signature="e#15205#15206#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,7 +211,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -220,9 +223,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -384,6 +384,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -634,7 +637,8 @@
       <workItem from="1523601275356" duration="1834000" />
       <workItem from="1524729089432" duration="6546000" />
       <workItem from="1524791409197" duration="1470000" />
-      <workItem from="1524876694226" duration="2524000" />
+      <workItem from="1524876694226" duration="3123000" />
+      <workItem from="1525223387171" duration="599000" />
     </task>
     <servers />
   </component>
@@ -671,11 +675,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100011000" />
+    <option name="totallyTimeSpent" value="101209000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -691,7 +694,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20788912" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21002132" />
       <window_info anchor="bottom" id="JProfiler" order="10" weight="0.32998884" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.4793713" weight="0.32995737" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1071,8 +1074,11 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/stream/ReferencePipeline.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9174">
+        <state relative-caret-position="7590">
           <caret line="417" selection-start-line="417" selection-end-line="417" />
+          <folding>
+            <element signature="e#15205#15206#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1100,16 +1106,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/concurrent/TestLock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/concurrent/TestLock.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/top/yaovan/aop/AopAppContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -1121,9 +1118,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="10" column="88" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
