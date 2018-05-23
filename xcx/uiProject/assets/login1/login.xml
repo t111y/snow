@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1080,1920">
+  <displayList>
+    <image id="n4_f1nd" name="n4" src="f1nda" xy="0,0" size="1080,1920"/>
+    <component id="n2_f1nd" name="n2" src="f1nd7" xy="38,1844">
+      <ProgressBar value="60" max="100"/>
+    </component>
+    <component id="n6_f1nd" name="n6" src="f1ndb" xy="218,1424"/>
+  </displayList>
+</component>

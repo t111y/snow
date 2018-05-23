@@ -2,9 +2,16 @@
 <packageDescription id="co8erd7u" jpegQuality="80" compressPNG="true">
   <resources>
     <component id="stal0" name="Joystick.xml" path="/" exported="true"/>
-    <image id="ojxk1" name="0.png" path="/"/>
+    <image id="ojxk1" name="0.png" path="/pic/"/>
     <component id="ojxk2" name="circle.xml" path="/"/>
-    <image id="ojxk3" name="1.png" path="/"/>
+    <image id="h81g4" name="1.png" path="/pic/"/>
+    <image id="h81g6" name="touding.png" path="/pic/"/>
+    <image id="h81g7" name="direnfangxiang.png" path="/pic/"/>
+    <image id="h81g8" name="direnkuang.png" path="/pic/"/>
+    <image id="h81g9" name="nianchoudi.png" path="/pic/"/>
+    <image id="h81ga" name="nianchoudutiao.png" path="/pic/"/>
+    <component id="h81gb" name="nianchouBar1.xml" path="/"/>
+    <component id="h81gc" name="nianchouBar2.xml" path="/"/>
   </resources>
   <publish name="joystick" genCode="true">
     <atlas name="Default" index="0"/>

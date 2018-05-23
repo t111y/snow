@@ -1,8 +1,9 @@
 {
-	"hidden_packages": [],
 	"docs": [
 		"co8erd7u",
-		"stal0"
+		"stal0",
+		"co8erd7u",
+		"ojxk2"
 	],
 	"expanded_nodes": [
 		"co8erd7u",
@@ -12,6 +13,7 @@
 	],
 	"active_doc": [
 		"co8erd7u",
-		"stal0"
-	]
+		"ojxk2"
+	],
+	"hidden_packages": []
 }

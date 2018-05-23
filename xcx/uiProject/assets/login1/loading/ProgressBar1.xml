@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1004,46" extention="ProgressBar">
+  <displayList>
+    <image id="n1" name="n1" src="iilw2" xy="0,0" size="1004,46">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <component id="n2" name="bar" src="f1nd8" xy="7,6" size="989,34"/>
+    <text id="n3_f1nd" name="n3" xy="352,-67" size="369,65" font="方正兰亭超细黑简体" fontSize="42" color="#ffffff" autoSize="none" strokeColor="#ff99cc" text="正在疯狂收集糖果">
+      <relation target="" sidePair="center-center%"/>
+    </text>
+  </displayList>
+  <ProgressBar/>
+</component>
