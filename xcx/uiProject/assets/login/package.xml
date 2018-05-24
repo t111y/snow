@@ -10,5 +10,5 @@
     <image id="f1nda" name="bg.jpg" path="/other/" exported="true"/>
     <component id="f1ndb" name="Button-login.xml" path="/other/" exported="true"/>
   </resources>
-  <publish name="login"/>
+  <publish name="login" genCode="true"/>
 </packageDescription>
