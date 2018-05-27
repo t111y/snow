@@ -63,22 +63,25 @@ class WinsManager {
 
 	/**开启或关闭窗口 */
 	public switchWin(cls: any):void{
-		if (this._windowMap[cls]==null)
-			this._windowMap[cls]=new cls();
-		let win: GameWindow = this._windowMap[(cls)];
+		let win: GameWindow = this.getWin(cls);
 		if(win.isShowing)
 			this.openWindow(cls);
 		else
 			this.closeWin(cls);
 	}
-
+	public getWin(cls:any){
+		let win = this._windowMap[cls];
+		if (win == null){
+			win = new cls();
+			this._windowMap[cls]=win
+		}
+		return win;
+	}
 	/**
 	 * 开启一个窗口
 	 */
 	public openWindow(cls: any): void {
-		if (this._windowMap[(cls)]==null)
-			this._windowMap[cls]=new cls();
-		let win: GameWindow = this._windowMap[cls];
+		let win: GameWindow = this.getWin(cls);
 		if (!win.isShowing) {
 			win.show();
 			win.width = WinsManager.stageWidth;
@@ -98,9 +101,7 @@ class WinsManager {
 	 * 在某個層級打開界面
 	 */
 	public openWindowToLayer(cls: any, layerType: string): void {
-		if (!this._windowMap[(cls)])
-			this._windowMap[cls]= new cls();
-		let win: GameWindow = this._windowMap[(cls)];
+		let win: GameWindow = this.getWin(cls);
 		if (!win.isShowing) {
 			win.show();
 			win.height = this._baseUi.stage.stageHeight;

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="727,165" opaque="false">
+  <displayList>
+    <image id="n7_h81g" name="n7" src="h81g6" fileName="pic/touding.png" xy="0,0"/>
+    <component id="n8_h81g" name="viscosity" src="h81gb" fileName="nianchouBar1.xml" xy="35,96">
+      <ProgressBar value="95" max="100"/>
+    </component>
+  </displayList>
+</component>

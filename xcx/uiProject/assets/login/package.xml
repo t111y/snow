@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="eh1vqx9d" jpegQuality="80" compressPNG="true">
   <resources>
-    <image id="iilw1" name="jindutiao.png" path="/loading/" exported="true"/>
-    <image id="iilw2" name="jindutiaodi.png" path="/loading/" exported="true"/>
+    <image id="iilw1" name="jindutiao.png" path="/loading/"/>
+    <image id="iilw2" name="jindutiaodi.png" path="/loading/"/>
     <component id="f1nd6" name="login.xml" path="/" exported="true"/>
-    <component id="f1nd7" name="ProgressBar1.xml" path="/loading/" exported="true"/>
-    <component id="f1nd8" name="Component1.xml" path="/loading/" exported="true"/>
-    <image id="f1nd9" name="denglu.png" path="/other/" exported="true"/>
-    <image id="f1nda" name="bg.jpg" path="/other/" exported="true"/>
-    <component id="f1ndb" name="Button-login.xml" path="/other/" exported="true"/>
+    <component id="f1nd7" name="ProgressBar1.xml" path="/loading/"/>
+    <component id="f1nd8" name="Component1.xml" path="/loading/"/>
+    <image id="f1nd9" name="denglu.png" path="/other/"/>
+    <image id="f1nda" name="bg.jpg" path="/other/"/>
+    <component id="f1ndb" name="Button-login.xml" path="/other/"/>
   </resources>
   <publish name="login" genCode="true"/>
 </packageDescription>

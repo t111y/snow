@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1080,1920">
+  <displayList>
+    <image id="n0" name="joystick_center" src="ojxk1" fileName="pic/0.png" xy="94,1396">
+      <relation target="" sidePair="bottom-bottom"/>
+    </image>
+    <component id="n1" name="joystick" src="ojxk2" fileName="circle.xml" xy="193,1502">
+      <relation target="" sidePair="bottom-bottom"/>
+    </component>
+    <graph id="n2" name="joystick_touch" xy="59,1104" size="533,755" type="rect" lineSize="0" fillColor="#00ffffff">
+      <relation target="" sidePair="bottom-bottom"/>
+    </graph>
+  </displayList>
+</component>

@@ -33,6 +33,10 @@ class UserRole extends FocusRole {
 				break;
 				case PropertyType.viscosity:
 				this.viscosity = o[1];
+				if(this.isSelf){
+					let win:PlayerInfoWin = WinsManager.getIns().getWin(PlayerInfoWin);
+					win.updateViscosity(this.viscosity);
+				}
 				break;
 			}
 		})

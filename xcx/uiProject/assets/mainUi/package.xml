@@ -11,9 +11,11 @@
     <image id="h81g9" name="nianchoudi.png" path="/pic/"/>
     <image id="h81ga" name="nianchoudutiao.png" path="/pic/"/>
     <component id="h81gb" name="nianchouBar1.xml" path="/"/>
-    <component id="h81gc" name="nianchouBar2.xml" path="/"/>
+    <component id="h81gc" name="nianchouBar2.xml" path="/" exported="true"/>
+    <component id="t7lsd" name="PlayerInfo.xml" path="/" exported="true"/>
+    <component id="t7lse" name="ActorPoint.xml" path="/" exported="true"/>
   </resources>
-  <publish name="joystick" genCode="true">
+  <publish name="mainUi" genCode="true">
     <atlas name="Default" index="0"/>
   </publish>
 </packageDescription>

@@ -18,7 +18,7 @@ class JoystickModule extends GameWindow {
     public static JoystickUp: string = "JoystickUp";
 
     public radius: number;
-    private skin:joystick.UI_Joystick;
+    private skin:mainUi.UI_Joystick;
 
     public constructor() {
         super();
@@ -27,7 +27,7 @@ class JoystickModule extends GameWindow {
 
     protected onInit(){
         super.onInit();
-        this.skin = joystick.UI_Joystick.createInstance();
+        this.skin = mainUi.UI_Joystick.createInstance();
         this.contentPane = this.skin;
         this._button = this.skin.m_joystick;
         this._button.changeStateOnClick = false;

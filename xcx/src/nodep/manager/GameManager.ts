@@ -15,7 +15,6 @@ class GameManager {
 	 * 正常流程开始新游戏
 	 */
 	public startNewGame(): void {
-		//创建角色
 		WinsManager.getIns().openWindow(GameMainLoaderWindow);//打开游戏主加载界面
 		this.buildEnter();
 		// DelayCall.call(100,this.buildEnter,this)
@@ -37,6 +36,7 @@ class GameManager {
 		Tiled_Ground.getIns().initWorld();//初始化世界的宽度和高度
 		WinsManager.getIns().openWindow(JoystickModule);//初始化摇杆到界面
 		WinsManager.getIns().closeWin(GameMainLoaderWindow);//关闭加载
+		WinsManager.getIns().openWindow(PlayerInfoWin);
 	}
 
 

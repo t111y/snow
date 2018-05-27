@@ -96,11 +96,11 @@ public constructor() {
     }
     private initFairyGui(){
         fairygui.UIPackage.addPackage("basics");
-        fairygui.UIPackage.addPackage("panel");
-        fairygui.UIPackage.addPackage("joystick");
-        panel.panelBinder.bindAll();
+        fairygui.UIPackage.addPackage("login");
+        fairygui.UIPackage.addPackage("mainUi");
+        login.loginBinder.bindAll();
         basics.basicsBinder.bindAll();
-        joystick.joystickBinder.bindAll();
+        mainUi.mainUiBinder.bindAll();
         
         this.stage.scaleMode = egret.StageScaleMode.FIXED_WIDTH;
 

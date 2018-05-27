@@ -40,7 +40,7 @@ class MessageType {
 
 	public static sc_npcEnter:number = 12008;
 	public static sc_npcExit:number = 12009;
-
+	//** 更新玩家属性 */
 	public static sc_updateUserProperty:number = 12011;
 	/** 无效移动 */
 	public static sc_invalidMovePath:number = 12012;

@@ -1,6 +1,6 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
-module joystick {
+module mainUi {
 
 	export class UI_Joystick extends fairygui.GComponent {
 
@@ -11,7 +11,7 @@ module joystick {
 		public static URL:string = "ui://co8erd7ustal0";
 
 		public static createInstance():UI_Joystick {
-			return <UI_Joystick><any>(fairygui.UIPackage.createObject("joystick","Joystick"));
+			return <UI_Joystick><any>(fairygui.UIPackage.createObject("mainUi","Joystick"));
 		}
 
 		public constructor() {

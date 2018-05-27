@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="242,157">
+  <displayList>
+    <image id="n5_h81g" name="point" src="h81g7" fileName="pic/direnfangxiang.png" xy="153,42"/>
+    <image id="n6_h81g" name="n6" src="h81g8" fileName="pic/direnkuang.png" xy="0,0"/>
+  </displayList>
+</component>
