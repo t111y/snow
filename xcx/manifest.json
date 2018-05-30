@@ -15,10 +15,10 @@
 	],
 	"game": [
 		"bin-debug/nodep/game/scene/core/FocusRole.js",
-		"bin-debug/nodep/define/WindowType.js",
-		"bin-debug/nodep/game/role/UserRole.js",
 		"bin-debug/nodep/game/vo/Npc.js",
 		"bin-debug/nodep/game/window/GameWindow.js",
+		"bin-debug/nodep/define/WindowType.js",
+		"bin-debug/nodep/game/role/UserRole.js",
 		"bin-debug/nodep/game/scene/core/IRole.js",
 		"bin-debug/nodep/define/GameConfig.js",
 		"bin-debug/nodep/define/LayerType.js",

@@ -28,8 +28,8 @@ class MonsterManager implements IRender {
 			m.name = npc.id;
 			m.x = npc.pos[0];
 			m.y = npc.pos[1];
-			m.speedX = npc.speed;
-			m.speedY = npc.speed;
+			m.speed = npc.speed;
+			m.move(npc.endPos);
 			m.setModel("monster1");
 			Tiled_Ground.getIns().addFocusRole(m);
 		}

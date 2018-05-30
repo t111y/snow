@@ -170,7 +170,11 @@ class MessageType {
 	}
 	private static parseUpdateUserProperty(o:any):ScUpdateUserProperty{
 		let msg:ScUpdateUserProperty = new ScUpdateUserProperty();
-		msg.playerId = o.playerId;
+		if(o.playerId){
+			msg.playerId = o.playerId;
+		}else{
+			msg.playerId = o.monsterId;
+		}
 		msg.attrs = o.attrs;
 		return msg;
 	}
